@@ -3,7 +3,7 @@ function App() {
 
   return (
     <>
-        <h>Bienvenidos a Sazón del alma</h>
+        <h1>Bienvenidos a Sazón del alma</h1>
     </>
   )
 }
