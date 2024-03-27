@@ -5,8 +5,6 @@
   --colorFondo:  #e9e0c8 ;
 }
 
-
-
 #root {
   display: flex;
   flex-direction: column;
@@ -15,4 +13,8 @@
 
 .mainPage {
   flex-grow: 1;
+}
+
+footer {
+  background: var(--colorSecundario);
 }
