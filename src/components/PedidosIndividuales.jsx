@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import hamburguesa  from "../assets/hamburguesa.png";
 import DetallePedido from './DetallePedido';
+import { Link } from 'react-router-dom';
+import Principal from './Principal';
 
 const PedidosIndividuales = () => {
 
@@ -28,7 +30,7 @@ const PedidosIndividuales = () => {
           <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
           <article className='d-flex flex-column'>
             <h6>McCombo Mediano Grand Tasty Spicy Doble</h6>
-            editar
+            <Link to={'/'}>Editar</Link>
             <DetallePedido></DetallePedido>
           </article>
         </Col>
