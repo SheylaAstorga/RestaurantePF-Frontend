@@ -29,7 +29,7 @@ const PedidosIndividuales = () => {
         <Col className="d-flex">
           <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
           <article className='d-flex flex-column'>
-            <h6>McCombo Mediano Grand Tasty Spicy Doble</h6>
+            <h5>McCombo Mediano Grand Tasty Spicy Doble</h5>
             <Link to={'/'}>Editar</Link>
             <DetallePedido></DetallePedido>
           </article>

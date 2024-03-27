@@ -14,7 +14,7 @@ const DetallePedido = () => {
         ></i>
       <Collapse in={open}>
         <div id="example-collapse-text">
-        Papas Fritas Medianas - Sal - Coca-Cola Zero - Hielo - Pan XL - Carne - Queso Cheddar en fetas - Cebolla - Tomate - Lechuga - Salsa Tasty - Salsa Spicy
+       <p> Papas Fritas Medianas - Sal - Coca-Cola Zero - Hielo - Pan XL - Carne - Queso Cheddar en fetas - Cebolla - Tomate - Lechuga - Salsa Tasty - Salsa Spicy</p>
         </div>
       </Collapse>
       </>
