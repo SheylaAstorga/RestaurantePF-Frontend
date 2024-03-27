@@ -63,3 +63,12 @@ color: #461d1b;
   color: #461d1b;
 }
 
+.botonRegistrarse{
+  background-color:#642c29;
+  border-color: #642c29;
+}
+
+.botonRegistrarse:hover{
+  background-color: rgb(120, 62, 62);
+  border-color:rgb(120, 62, 62) ;
+}

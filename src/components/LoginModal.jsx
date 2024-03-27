@@ -67,7 +67,7 @@ const LoginModal = () => {
                 Olvidé mi usuario
               </a>
             </div>
-            <div className="social-login text-center">
+            <div className=" text-center">
               <Button
                 variant="outline-primary"
                 className="social-button me-3 my-2 w-25"
