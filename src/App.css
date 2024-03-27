@@ -29,69 +29,37 @@ h2,h1{
 }
 
 /* login */
-.container-Login {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
- background-color: #ffffff;
+
+.botonSesion{
+  background-color:#642c29;
+  border-color: #642c29;
 }
 
-.welcome-section {
-  position: relative;
-  width: 50%;
-  height: 400px; 
-  background-image: url(imagenlogin);
-  background-size: cover; 
-  background-position: center;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Filtro negro con 50% de opacidad */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-.content {
-  position: relative;
-  margin-top: 4em;
-  z-index: 2; 
-  color: white;}
-
-.content h2,
-.content p,
-.content button {
-  margin-bottom: 20px;
-}
-
-.content button {
-  padding: 10px 20px;
-  font-size: 16px;
+.botonSesion:hover {
+  background-color: rgb(120, 62, 62);
+  border-color:rgb(120, 62, 62) ;
 }
 
 
-
-.login-section {
-  flex: 1;
-  padding: 20px;
+.linkLoginUsuario{
+  color: #935653;
 }
 
-.social-login {
-  margin-bottom: 20px;
+.linkLoginUsuario:hover {
+color: #461d1b;
+}
+.linkLoginContraseña{
+  color: #935653;
 }
 
-.social-button {
-  width: 100%;
-  margin-bottom: 10px;
+.linkLoginContraseña:hover {
+color: #461d1b;
 }
 
-.social-button:last-child {
-  margin-bottom: 0;
+.linkRegistrate{
+  color: #935653;
+}
+.linkRegistrate:hover{
+  color: #461d1b;
 }
 
