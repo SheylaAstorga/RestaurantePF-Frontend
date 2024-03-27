@@ -20,7 +20,9 @@ const LoginModal = () => {
     >
       <Modal.Dialog>
         <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>
+            <p className="fs-5 mb-0">Iniciar Sesión</p>
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
