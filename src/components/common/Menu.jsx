@@ -14,30 +14,29 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     return (
         <Navbar expand="lg" className="NavFondo">
             <Container className="d-flex justify-content-between align-items-center">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                {/* cambiar de color a el boton hamburgesa */}
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className="text-white" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     {/* modificar todas las rutas cuando este terminado el frontend */}
                     <Nav className="">
                         <NavLink end className="nav-link text-light" to="/">
-                            Inicio
+                            <i className="bi bi-house"></i> Inicio
                         </NavLink>
                         <NavLink end className="nav-link text-light" to="/">
-                            <i className="bi bi-people-fill"></i>Nosotros
+                            <i className="bi bi-people-fill"></i> Nosotros
                         </NavLink>
                         <NavLink end className="nav-link text-light" to="/">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
                     </Nav>
                 </Navbar.Collapse>
-                <div className="d-flex align-items-center">
-                    <Navbar.Brand className="m-0" as={Link} to="/">
-                        <img
-                            src={logo}
-                            alt="logo"
-                            className="text-light w-25"
-                        />
-                    </Navbar.Brand>
-                </div>
+                <Navbar.Brand className="m-0" as={Link} to="/">
+                    <img
+                        src={logo}
+                        alt="logo"
+                        className="text-light w-25"
+                    />
+                </Navbar.Brand>
                 {usuarioLogueado !== "" ? (
                     <>
                         <NavLink end className="nav-link text-light" to="/administrador">

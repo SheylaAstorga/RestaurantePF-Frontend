@@ -3,7 +3,9 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer className='w-100 py-3'>
-            <p className='text-center text-light m-0'>Aqui pondremos algo mas pero no se que poner</p>
+
+            <hr className='text-light mx-3'/>
+            <p className='text-center text-light m-0'> &copy; Todos los derechos reservados</p>
         </footer>
     );
 };
