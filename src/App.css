@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 :root {
-  --colorPrincipal:  #642c29 ;
-  --colorSecundario:#5e83a1 ;
-  --colorTerciario:  #a6c6dc ;
-  --colorFondo:  #e9e0c8 ;
+  --colorPrincipal: #642c29;
+  --colorSecundario: #5e83a1;
+  --colorTerciario: #a6c6dc;
+  --colorFondo: #e9e0c8;
 }
 
 #root {
@@ -16,5 +19,18 @@
 }
 
 footer {
-  background: var(--colorSecundario);
+  background-color: #521c19;
+  background-image: linear-gradient(90deg, #521c19 0%, #284d6c 100%);
+}
+
+.footerTitulos {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.footerCuerpos {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
 }
