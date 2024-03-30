@@ -1,0 +1,11 @@
+.imgbanner{
+    width: 100%;
+    object-fit: cover;
+}
+.contenedorLogo{
+    margin-top: 11%;
+}
+.fondoLogo{
+    background-color: #642c2981;
+    border-radius: 10px;
+}

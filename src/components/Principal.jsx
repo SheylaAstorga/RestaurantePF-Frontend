@@ -1,10 +1,11 @@
 import React from 'react';
+import BannerPrincial from './paginaPrincipal/BannerPrincial';
 
 const Principal = () => {
     return (
-        <div>
-            Soy la pagina principal porfavor poner /pedido en el buscador para saltar a la pagina. Gracias 
-        </div>
+        <>
+           <BannerPrincial></BannerPrincial>
+        </>
     );
 };
 
