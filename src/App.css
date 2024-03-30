@@ -18,7 +18,15 @@
   flex-grow: 1;
 }
 
-footer {
+.colorBoton1{
+  background-color: #394fb1;
+}
+
+.colorBoton2{
+  background-color: #2db911;
+}
+
+footer , .NavFondo {
   background-color: #521c19;
   background-image: linear-gradient(90deg, #521c19 0%, #284d6c 100%);
 }
