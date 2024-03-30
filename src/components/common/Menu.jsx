@@ -1,46 +1,58 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import logo from "../../assets/LogoSazon.png"
 
 const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     const navegacion = useNavigate()
+
     const logout = () => {
         sessionStorage.removeItem("usuarioSazonDelAlma");
         setUsuarioLogueado("");
         navegacion("/");
     };
+    // modificar el como se centran los elementos haciendo que el boton hamburguesa a la izquierda , el logo en el centro y el iniciar secion y registrar al final
     return (
         <Navbar expand="lg" className="NavFondo">
-            <Container className="d-flex justify-content-between">
+            <Container className="d-flex justify-content-between align-items-center">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
+                    {/* modificar todas las rutas cuando este terminado el frontend */}
                     <Nav className="">
                         <NavLink end className="nav-link text-light" to="/">
                             Inicio
                         </NavLink>
+                        <NavLink end className="nav-link text-light" to="/">
+                            <i className="bi bi-people-fill"></i>Nosotros
+                        </NavLink>
+                        <NavLink end className="nav-link text-light" to="/">
+                            <i className="bi bi-cart"></i> Mis pedidos
+                        </NavLink>
                     </Nav>
                 </Navbar.Collapse>
-                <Navbar.Brand as={Link} to="/">
-                    <img
-                        src=""
-                        alt="[Texto alternativo del logo]"
-                        className="img-fluid text-light"
-                    />
-                </Navbar.Brand>
+                <div className="d-flex align-items-center">
+                    <Navbar.Brand className="m-0" as={Link} to="/">
+                        <img
+                            src={logo}
+                            alt="logo"
+                            className="text-light w-25"
+                        />
+                    </Navbar.Brand>
+                </div>
                 {usuarioLogueado !== "" ? (
                     <>
                         <NavLink end className="nav-link text-light" to="/administrador">
                             Administrador
                         </NavLink>
                         <Button className="nav-link text-light" variant="danger" onClick={logout}>
-                            logout
+                            <i className="bi bi-person-fill-x fs-3 px-2"></i>
                         </Button>
                     </>
                 ) : (
                     <>
-                        <NavLink end className="nav-link text-light btn colorBoton2 me-1" to="/registro">
+                        <NavLink end className="nav-link text-light btn colorBoton2 me-1" to="/registro" title="Registrar">
                             <i className="bi bi-person-fill-add fs-3 px-2"></i>
                         </NavLink>
-                        <NavLink end className="nav-link text-light btn colorBoton1" to="/login">
+                        <NavLink end className="nav-link text-light btn colorBoton1" to="/login" title="Iniciar Secion">
                             <i className="bi bi-person-fill fs-3 px-2"></i>
                         </NavLink>
                     </>
