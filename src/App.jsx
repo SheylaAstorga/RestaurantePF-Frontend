@@ -1,9 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import AcercaDeNosotros from "./components/pages/AcercaDeNosotros"
 
 function App() {
 
   return (
     <>
-        <h1>Bienvenidos a Sazón del alma</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/acercaDeNosotros" element={<AcercaDeNosotros/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
