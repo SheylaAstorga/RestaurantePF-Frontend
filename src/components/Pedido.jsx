@@ -22,7 +22,7 @@ const Pedido = () => {
       </article>
       <article className="d-flex justify-content-end mt-2">
         <Link to={'/'}>
-        <Button variant="outline-secondary" size="lg" className="mx-4">
+        <Button variant="outline-secondary" size="lg" className="mx-4 btn-Seguir">
           Seguir pidiendo
         </Button>
         </Link>

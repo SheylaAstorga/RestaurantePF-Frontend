@@ -18,6 +18,13 @@ h2,h3,h4,h5,h6{
     font-weight: 400;
     font-style: normal;
 }
+body{
+  background-color:var(--colorFondo);
+}
+h1{
+  color:var(--colorPrincipal);
+  font-size: 4rem;
+}
   
   .border-bottom-list .list-group-item:last-child {
     border-right: none;
@@ -26,6 +33,7 @@ h2,h3,h4,h5,h6{
   
   .list-group-item {
     border: none;
+    background-color: var(--colorFondo);
   }
 
   .row{
@@ -54,4 +62,10 @@ h2,h3,h4,h5,h6{
     --bs-btn-active-border-color:var(--colorPrincipal);
     --bs-btn-disabled-bg:var(--colorPrincipal);
     --bs-btn-disabled-border-color:var(--colorPrincipal);
+  }
+  .btn-Seguir{
+    color: black;
+    background-color: rgb(251, 251, 232);
+    --bs-btn-hover-bg: rgb(228, 228, 213);
+    --bs-btn-hover-color:black ;
   }
