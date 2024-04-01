@@ -2,10 +2,64 @@
     width: 100%;
     object-fit: cover;
 }
-.contenedorLogo{
-    margin-top: 11%;
+
+.fondo{
+    background-color: #e9e0c8;
 }
-.fondoLogo{
-    background-color: #642c2981;
-    border-radius: 10px;
+.card-contenedor-dest{
+    max-width: 20rem;
+    margin: 8px;
 }
+.card-img-dest{
+max-width: 20rem;
+opacity: 1;
+object-fit: cover;
+border-radius: 5px;
+
+}
+.card-contenido{
+    position: absolute;
+    padding-top: 5rem;
+    height: 100%;
+    width: 20rem;
+    color: #ffffff;
+}
+.card-text-bg{
+    background-color: #2a2a2a84;
+    
+}
+.card-btn-bg{
+    background-color: #47474784;
+}
+
+.img-modal-detalles{
+    width: 100%;
+}
+.fondo-img-modal{
+    background-color: #ffffff5f;
+    
+}
+
+
+
+/* tamaño chico */
+@media (max-width: 576px)  { 
+    .card-contenido{
+        padding-top: 5rem;
+        height: 100%;
+       
+    }
+}
+/* tamaño medio */
+@media (min-width: 577px) and (max-width: 991px){ 
+    .card-contenido{
+        padding-top: 5rem;
+        height: 100%;
+        
+    }
+ }
+
+/* tamaño grande */
+@media (min-width: 992px) {
+   
+ }
