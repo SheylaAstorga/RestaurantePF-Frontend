@@ -1,10 +1,8 @@
-
+import Error404 from "./components/pages/Error404"
 function App() {
 
   return (
-    <>
-        <h1>Bienvenidos a Sazón del alma</h1>
-    </>
+    <Error404></Error404>
   )
 }
 
