@@ -5,14 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const LoginModal = () => {
-  const handleLogin = () => {
-    console.log("Iniciando sesión...");
-  };
-
-  const handleRegister = () => {
-    console.log("Redirigiendo al formulario de registro...");
-  };
-
+  
   return (
     <div
       className="modal show"
@@ -34,16 +27,18 @@ const LoginModal = () => {
               style={{ width: "200px", height: "auto" }}
             />
           </div>
-          <Form onSubmit={handleLogin} className="traditional-login">
+          <Form className="traditional-login">
             <Form.Group controlId="formBasicEmail" className="my-4">
               <Form.Control
                 type="email"
                 placeholder="Correo electrónico"
+                minLength={12}
+                maxLength={256}
                 required
               />
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
-              <Form.Control type="password" placeholder="Contraseña" required />
+              <Form.Control type="password" placeholder="Contraseña" required  minLength={8} maxLength={16}/>
             </Form.Group>
             <div className="mt-3 checkLogin">
               <Form.Check type="checkbox" label="Recordar contraseña" />
@@ -56,15 +51,9 @@ const LoginModal = () => {
             <div className="text-center my-3">
               <a
                 href="/olvide-contraseña"
-                className="me-5 link-no-underline text-decoration-none linkLoginContraseña"
+                className=" link-no-underline text-decoration-none linkLoginContraseña"
               >
                 Olvidé mi contraseña
-              </a>
-              <a
-                href="/olvide-usuario"
-                className="text-decoration-none linkLoginUsuario"
-              >
-                Olvidé mi usuario
               </a>
             </div>
             <div className=" text-center">

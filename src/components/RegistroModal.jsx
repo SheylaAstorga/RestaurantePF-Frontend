@@ -33,13 +33,16 @@ const RegistroModal = () => {
 
             <Form.Group className="mb-3">
               <Form.Label>Email:</Form.Label>
-              <Form.Control type="email" placeholder="correo@correo.com" />
+              <Form.Control type="email" placeholder="correo@correo.com" required minLength={12} maxLength={256}/>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Contraseña:</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Ingrese una contraseña"
+                required
+                minLength={8}
+                maxLength={16}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -47,12 +50,16 @@ const RegistroModal = () => {
               <Form.Control
                 type="password"
                 placeholder="Ingrese nuevamente su contraseña"
+                minLength={8}
+                maxLength={16}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
                 type="checkbox"
                 label="Acepto los términos y condiciones"
+                required
               />
             </Form.Group>
             <div className="text-center my-4">
