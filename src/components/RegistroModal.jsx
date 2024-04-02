@@ -2,8 +2,20 @@ import logoSazón from "../../src/img/LogoSazon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Button, Form, Modal } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 const RegistroModal = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
+
+  const usuarioValidadoRegistro = (usuario) => {
+    console.log(usuario);
+    reset()
+  };
   return (
     <div
       className="modal show"
@@ -25,35 +37,97 @@ const RegistroModal = () => {
               style={{ width: "200px", height: "auto" }}
             />
           </div>
-          <Form>
-            <Form.Group className="mb-3">
+          <Form onSubmit={handleSubmit(usuarioValidadoRegistro)}>
+            <Form.Group
+              className="mb-3"
+            >
               <Form.Label>Nombre:</Form.Label>
-              <Form.Control type="text" placeholder="Ingrese su nombre" />
+              <Form.Control
+                type="text"
+                placeholder="Ingrese su nombre"
+                {...register("Nombre", {
+                  required: "El nombre es obligatorio",
+                  minLength: {
+                    value: 4,
+                    message:
+                      "El nombre del usuario debe tener como minimo 4 caracteres",
+                  },
+                  maxLength: {
+                    value: 25,
+                    message:
+                      "El nombre del usuario debe tener como maximo 25 caracteres",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+                {errors.Nombre?.message}
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Email:</Form.Label>
-              <Form.Control type="email" placeholder="correo@correo.com" required minLength={12} maxLength={256}/>
+              <Form.Control
+                type="email"
+                placeholder="correo@correo.com"
+                {...register("email", {
+                  required: "El email es obligatorio",
+                  minLength: {
+                    value: 12,
+                    message:
+                      "El email del usuario debe tener como minimo 12 caracteres",
+                  },
+                  maxLength: {
+                    value: 256,
+                    message:
+                      "El email del usuario debe tener como maximo 256 caracteres",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+                {errors.email?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Contraseña:</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Ingrese una contraseña"
-                required
-                minLength={8}
-                maxLength={16}
+                {...register('password',{
+                  required:"La contraseña es obligatoria",
+                  minLength:{
+                    value:8,
+                    message:"La contraseña del usuario debe tener como minimo 8 caracteres"
+                  },
+                  maxLength:{
+                    value:16,
+                    message:"La contraseña del usuario debe tener como maximo 16 caracteres"
+                  }
+                })}
               />
+               <Form.Text className="text-danger">
+                {errors.password?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Confirmar contraseña:</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Ingrese nuevamente su contraseña"
-                minLength={8}
-                maxLength={16}
-                required
+                {...register('password',{
+                  required:"Ingrese su contraseña",
+                  minLength:{
+                    value:8,
+                    message:"Ingrese nuevamente la contraseña, debe tener como minimo 8 caracteres"
+                  },
+                  maxLength:{
+                    value:16,
+                    message:"Ingrese nuevamente la contraseña, debe tener como maximo 16 caracteres"
+                  }
+                })}
               />
+               <Form.Text className="text-danger">
+                {errors.password?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
@@ -70,19 +144,19 @@ const RegistroModal = () => {
             </div>
           </Form>
           <div className=" text-center">
-              <Button
-                variant="outline-primary"
-                className="social-button me-3 my-2 w-25"
-              >
-                <FontAwesomeIcon icon={faFacebook} className="social-icon" />
-              </Button>
-              <Button variant="outline-danger" className="social-button w-25">
-                <FontAwesomeIcon icon={faGoogle} className="social-icon" />
-              </Button>
-            </div>
+            <Button
+              variant="outline-primary"
+              className="social-button me-3 my-2 w-25"
+            >
+              <FontAwesomeIcon icon={faFacebook} className="social-icon" />
+            </Button>
+            <Button variant="outline-danger" className="social-button w-25">
+              <FontAwesomeIcon icon={faGoogle} className="social-icon" />
+            </Button>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-        <p>¿Ya tienes una cuenta?</p>
+          <p>¿Ya tienes una cuenta?</p>
           <a href="/registro" className="text-decoration-none linkRegistrate">
             Inicia sessión aquí
           </a>

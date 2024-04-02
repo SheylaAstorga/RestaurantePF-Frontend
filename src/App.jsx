@@ -7,8 +7,9 @@ function App() {
   return (
     <>
         <h1>Bienvenidos a Sazón del alma</h1>
-        <LoginModal></LoginModal>
-        {/* <RegistroModal></RegistroModal> */}
+        {/* <LoginModal></LoginModal> */}
+        <RegistroModal></RegistroModal>
+
     </>
   )
 }
