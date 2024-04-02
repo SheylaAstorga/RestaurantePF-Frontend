@@ -19,13 +19,13 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     {/* modificar todas las rutas cuando este terminado el frontend */}
                     <Nav className="">
-                        <NavLink end className="nav-link text-light" to="/">
+                        <NavLink end className="nav-link text-light footerTitulos" to="/">
                             <i className="bi bi-house"></i> Inicio
                         </NavLink>
-                        <NavLink end className="nav-link text-light" to="/">
+                        <NavLink end className="nav-link text-light footerTitulos" to="/">
                             <i className="bi bi-people-fill"></i> Nosotros
                         </NavLink>
-                        <NavLink end className="nav-link text-light" to="/">
+                        <NavLink end className="nav-link text-light footerTitulos" to="/">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
                     </Nav>
