@@ -10,10 +10,12 @@ const LoginModal = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const usuarioValidado = (usuario) => {
     console.log(usuario);
+    reset()
   };
 
   return (
