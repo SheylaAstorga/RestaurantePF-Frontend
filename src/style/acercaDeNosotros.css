@@ -1,0 +1,15 @@
+.colorFondoAN{
+    background: #e9dfc8;
+}
+
+.colorTituloAN{
+    color: #521c19;
+}
+
+.colorFondoCardAN.card{
+    background-color: #521c19;
+}
+
+.colorLetraCardAN.card, .colorIconoCardAN{
+    color: #e9dfc8;
+}
