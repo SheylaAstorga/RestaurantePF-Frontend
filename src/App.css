@@ -7,12 +7,68 @@
 
 
 
-#root {
+body {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: italic;
+  /* background-color: #e9e0c8; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+}
+
+h2,h1{
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .mainPage {
   flex-grow: 1;
+}
+
+/* login */
+
+.botonSesion{
+  background-color:#642c29;
+  border-color: #642c29;
+}
+
+.botonSesion:hover {
+  background-color: rgb(120, 62, 62);
+  border-color:rgb(120, 62, 62) ;
+}
+
+
+.linkLoginUsuario{
+  color: #935653;
+}
+
+.linkLoginUsuario:hover {
+color: #461d1b;
+}
+.linkLoginContraseña{
+  color: #935653;
+}
+
+.linkLoginContraseña:hover {
+color: #461d1b;
+}
+
+.linkRegistrate{
+  color: #935653;
+}
+.linkRegistrate:hover{
+  color: #461d1b;
+}
+
+.botonRegistrarse{
+  background-color:#642c29;
+  border-color: #642c29;
+}
+
+.botonRegistrarse:hover{
+  background-color: rgb(120, 62, 62);
+  border-color:rgb(120, 62, 62) ;
 }
