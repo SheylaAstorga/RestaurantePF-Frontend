@@ -68,8 +68,25 @@ h1{
     background-color: rgb(251, 251, 232);
     --bs-btn-hover-bg: rgb(228, 228, 213);
     --bs-btn-hover-color:black ;
+    margin-right: 15px;
   }
   .btn-editar{
     height: 24px;
     width: 24px;
+  }
+
+  @media(max-width: 937px) {
+    .group-pagar{
+      flex-direction: column;
+    }
+    .btn-Seguir{
+      width: 100%;
+      border-radius: 0px;
+    }
+    .btn_pagar{
+      border-radius: 0px;
+    }
+    h1{
+      font-size: 3rem;
+    }
   }
