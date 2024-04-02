@@ -3,9 +3,19 @@ import { Button, Form, Modal } from "react-bootstrap";
 import logoSazón from "../../src/img/LogoSazon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { useForm } from "react-hook-form";
 
 const LoginModal = () => {
-  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const usuarioValidado = (usuario) => {
+    console.log(usuario);
+  };
+
   return (
     <div
       className="modal show"
@@ -27,18 +37,51 @@ const LoginModal = () => {
               style={{ width: "200px", height: "auto" }}
             />
           </div>
-          <Form className="traditional-login">
+          <Form
+            className="traditional-login"
+            onSubmit={handleSubmit(usuarioValidado)}
+          >
             <Form.Group controlId="formBasicEmail" className="my-4">
               <Form.Control
                 type="email"
                 placeholder="Correo electrónico"
-                minLength={12}
-                maxLength={256}
-                required
+                {...register("email", {
+                  required: "El email es obligatorio",
+                  minLength: {
+                    value: 12,
+                    message:
+                      "El email del usuario debe tener como minimo 12 caracteres",
+                  },
+                  maxLength: {
+                    value: 256,
+                    message:
+                      "El email del usuario debe tener como maximo 256 caracteres",
+                  },
+                })}
               />
+              <Form.Text className="text-danger">
+                {errors.email?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
-              <Form.Control type="password" placeholder="Contraseña" required  minLength={8} maxLength={16}/>
+              <Form.Control
+                type="password"
+                placeholder="Contraseña"
+                {...register('password',{
+                  required:"La contraseña es obligatoria",
+                  minLength:{
+                    value:8,
+                    message:"La contraseña del usuario debe tener como minimo 8 caracteres"
+                  },
+                  maxLength:{
+                    value:16,
+                    message:"La contraseña del usuario debe tener como maximo 16 caracteres"
+                  }
+                })}
+              />
+               <Form.Text className="text-danger">
+                {errors.password?.message}
+              </Form.Text>
             </Form.Group>
             <div className="mt-3 checkLogin">
               <Form.Check type="checkbox" label="Recordar contraseña" />
