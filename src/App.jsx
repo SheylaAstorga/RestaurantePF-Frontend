@@ -15,7 +15,9 @@ function App() {
         usuarioLogueado={usuarioLogueado}
         setUsuarioLogueado={setUsuarioLogueado}
       ></Menu>
-      <h1>Bienvenidos a Sazón del alma</h1>
+      <div className="mainPage">
+        <h1>Bienvenidos a Sazón del alma</h1>
+      </div>
       <Footer></Footer>
     </BrowserRouter>
   )

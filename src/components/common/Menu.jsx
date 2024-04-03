@@ -12,7 +12,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     };
     // en la parte de los link hay mucho espacio
     return (
-        <Navbar expand="lg" className="NavFondo">
+        <Navbar expand="lg" className="NavFondo" variant="dark">
             <Container className="d-flex">
                 {/* cambiar de color a el boton hamburgesa */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" className="text-white" />
@@ -47,13 +47,13 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                 <Navbar.Collapse id="basic-navbar-nav" className="order-lg-3 links-nav">
                     {/* modificar todas las rutas cuando este terminado el frontend */}
                     <Nav className="">
-                        <NavLink end className="nav-link text-light footerTitulos" to="/">
+                        <NavLink end className="nav-link footerTitulos" to="/">
                             <i className="bi bi-house"></i> Inicio
                         </NavLink>
-                        <NavLink end className="nav-link text-light footerTitulos" to="/">
+                        <NavLink end className="nav-link footerTitulos" to="/nosotros">
                             <i className="bi bi-people-fill"></i> Nosotros
                         </NavLink>
-                        <NavLink end className="nav-link text-light footerTitulos" to="/">
+                        <NavLink end className="nav-link footerTitulos" to="/error404">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
                     </Nav>
