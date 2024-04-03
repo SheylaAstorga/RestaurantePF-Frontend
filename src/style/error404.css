@@ -8,5 +8,13 @@ img{
 }
 
 .btn.btn-primary{
-    
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--colorPrincipal);
+    --bs-btn-border-color :var(--colorPrincipal);
+    --bs-btn-hover-bg: #4c2220;
+    --bs-btn-hover-border-color: #4c2220;
+    --bs-btn-active-bg:#4c2220;
+    --bs-btn-active-border-color:var(--colorPrincipal);
+    --bs-btn-disabled-bg:var(--colorPrincipal);
+    --bs-btn-disabled-border-color:var(--colorPrincipal);
   }
