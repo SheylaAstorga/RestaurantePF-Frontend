@@ -43,14 +43,29 @@ footer,
   font-weight: 400;
   font-style: normal;
 }
-.footerRedes{
+.footerRedes {
   display: flex;
   justify-content: center;
+}
+.logo-brand {
+  width: 40%;
+}
+.logoNav {
+  width: 100%;
+}
+.links-nav{
+  width: 0px;
 }
 
 @media all and (max-width: 767px) {
   .logoFooter {
     width: 80%;
+  }
+  .logo-brand {
+    width: 33%;
+  }
+  .logoNav {
+    width: 100%;
   }
 }
 @media all and (min-width: 768px) and (max-width: 991px) {
@@ -58,9 +73,15 @@ footer,
     width: 35%;
     margin-bottom: 5%;
   }
+  .logoNav {
+    width: 50%;
+  }
 }
 @media all and (min-width: 992px) {
   .logoFooter {
     width: 100%;
+  }
+  .logoNav {
+    width: 30%;
   }
 }
