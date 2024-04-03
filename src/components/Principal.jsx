@@ -2,11 +2,12 @@ import {useState} from 'react';
 import BannerPrincial from './paginaPrincipal/BannerPrincial';
 import Recomendaciones from './paginaPrincipal/Recomendaciones';
 import ModalDetalles from './paginaPrincipal/ModalDetalles';
+import ReservasPedidos from './paginaPrincipal/ReservasPedidos';
 
 const Principal = () => {
     const [modalShow, setModalShow] = useState(false);
 const producto ={
-    nombre: "milanesa",
+    nombre: "Milanesa",
     precio: 10000,
     img: "https://cdn.kiwilimon.com/brightcove/6364/6364.jpg",
     apto: "celiaco, vegano, vegetariano",
@@ -24,6 +25,7 @@ const producto ={
            <Recomendaciones setModalShow={setModalShow} producto ={producto}></Recomendaciones>
            <ModalDetalles show={modalShow} producto={producto}
         onHide={() => setModalShow(false)}></ModalDetalles>
+      <ReservasPedidos></ReservasPedidos>
         </article>
     );
 };

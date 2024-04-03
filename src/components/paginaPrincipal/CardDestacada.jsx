@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 const CardDestacada = ({setModalShow, producto}) => {
   return (
     <>
-      <div className="card d-flex flex-md-row cambio-card-sm my-3" >
+      <div className="card d-flex flex-md-row cambio-card-sm my-3 shadow-lg" >
         <div >
         <img src={producto.img} className=" card-img-dest" alt="..." />
         </div>
