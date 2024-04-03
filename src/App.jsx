@@ -1,6 +1,6 @@
 import Error404 from "./components/pages/Error404"
 //importar el css
-import '../src/style/error404.css'
+
 function App() {
 
   return (
