@@ -7,6 +7,6 @@ img{
     max-width: 100%; /* Ancho máximo de la imagen */
 }
 
-.btn-primary{
-    --bs-btn-bg: red;
-}
+.btn.btn-primary{
+    
+  }
