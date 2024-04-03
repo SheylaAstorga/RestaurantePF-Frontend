@@ -1,15 +1,59 @@
-.colorFondoAN{
-    background: #e9dfc8;
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap");
+
+.colorFondoAN {
+  background: #e9dfc8;
 }
 
-.colorTituloAN{
-    color: #521c19;
+.colorTituloAN {
+  color: #521c19;
 }
 
-.colorFondoCardAN.card{
-    background-color: #521c19;
+.colorFondoCardAN.card {
+  background-color: #521c19;
 }
 
-.colorLetraCardAN.card, .colorIconoCardAN{
-    color: #e9dfc8;
+.colorLetraCardAN.card,
+.colorIconoCardAN {
+  color: #e9dfc8;
+}
+
+.letraTitulos {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.letraSubtitulos {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.letraCuerpo {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tamanioLetraTituloAN{
+    font-size: 30px;
+}
+
+@media (min-width: 576px) and (max-width: 767px) { 
+    .tamanioLetraTituloAN{
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
+    .tamanioLetraTituloAN{
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 992px) { 
+    .tamanioLetraTituloAN{
+        font-size: 60px;
+    }
 }
