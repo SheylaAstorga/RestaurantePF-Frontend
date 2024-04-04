@@ -8,8 +8,8 @@ function App() {
   return (
     <>
         <Error404></Error404>
-        <h1>Bienvenidos a Sazón del alma</h1>
-        <LoginModal></LoginModal>
+        {/* <h1>Bienvenidos a Sazón del alma</h1> */}
+        {/* <LoginModal></LoginModal> */}
         {/* <RegistroModal></RegistroModal> */}
 
     </>
