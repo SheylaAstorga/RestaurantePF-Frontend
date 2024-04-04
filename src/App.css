@@ -48,13 +48,14 @@ footer,
   justify-content: center;
 }
 .logo-brand {
-  width: 40%;
+  width: 20%;
+  flex-grow: 1;
 }
 .logoNav {
   width: 100%;
 }
 .links-nav{
-  width: 0px;
+  width: 10%;
 }
 
 @media all and (max-width: 767px) {
@@ -82,6 +83,6 @@ footer,
     width: 100%;
   }
   .logoNav {
-    width: 30%;
+    width: 15%;
   }
 }
