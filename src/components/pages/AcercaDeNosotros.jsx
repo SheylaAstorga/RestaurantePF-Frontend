@@ -1,5 +1,9 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import "../../style/acercaDeNosotros.css";
+import integrante1 from "../../img/Equipo/Sheyla.jpg";
+import integrante3 from "../../img/Equipo/Javier.jpg";
+import integrante4 from "../../img/Equipo/Natalia.jpg";
+import integrante5 from "../../img/Equipo/Daniel.jpg"
 
 const AcercaDeNostros = () => {
   return (
@@ -8,12 +12,12 @@ const AcercaDeNostros = () => {
         <h2 className="colorTituloAN text-center pt-3 pt-md-5 letraTitulos tamanioLetraTituloAN">
           Nuestro equipo
         </h2>
-        <Row className="justify-content-center py-3 py-md-5">
+        <Row className="justify-content-center py-3 py-md-5 colorFondoAN">
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
               <Card.Img
                 variant="top"
-                src="holder.js/100px180?text=Image cap"
+                src={integrante1}
                 alt="Sheyla Astorga"
               />
               <Card.Body>
@@ -59,7 +63,7 @@ const AcercaDeNostros = () => {
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
               <Card.Img
                 variant="top"
-                src="holder.js/100px180?text=Image cap"
+                src={integrante3}
                 alt="Javier Exequiel Jiménez"
               />
               <Card.Body>
@@ -82,7 +86,7 @@ const AcercaDeNostros = () => {
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
               <Card.Img
                 variant="top"
-                src="holder.js/100px180?text=Image cap"
+                src={integrante4}
                 alt="Natalia del Valle Morales"
               />
               <Card.Body>
@@ -105,7 +109,7 @@ const AcercaDeNostros = () => {
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
               <Card.Img
                 variant="top"
-                src="holder.js/100px180?text=Image cap"
+                src={integrante5}
                 alt="Daniel Emmanuel Santi Araoz"
               />
               <Card.Body>
