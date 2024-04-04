@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
 :root {
   --colorPrincipal:  #642c29 ;
   --colorSecundario:#5e83a1 ;
   --colorTerciario:  #a6c6dc ;
   --colorFondo:  #e9e0c8 ;
-  
 }
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap');
 h1{
@@ -46,6 +48,94 @@ h2,h1{
   flex-grow: 1;
 }
 
+.colorBoton1 {
+  background-color: #394fb1;
+}
+
+.colorBoton2 {
+  background-color: #2db911;
+}
+
+footer,
+.NavFondo {
+  background-color: #521c19;
+  background-image: linear-gradient(90deg, #521c19 0%, #284d6c 100%);
+}
+
+.footerTitulos {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.footerCuerpos {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.footerRedes {
+  display: flex;
+  justify-content: center;
+}
+
+.contenedor-navbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.logo-brand {
+  width: 30%;
+  flex-grow: 1;
+}
+.logoNav {
+  width: 100%;
+}
+.botones-seciones {
+  width: 35%;
+}
+.links-nav {
+  width: 35%;
+}
+@media all and (max-width: 767px) {
+  .logoFooter {
+    width: 50%;
+  }
+  .logo-brand {
+    width: 33%;
+  }
+  .logoNav {
+    width: 45%;
+  }
+  .botones-seciones {
+    width: auto;
+  }
+  .links-nav {
+    width: 0%;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .logoFooter {
+    width: 35%;
+    margin-bottom: 5%;
+  }
+  .logoNav {
+    width: 35%;
+  }
+  .botones-seciones {
+    width: auto;
+  }
+  .links-nav {
+    width: 0%;
+  }
+}
+@media all and (min-width: 992px) {
+  .logoFooter {
+    width: 100%;
+  }
+  .logoNav {
+    width: 35%;
+  }
+}
 /* login */
 
 .botonSesion{
