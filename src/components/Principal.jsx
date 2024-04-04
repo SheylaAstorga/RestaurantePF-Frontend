@@ -21,14 +21,14 @@ const producto ={
 }
 
     return (
-        <article className='fondo'>
+       <article className='fondo'>
            <BannerPrincial></BannerPrincial>
            <Recomendaciones setModalShow={setModalShow} producto ={producto}></Recomendaciones>
            <ModalDetalles show={modalShow} producto={producto}
-        onHide={() => setModalShow(false)}></ModalDetalles>
-      <ReservasPedidos></ReservasPedidos>
-      <Direccion></Direccion>
-        </article>
+              onHide={() => setModalShow(false)}></ModalDetalles>
+           <ReservasPedidos></ReservasPedidos>
+            <Direccion></Direccion>
+       </article>
     );
 };
 

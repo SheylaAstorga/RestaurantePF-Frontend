@@ -29,14 +29,14 @@ const PedidosIndividuales = () => {
         <Col className="d-flex">
           <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
           <article className='d-flex flex-column'>
-            <h5>McCombo Mediano Grand Tasty Spicy Doble</h5>
-            <Link to={'/'}>Editar</Link>
+            <h5 className='font-weight-bold mt-2'>McCombo Mediano Grand Tasty Spicy Doble</h5>
+            <Link to={'/'} className='btn-editar'>Editar</Link>
             <DetallePedido></DetallePedido>
           </article>
         </Col>
-        <Col className="d-flex justify-content-end align-items-center">
+        <Col className="d-flex justify-content-center align-items-end flex-column">
+        <p className='m-2'>8.000$</p>
           <article>
-            <p className='m-2'>8.000$</p>
             <ButtonGroup aria-label="Quantity buttons">
               <Button variant="outline-danger" onClick={handleDecrement}>
               <i class="bi bi-trash"></i>
