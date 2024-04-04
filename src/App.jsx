@@ -1,3 +1,7 @@
+import Error404 from "./components/pages/Error404"
+import "bootstrap/dist/css/bootstrap.min.css";
+import LoginModal from "./components/LoginModal";
+import RegistroModal from "./components/RegistroModal";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -15,9 +19,6 @@ function App() {
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
       </Routes>
     </BrowserRouter>
-
-
-    
   );
 }
 
