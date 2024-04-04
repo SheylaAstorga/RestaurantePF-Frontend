@@ -1,0 +1,98 @@
+/* fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap');
+h1{
+    font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h2,h3,h4,h5,h6{
+    font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+*{
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body{
+  background-color:var(--colorFondo);
+}
+h1{
+  color:var(--colorPrincipal);
+  font-size: 4rem;
+}
+
+.c-principal{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+  
+  .border-bottom-list .list-group-item:last-child {
+    border-right: none;
+    border-left: none;
+  }
+  
+  .list-group-item {
+    border: none;
+    background-color: var(--colorFondo);
+  }
+
+  .row{
+    border-bottom: 0.1px solid rgb(160, 160, 160);
+    border-radius: 20px;
+    padding-bottom: 5px;
+    background-color: rgb(248, 248, 248);
+  }
+
+  .imgHamburguesa{
+    width: 50px;
+    height: 50px;
+    margin-right: 23px;
+  }
+  .bi-arrow-down-short{
+    cursor: pointer;
+  }
+  .btn_pagar{
+  background-color:  var(--colorPrincipal);
+  }
+  .btn-primary {
+    --bs-btn-bg: var(--colorPrincipal);
+    --bs-btn-border-color :var(--colorPrincipal);
+    --bs-btn-hover-bg: #4c2220;
+    --bs-btn-hover-border-color: #4c2220;
+    --bs-btn-active-bg:#4c2220;
+    --bs-btn-active-border-color:var(--colorPrincipal);
+    --bs-btn-disabled-bg:var(--colorPrincipal);
+    --bs-btn-disabled-border-color:var(--colorPrincipal);
+  }
+  .btn-Seguir{
+    color: black;
+    background-color: rgb(251, 251, 232);
+    --bs-btn-hover-bg: rgb(228, 228, 213);
+    --bs-btn-hover-color:black ;
+    margin-right: 15px;
+  }
+  .btn-editar{
+    height: 24px;
+    width: 24px;
+  }
+
+  @media(max-width: 937px) {
+    .group-pagar{
+      flex-direction: column;
+    }
+    .btn-Seguir{
+      width: 100%;
+      border-radius: 0px;
+    }
+    .btn_pagar{
+      border-radius: 0px;
+    }
+    h1{
+      font-size: 3rem;
+    }
+  }
