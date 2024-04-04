@@ -9,7 +9,7 @@ const Pedido = () => {
     <section className="container c-principal">
       <article className="d-flex justify-content-between">
       <h1>Mi pedido</h1>
-      <Button variant="link" className="m-3">Limpiar</Button>
+      <Button variant="primary" className="m-3">Limpiar</Button>
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
