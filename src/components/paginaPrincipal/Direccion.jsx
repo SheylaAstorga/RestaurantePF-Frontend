@@ -7,10 +7,10 @@ const Direccion = () => {
       <section className="">
       <h2 className='text-center my-3'>nuestra dirección</h2>
 
-      <section className=" d-flex ">
+      <section className=" d-flex flex-column flex-lg-row flex-md-row ">
         <div className="w-100 d-flex  align-content-center flex-wrap justify-content-center">
 <div className="">
-      <ListGroup className="list-group list-group-flush text-center mx-2">
+      <ListGroup className="list-group list-group-flush text-center m-2 my-lg-2">
   <ListGroup.Item variant="dark">direccion</ListGroup.Item>
   <ListGroup.Item >Gral. Paz 576</ListGroup.Item>
   <ListGroup.Item >S.M. de Tucumán- Argentina</ListGroup.Item>
@@ -18,7 +18,7 @@ const Direccion = () => {
 
 </div>
 <div className="bg-none">
-      <ListGroup className="list-group  text-center mx-2">
+      <ListGroup className="list-group  text-center m-2 my-lg-2">
   <ListGroup.Item variant="dark" ><>Horarios</></ListGroup.Item>
   <ListGroup.Item >lunes a sabados: 08:00 a 00:00</ListGroup.Item>
   <ListGroup.Item >domingos: 08:00 a 13:00</ListGroup.Item>
