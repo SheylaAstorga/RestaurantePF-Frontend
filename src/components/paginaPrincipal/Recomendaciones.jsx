@@ -13,7 +13,7 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 const Recomendaciones = ({ setModalShow, producto }) => {
   return (
-    <article>
+    <article className="glass-efect">
       <h1 className="display-2 text-center color-texto-destacado">Nuestras recomendaciones </h1>
       <Swiper
         spaceBetween={50}
@@ -60,7 +60,7 @@ const Recomendaciones = ({ setModalShow, producto }) => {
         </SwiperSlide>
       </Swiper>
       <div className="d-grid gap-2 my-3 d-flex justify-content-center">
-        <Button variant="outline-light color-texto-destacado" size="md" className="w-50">
+        <Button variant="outline-light color-texto-destacado" size="md" className="w-50 my-3">
           MENU
         </Button>
       </div>

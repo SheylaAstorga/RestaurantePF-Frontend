@@ -3,6 +3,7 @@ import BannerPrincial from './paginaPrincipal/BannerPrincial';
 import Recomendaciones from './paginaPrincipal/Recomendaciones';
 import ModalDetalles from './paginaPrincipal/ModalDetalles';
 import ReservasPedidos from './paginaPrincipal/ReservasPedidos';
+import Direccion from './paginaPrincipal/Direccion';
 
 const Principal = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -26,6 +27,7 @@ const producto ={
            <ModalDetalles show={modalShow} producto={producto}
         onHide={() => setModalShow(false)}></ModalDetalles>
       <ReservasPedidos></ReservasPedidos>
+      <Direccion></Direccion>
         </article>
     );
 };
