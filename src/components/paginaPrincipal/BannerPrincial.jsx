@@ -1,5 +1,5 @@
 
-import bannerImg from "../../../public/bannerfondo.png";
+import bannerImg from "/bannerfondo.png";
 
 
 const BannerPrincial = () => {
