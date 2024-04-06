@@ -1,9 +1,10 @@
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Image } from "react-bootstrap";
 import "../../style/acercaDeNosotros.css";
 import integrante1 from "../../img/Equipo/Sheyla.jpg";
+import integrante2 from "../../img/Equipo/Thiago.jpg";
 import integrante3 from "../../img/Equipo/Javier.jpg";
 import integrante4 from "../../img/Equipo/Natalia.jpg";
-import integrante5 from "../../img/Equipo/Daniel.jpg"
+import integrante5 from "../../img/Equipo/Daniel.jpg";
 
 const AcercaDeNostros = () => {
   return (
@@ -15,11 +16,14 @@ const AcercaDeNostros = () => {
         <Row className="justify-content-center py-3 py-md-5 colorFondoAN">
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-              <Card.Img
-                variant="top"
-                src={integrante1}
-                alt="Sheyla Astorga"
-              />
+              <div className="tamanioImg">
+                <Image
+                  src={integrante1}
+                  alt="Sheyla Astorga"
+                  className="imagenCirculo"
+                  roundedCircle
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="letraSubtitulos">
                   Sheyla Astorga
@@ -29,7 +33,7 @@ const AcercaDeNostros = () => {
                 <Card.Link href="#">
                   <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
                 </Card.Link>
-                <Card.Link href="#">
+                <Card.Link href="https://github.com/SheylaAstorga">
                   <i className="bi bi-github colorIconoCardAN fs-3"></i>
                 </Card.Link>
               </Card.Footer>
@@ -38,11 +42,14 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-              <Card.Img
-                variant="top"
-                src="holder.js/100px180?text=Image cap"
-                alt="Thiago Benjamín Fiol"
-              />
+              <div className="tamanioImg">
+                <Image
+                  src={integrante2}
+                  alt="Thiago Benjamín Fiol"
+                  className="imagenCirculo"
+                  roundedCircle
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="letraSubtitulos">
                   Thiago Benjamín Fiol
@@ -52,7 +59,7 @@ const AcercaDeNostros = () => {
                 <Card.Link href="#">
                   <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
                 </Card.Link>
-                <Card.Link href="#">
+                <Card.Link href="https://github.com/elFiol">
                   <i className="bi bi-github colorIconoCardAN fs-3"></i>
                 </Card.Link>
               </Card.Footer>
@@ -61,11 +68,14 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-              <Card.Img
-                variant="top"
-                src={integrante3}
-                alt="Javier Exequiel Jiménez"
-              />
+            <div className="tamanioImg">
+                <Image
+                  src={integrante3}
+                  alt="Javier Exequiel Jiménez"
+                  className="imagenCirculo"
+                  roundedCircle
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="letraSubtitulos">
                   Javier Exequiel Jiménez
@@ -75,7 +85,7 @@ const AcercaDeNostros = () => {
                 <Card.Link href="#">
                   <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
                 </Card.Link>
-                <Card.Link href="#">
+                <Card.Link href="https://github.com/Javier359">
                   <i className="bi bi-github colorIconoCardAN fs-3"></i>
                 </Card.Link>
               </Card.Footer>
@@ -84,11 +94,14 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-              <Card.Img
-                variant="top"
-                src={integrante4}
-                alt="Natalia del Valle Morales"
-              />
+            <div className="tamanioImg">
+                <Image
+                  src={integrante4}
+                  alt="Natalia del Valle Morales"
+                  className="imagenCirculo"
+                  roundedCircle
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="letraSubtitulos">
                   Natalia del Valle Morales
@@ -98,7 +111,7 @@ const AcercaDeNostros = () => {
                 <Card.Link href="#">
                   <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
                 </Card.Link>
-                <Card.Link href="#">
+                <Card.Link href="https://github.com/NatiMorales">
                   <i className="bi bi-github colorIconoCardAN fs-3"></i>
                 </Card.Link>
               </Card.Footer>
@@ -107,11 +120,14 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-              <Card.Img
-                variant="top"
-                src={integrante5}
-                alt="Daniel Emmanuel Santi Araoz"
-              />
+            <div className="tamanioImg">
+                <Image
+                  src={integrante5}
+                  alt="Daniel Emmanuel Santi Araoz"
+                  className="imagenCirculo"
+                  roundedCircle
+                />
+              </div>
               <Card.Body>
                 <Card.Title className="letraSubtitulos">
                   Daniel Emmanuel Santi Araoz
@@ -121,7 +137,7 @@ const AcercaDeNostros = () => {
                 <Card.Link href="#">
                   <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
                 </Card.Link>
-                <Card.Link href="#">
+                <Card.Link href="https://github.com/manusantiaraoz">
                   <i className="bi bi-github colorIconoCardAN fs-3"></i>
                 </Card.Link>
               </Card.Footer>

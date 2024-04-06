@@ -40,6 +40,19 @@
     font-size: 30px;
 }
 
+.tamanioImg{
+  width: 100%;
+  height: 250px;
+}
+
+.imagenCirculo{
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  object-position: left 0% top 0%;
+ 
+}
+
 @media (min-width: 576px) and (max-width: 767px) { 
     .tamanioLetraTituloAN{
         font-size: 40px;
