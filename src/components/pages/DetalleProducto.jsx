@@ -1,4 +1,12 @@
-import { Container, Card, Row, Col, Button, Form } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Row,
+  Col,
+  Button,
+  Form,
+  Carousel,
+} from "react-bootstrap";
 import "../../style/detalleProducto.css";
 
 const DetalleProducto = () => {
@@ -58,6 +66,22 @@ const DetalleProducto = () => {
           </Card>
         </Container>
       </section>
+      <seccion>
+        <Container className="my-4">
+          <Form>
+            <Form.Group>
+              <Form.Label className="colorLetraTitulo h5">
+                Requisitos especiales
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Agregalos aquí. Haremos lo posible para incluirlos."
+              />
+            </Form.Group>
+          </Form>
+        </Container>
+      </seccion>
     </>
   );
 };
