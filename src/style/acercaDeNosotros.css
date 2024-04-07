@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap");
+
+.colorFondoAN {
+  background: #e9dfc8;
+}
+
+.colorTituloAN {
+  color: #521c19;
+}
+
+.colorFondoCardAN.card {
+  background-color: #521c19;
+}
+
+.colorLetraCardAN.card,
+.colorIconoCardAN {
+  color: #e9dfc8;
+}
+
+.letraTitulos {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.letraSubtitulos {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.letraCuerpo {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tamanioLetraTituloAN{
+    font-size: 30px;
+}
+
+.tamanioSubtitulo{
+  font-size: 13px;
+}
+
+.paddingSubtitulo{
+  padding: 15px 0px 0px 0px;
+}
+
+.tamanioImg{
+  width: 100%;
+  height: 180px;
+}
+
+.imagenCirculo{
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  object-position: left 0% top 0%;
+ 
+}
+
+@media (min-width: 360px) and (max-width: 440px) { 
+  .tamanioSubtitulo{
+    font-size: 16px;
+  }
+
+  .paddingSubtitulo{
+    padding: 20px 0px 0px 0px;
+  }
+
+  .tamanioImg{
+    height: 250px;
+  }
+  
+  .imagenCirculo{
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 441px) and (max-width: 575px) { 
+  .tamanioSubtitulo{
+    font-size: 18px;
+  }
+
+  .paddingSubtitulo{
+    padding: 20px 0px 0px 0px;
+  }
+  
+  .tamanioImg{
+    height: 300px;
+  }
+  
+  .imagenCirculo{
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) { 
+    .tamanioLetraTituloAN{
+        font-size: 40px;
+    }
+
+    .tamanioSubtitulo{
+      font-size: 22px;
+    }
+  
+    .paddingSubtitulo{
+      padding: 22px 0px 0px 0px;
+    }
+
+    .tamanioImg{
+      height: 300px;
+    }
+    
+    .imagenCirculo{
+      width: 300px;
+      height: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
+    .tamanioLetraTituloAN{
+        font-size: 50px;
+    }
+
+    .tamanioSubtitulo{
+      font-size: 18px;
+    }
+  
+    .paddingSubtitulo{
+      padding: 22px 0px 0px 0px;
+    }
+
+    .tamanioImg{
+      height: 250px;
+    }
+    
+    .imagenCirculo{
+      width: 250px;
+      height: 250px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+  .tamanioSubtitulo{
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) { 
+    .tamanioLetraTituloAN{
+        font-size: 60px;
+    }
+
+    .paddingSubtitulo{
+      padding: 22px 0px 0px 0px;
+    }
+  
+    .tamanioImg{
+      height: 250px;
+    }
+    
+    .imagenCirculo{
+      width: 250px;
+      height: 250px;
+    }
+}
+
+@media (min-width: 1199px) { 
+  .tamanioSubtitulo{
+    font-size: 20px;
+  }
+
+}
