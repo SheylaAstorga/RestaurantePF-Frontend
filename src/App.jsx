@@ -27,7 +27,7 @@ function App() {
       <Routes>
        <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
-        <Route exact path="/acercaDeNosotros" element={<AcercaDeNosotros/>}></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
