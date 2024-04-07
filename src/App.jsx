@@ -10,7 +10,8 @@ import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
-
+import DetalleProducto from "./components/pages/DetalleProducto";
+import DetallePedido from "./components/DetallePedido";
 
 function App() {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
@@ -28,6 +29,7 @@ function App() {
        <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
         <Route exact path="/acercaDeNosotros" element={<AcercaDeNosotros/>}></Route>
+        <Route exact path="/detalleProducto" element={<DetalleProducto/>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
