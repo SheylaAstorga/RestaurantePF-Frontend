@@ -10,11 +10,16 @@ import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
 import Adminmenu from "./components/Adminmenu";
+import ModalDetalles from './components/paginaPrincipal/ModalDetalles';
 
 function App() {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
+  
+  const [modalShow, setModalShow] = useState(false);
 
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
+  
+  
   const producto ={
     nombre: "Milanesa",
     precio: 10000,
@@ -35,11 +40,12 @@ function App() {
         setUsuarioLogueado={setUsuarioLogueado}
       ></Menu>
       <Routes>
-       <Route path="/" element={<Principal producto= {producto}></Principal>}></Route>
+       <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
-        <Route exact path="/administrador/menu" element={<Adminmenu producto={producto}></Adminmenu>}></Route>
+        <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
       </Routes>
-      <Footer></Footer>
+      <ModalDetalles show={modalShow} producto={producto}
+              onHide={() => setModalShow(false)}></ModalDetalles>
     </BrowserRouter>
   );
 }
