@@ -24,17 +24,17 @@ const AcercaDeNostros = () => {
                   roundedCircle
                 />
               </div>
-              <Card.Body>
-                <Card.Title className="letraSubtitulos">
+              <Card.Body className="paddingSubtitulo">
+                <Card.Title className="letraSubtitulos tamanioSubtitulo">
                   Sheyla Astorga
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
                 <Card.Link href="#">
-                  <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/SheylaAstorga">
-                  <i className="bi bi-github colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-github colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
               </Card.Footer>
             </Card>
@@ -50,17 +50,17 @@ const AcercaDeNostros = () => {
                   roundedCircle
                 />
               </div>
-              <Card.Body>
-                <Card.Title className="letraSubtitulos">
+              <Card.Body className="paddingSubtitulo">
+                <Card.Title className="letraSubtitulos tamanioSubtitulo">
                   Thiago Benjamín Fiol
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
                 <Card.Link href="#">
-                  <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/elFiol">
-                  <i className="bi bi-github colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-github colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
               </Card.Footer>
             </Card>
@@ -76,17 +76,17 @@ const AcercaDeNostros = () => {
                   roundedCircle
                 />
               </div>
-              <Card.Body>
-                <Card.Title className="letraSubtitulos">
+              <Card.Body className="paddingSubtitulo">
+                <Card.Title className="letraSubtitulos tamanioSubtitulo">
                   Javier Exequiel Jiménez
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
                 <Card.Link href="#">
-                  <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/Javier359">
-                  <i className="bi bi-github colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-github colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
               </Card.Footer>
             </Card>
@@ -102,17 +102,17 @@ const AcercaDeNostros = () => {
                   roundedCircle
                 />
               </div>
-              <Card.Body>
-                <Card.Title className="letraSubtitulos">
+              <Card.Body className="paddingSubtitulo">
+                <Card.Title className="letraSubtitulos tamanioSubtitulo">
                   Natalia del Valle Morales
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
                 <Card.Link href="#">
-                  <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/NatiMorales">
-                  <i className="bi bi-github colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-github colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
               </Card.Footer>
             </Card>
@@ -128,17 +128,17 @@ const AcercaDeNostros = () => {
                   roundedCircle
                 />
               </div>
-              <Card.Body>
-                <Card.Title className="letraSubtitulos">
+              <Card.Body className="paddingSubtitulo">
+                <Card.Title className="letraSubtitulos tamanioSubtitulo">
                   Daniel Emmanuel Santi Araoz
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
                 <Card.Link href="#">
-                  <i className="bi bi-linkedin colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/manusantiaraoz">
-                  <i className="bi bi-github colorIconoCardAN fs-3"></i>
+                  <i className="bi bi-github colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
               </Card.Footer>
             </Card>
