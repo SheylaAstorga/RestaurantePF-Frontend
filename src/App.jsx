@@ -9,6 +9,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
+import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
+
 
 function App() {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
@@ -25,6 +27,7 @@ function App() {
       <Routes>
        <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
+        <Route exact path="/acercaDeNosotros" element={<AcercaDeNosotros/>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
