@@ -33,7 +33,7 @@ const ElementoLista = ({producto, setModalShow}) => {
             
             <p>{producto.detalle.substr(0, 50)}...</p>
             </div>
-            <div className='col-12 col-lg-3 justify-content-center align-content-center d-flex'>
+            <div className='col-12 col-lg-3 justify-content-center align-content-center d-flex flex-wrap'>
             <button type="button" className="btn btn-outline-dark mx-1 " onClick={() => setModalShow(true)}><i className="bi bi-file-text"></i></button>
             <button type="button" className="btn btn-outline-success mx-1"><i className="bi bi-pencil-square"></i></button>
             <button type="button" className="btn btn-outline-danger mx-1 "><i className="bi bi-trash"></i></button>
