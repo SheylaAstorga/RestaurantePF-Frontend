@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className='w-100 py-3'>
             <Container>
-                <div className='text-light d-flex'>
+                <Row className='text-light'>
                     <Col lg='3' md="12" sm="12" className='d-flex justify-content-center my-2'>
                         <img src={logo} alt="logo" className='logoFooter' />
                     </Col>
@@ -30,7 +30,7 @@ const Footer = () => {
                         <NavLink to="/error404" className="mb-2 footerCuerpos link-light link-underline-opacity-0 link-underline-opacity-100-hover">Trabajo</NavLink>
                         </div>
                     </Col>
-                </div>
+                </Row>
                 <hr className='text-light' />
                 <p className='text-center footerCuerpos text-light m-0'> &copy; Todos los derechos reservados</p>
             </Container>
