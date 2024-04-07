@@ -7,7 +7,7 @@ const DetallePedido = () => {
 
     return (
         <>
-        <i class="bi bi-arrow-down-short"
+        <i className="bi bi-arrow-down-short"
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}

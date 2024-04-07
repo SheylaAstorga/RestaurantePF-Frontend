@@ -51,7 +51,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                         <NavLink end className="nav-link footerTitulos" to="/nosotros">
                             <i className="bi bi-people-fill"></i> Nosotros
                         </NavLink>
-                        <NavLink end className="nav-link footerTitulos" to="/error404">
+                        <NavLink end className="nav-link footerTitulos" to="/pedido">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
                     </Nav>

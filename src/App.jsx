@@ -24,7 +24,10 @@ function App() {
       ></Menu>
       <Routes>
        <Route path="/" element={<Principal></Principal>}></Route>
+       <Route exact path="*" element={<Error404></Error404>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
+        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
+        <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
