@@ -12,7 +12,8 @@ import Principal from "./components/Principal";
 import Adminmenu from "./components/Adminmenu";
 import ModalDetalles from './components/paginaPrincipal/ModalDetalles';
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
-
+import DetalleProducto from "./components/pages/DetalleProducto";
+import DetallePedido from "./components/DetallePedido";
 
 function App() {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
@@ -44,8 +45,10 @@ function App() {
       <Routes>
        <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
+        <Route exact path="/detalleProducto" element={<DetalleProducto/>}></Route>
         <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
-         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
+
       </Routes>
       <ModalDetalles show={modalShow} producto={producto}
               onHide={() => setModalShow(false)}></ModalDetalles>
