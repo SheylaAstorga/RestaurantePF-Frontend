@@ -8,6 +8,7 @@ import {
   Carousel,
 } from "react-bootstrap";
 import "../../style/detalleProducto.css";
+import ItemDetalle from "./ItemDetalle";
 
 const DetalleProducto = () => {
   return (
@@ -66,8 +67,8 @@ const DetalleProducto = () => {
           </Card>
         </Container>
       </section>
-      <seccion>
-        <Container className="my-4">
+      <section>
+        <Container className="my-3 my-lg-4">
           <Form>
             <Form.Group>
               <Form.Label className="colorLetraTitulo h5">
@@ -81,35 +82,24 @@ const DetalleProducto = () => {
             </Form.Group>
           </Form>
         </Container>
-      </seccion>
+      </section>
       <section>
         <Container>
           <Carousel slide={false}>
-            <Carousel.Item>
-              {/* <ExampleCarouselImage text="First slide" /> */}
-              {/* <Carousel.Caption> */}
-                <h3>First slide label</h3>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-              {/* </Carousel.Caption> */}
+            <Carousel.Item className="d-flex">
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
             </Carousel.Item>
-            <Carousel.Item>
-              {/* <ExampleCarouselImage text="Second slide" /> */}
-              {/* <Carousel.Caption> */}
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              {/* </Carousel.Caption> */}
+            <Carousel.Item className="d-flex">
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
             </Carousel.Item>
-            <Carousel.Item>
-              {/* <ExampleCarouselImage text="Third slide" /> */}
-              {/* <Carousel.Caption> */}
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-              {/* </Carousel.Caption> */}
+            <Carousel.Item className="d-flex">
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
+              <ItemDetalle></ItemDetalle>
             </Carousel.Item>
           </Carousel>
         </Container>

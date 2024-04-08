@@ -17,6 +17,10 @@
   font-size: 11px;
 }
 
+.fondoLinkCard{
+    background-color: #642c29;
+}
+
 @media (min-width: 576px) {
   .tamanioLetraBoton {
     font-size: 16px;
