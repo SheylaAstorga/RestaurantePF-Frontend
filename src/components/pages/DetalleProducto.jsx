@@ -78,25 +78,27 @@ const DetalleProducto = () => {
                 as="textarea"
                 rows={3}
                 placeholder="Agregalos aquí. Haremos lo posible para incluirlos."
+                className="txtAreaDesactivado"
               />
             </Form.Group>
           </Form>
         </Container>
       </section>
-      <section>
+      <section className="cardsActivas">
+        <h3 className="colorLetraTitulo text-center mt-4 mb-3">Productos Relacionados</h3>
         <Container>
-          <Carousel slide={false}>
-            <Carousel.Item className="d-flex">
+          <Carousel slide={false} className="carousel carousel-dark slide mb-2">
+            <Carousel.Item className="d-flex justify-content-center">
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
             </Carousel.Item>
-            <Carousel.Item className="d-flex">
+            <Carousel.Item className="d-flex justify-content-center">
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
             </Carousel.Item>
-            <Carousel.Item className="d-flex">
+            <Carousel.Item className="d-flex justify-content-center">
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
               <ItemDetalle></ItemDetalle>
