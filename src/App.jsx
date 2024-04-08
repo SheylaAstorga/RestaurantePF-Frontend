@@ -45,8 +45,7 @@ function App() {
        <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
         <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
-        <Route exact path="/acercaDeNosotros" element={<AcercaDeNosotros/>}></Route>
-
+         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
       </Routes>
       <ModalDetalles show={modalShow} producto={producto}
               onHide={() => setModalShow(false)}></ModalDetalles>
