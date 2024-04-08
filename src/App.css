@@ -2,12 +2,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap');
 
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 :root {
   --colorPrincipal:  #642c29 ;
   --colorSecundario:#5e83a1 ;
   --colorTerciario:  #a6c6dc ;
   --colorFondo:  #e9e0c8 ;
 }
+
+
+
 h1{
     font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
