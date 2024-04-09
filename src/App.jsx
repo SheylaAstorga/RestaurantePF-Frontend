@@ -1,6 +1,6 @@
 import Menu from "./components/common/Menu"
 import Footer from "./components/common/Footer"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Error404 from "./components/pages/Error404"
 import LoginModal from "./components/LoginModal";
 import RegistroModal from "./components/RegistroModal";
@@ -21,6 +21,8 @@ function App() {
   const [modalShow, setModalShow] = useState(false);
 
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
+
+
   
   
   const producto ={
