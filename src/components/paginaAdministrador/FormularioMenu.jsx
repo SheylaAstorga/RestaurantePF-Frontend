@@ -82,7 +82,7 @@ const FormularioMenu = ({ editar, titulo }) => {
             <Form className="my-4"
                 onSubmit={handleSubmit(productoValidado)}
             >
-                <Form.Group className="mb-3" controlId="formNombreProdcuto">
+                <Form.Group className="mb-3" controlId="formNombre">
                     <Form.Label>Nombre*</Form.Label>
                     <Form.Control
                         type="text"
@@ -168,7 +168,7 @@ const FormularioMenu = ({ editar, titulo }) => {
                         {errors.categoria?.message}
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formImagen">
+                <Form.Group className="mb-3" controlId="formDetalle">
                     <Form.Label>Detalles*</Form.Label>
                     <Form.Control
                         type="text"
@@ -190,6 +190,38 @@ const FormularioMenu = ({ editar, titulo }) => {
                     />
                     <Form.Text className="text-danger">
                         {errors.detalle?.message}
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formEstado">
+                    <Form.Label>Estado del Menú*</Form.Label>
+                    <Controller
+                        name="estado"
+                        control={control}
+                        defaultValue={false}
+                        render={({ field }) => (
+                            <div className="d-flex w-100 flex-column">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value={true}
+                                        onChange={() => field.onChange(true)}
+                                        checked={field.value === true}
+                                    /> Activo
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value={false}
+                                        className="mt-2"
+                                        onChange={() => field.onChange(false)}
+                                        checked={field.value === false}
+                                    /> Inactivo
+                                </label>
+                            </div>
+                        )}
+                    />
+                    <Form.Text className="text-danger">
+                        {errors.estado?.message}
                     </Form.Text>
                 </Form.Group>
                 <div className="div-confirmar justify-content-between">
