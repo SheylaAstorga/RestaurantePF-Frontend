@@ -40,6 +40,7 @@ const FormularioMenu = ({ editar, titulo }) => {
     //   }
 
     const productoValidado = async (producto) => {
+        console.log(producto)
         if (editar) {
             //   const respuesta = await editarProductoAPI(producto,id);
             //   if(respuesta.status === 200){
@@ -168,7 +169,7 @@ const FormularioMenu = ({ editar, titulo }) => {
                         {errors.categoria?.message}
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formDetalle">
+                <Form.Group className="mb-3">
                     <Form.Label>Detalles*</Form.Label>
                     <Form.Control
                         type="text"
