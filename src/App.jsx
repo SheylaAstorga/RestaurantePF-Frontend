@@ -46,12 +46,16 @@ function App() {
       ></Menu>
       <Routes>
        <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
+       <Route exact path="*" element={<Error404></Error404>}></Route>
+        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
+        <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
         <Route exact path="/detalleProducto" element={<DetalleProducto/>}></Route>
         <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
         <Route exact path="/administrador/crear" element={<FormularioMenu titulo="Crear menú" editar={false}></FormularioMenu>}></Route>
         <Route exact path="/administrador/editar/:id" element={<FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>}></Route>
+
       </Routes>
       <Footer></Footer>
       <ModalDetalles show={modalShow} producto={producto}
