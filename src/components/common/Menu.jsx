@@ -4,7 +4,7 @@ import logo from "../../assets/LogoSazon.png"
 
 const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
     const navegacion = useNavigate()
-
+    const usuario = sessionStorage.getItem("usuarioSazonDelAlma") || []
     const logout = () => {
         sessionStorage.removeItem("usuarioSazonDelAlma");
         setUsuarioLogueado("");
@@ -24,9 +24,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                 <div className="d-flex order-lg-5 flex-grow-0 botones-seciones justify-content-end">
                     {usuarioLogueado !== "" ? (
                         <>
-                            <NavLink end className="nav-link text-light" to="/administrador">
-                                Administrador
-                            </NavLink>
                             <Button className="nav-link text-light" variant="danger" onClick={logout}>
                                 <i className="bi bi-person-fill-x fs-3 px-2"></i>
                             </Button>
@@ -54,6 +51,20 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                         <NavLink end className="nav-link footerTitulos" to="/pedido">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
+                        {
+                            usuario.rol === "admin" ? (
+                                <NavDropdown title="Link" id="navbarScrollingDropdown">
+                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4">
+                                        Another action
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action5">
+                                        Something else here
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            ) : (<></>)
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </div>

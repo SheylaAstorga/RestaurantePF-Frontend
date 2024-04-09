@@ -24,7 +24,7 @@ const ModalDetalles = (props) => {
       <h3 className=""> $ {props.producto.precio}</h3>
        
         <p>
-        {props.producto.descripcionlarga}
+        {props.producto.detalle}
         </p>
       </Modal.Body>
       
