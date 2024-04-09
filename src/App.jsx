@@ -47,6 +47,8 @@ function App() {
       <Routes>
        <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
+        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
+        <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
         <Route exact path="/detalleProducto" element={<DetalleProducto/>}></Route>
         <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
