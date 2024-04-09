@@ -1,0 +1,46 @@
+.boton-formulario-admin {
+  border: 0px;
+  color: #ffff;
+  padding: 12px 10px 12px 10px;
+  border-radius: 7px;
+}
+.confirmar {
+  background: #4baf23;
+  transition: 0.3s ease-in-out;
+}
+.confirmar:hover {
+  background: #5bd32c;
+  width: 10%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.cancelar {
+  background: #3e3f3d;
+  transition: 0.3s ease-in-out;
+}
+.cancelar:hover {
+  background: #4b4d4a;
+  width: 10%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+@media all and (max-width: 767px) {
+  .boton-formulario-admin {
+    width: 45%;
+  }
+  .div-confirmar {
+    display: flex;
+  }
+  .confirmar:hover {
+    width: 48%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .cancelar:hover {
+    width: 48%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
