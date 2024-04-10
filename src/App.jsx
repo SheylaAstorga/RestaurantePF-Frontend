@@ -60,8 +60,7 @@ function App() {
 
       </Routes>
       <Footer></Footer>
-      <ModalDetalles show={modalShow} producto={producto}
-              onHide={() => setModalShow(false)}></ModalDetalles>
+      
     </BrowserRouter>
   );
 }
