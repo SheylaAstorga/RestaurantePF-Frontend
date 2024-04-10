@@ -11,7 +11,7 @@ const ModalDetalles = (props) => {
     >
       <div className="d-flex contenedor-modal fondo rounded-2 shadow-lg">
 
-      <div className="justify-content-center align-content-center fondo-img-modal">
+      <div className="d-flex justify-content-center align-content-center fondo-img-modal bg-dark">
         <img src={props.producto.imagen} alt="" className="img-modal-detalles" />
       </div>
       <div>
