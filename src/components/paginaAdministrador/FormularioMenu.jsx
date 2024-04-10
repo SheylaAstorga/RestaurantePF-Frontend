@@ -40,42 +40,56 @@ const FormularioMenu = ({ editar, titulo }) => {
     //     }
     //   }
 
-    const productoValidado =  (producto) => {
+    const productoValidado =  async(producto) => {
         console.log(producto)
-        crearProductoAPI(producto);
-        if (editar) {
-            //   const respuesta = await editarProductoAPI(producto,id);
-            //   if(respuesta.status === 200){
-            Swal.fire({
-                title: "Producto modificado",
-                text: `El producto "${producto.nombre}" fue modificado correctamente`,
-                icon: "success",
+       const respuesta = await crearProductoAPI(producto);
+       if(respuesta.status === 201){
+        Swal.fire({
+                    title: "Producto creado",
+                    text: `El producto "${producto.nombre}" fue creado correctamente`,
+                    icon: "success",
+                });
+             reset();
+       }else{
+        Swal.fire({
+              title: "Ocurrio un error",
+              text: `El producto "${producto.nombre}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
+              icon: "error",
             });
-            navegacion('/administrador');
-            //   }else{
-            // Swal.fire({
-            //   title: "Ocurrio un error",
-            //   text: `El producto "${producto.nombre}" no pudo ser modificado. Intente esta operación en unos minutos`,
-            //   icon: "error",
-            // });
-            //   }
-        } else {
-            //   const respuesta = await crearProductoAPI(producto);
-            //   if (respuesta.status === 201) {
-            Swal.fire({
-                title: "Producto creado",
-                text: `El producto "${producto.nombre}" fue creado correctamente`,
-                icon: "success",
-            });
-            reset();
-            //   } else {
-            // Swal.fire({
-            //   title: "Ocurrio un error",
-            //   text: `El producto "${producto.nombre}" no pudo ser creado. Intente esta operación en unos minutos`,
-            //   icon: "error",
-            // });
-            //   }
-        }
+       }
+        // if (editar) {
+        //     //   const respuesta = await editarProductoAPI(producto,id);
+        //     //   if(respuesta.status === 200){
+        //     Swal.fire({
+        //         title: "Producto modificado",
+        //         text: `El producto "${producto.nombre}" fue modificado correctamente`,
+        //         icon: "success",
+        //     });
+        //     navegacion('/administrador');
+        //     //   }else{
+        //     // Swal.fire({
+        //     //   title: "Ocurrio un error",
+        //     //   text: `El producto "${producto.nombre}" no pudo ser modificado. Intente esta operación en unos minutos`,
+        //     //   icon: "error",
+        //     // });
+        //     //   }
+        // } else {
+        //     //   const respuesta = await crearProductoAPI(producto);
+        //     //   if (respuesta.status === 201) {
+        //     Swal.fire({
+        //         title: "Producto creado",
+        //         text: `El producto "${producto.nombre}" fue creado correctamente`,
+        //         icon: "success",
+        //     });
+        //     reset();
+        //     //   } else {
+        //     // Swal.fire({
+        //     //   title: "Ocurrio un error",
+        //     //   text: `El producto "${producto.nombre}" no pudo ser creado. Intente esta operación en unos minutos`,
+        //     //   icon: "error",
+        //     // });
+        //     //   }
+        // }
     };
 
     return (
