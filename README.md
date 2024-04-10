@@ -1,6 +1,4 @@
-#Sazón del Alma: Donde los Sabores Encuentran su Hogar
-
-**Diseñar una aplicación para que los clientes de un restaurante elijan entre distintos productos y puedan hacer su pedido. 
+<h1>Sazón del Alma: Donde los Sabores Encuentran su Hogar</h1>
 
 En este proyecto, nos hemos organizado  para llevar a cabo el diseño de una aplicación que permitirá a los clientes de un restaurante seleccionar entre una variedad de productos y realizar sus pedidos de manera cómoda y eficiente.
 
@@ -11,12 +9,12 @@ Además, hemos implementado un sistema de inicio de sesión que ofrece diferente
 ## Enlace del Proyecto: 
 [Sazón del Alma] - (https://github.com/SheylaAstorga/RestaurantePF-Frontend.git)
 
-## Participantes del Proyecto 😄
--Sheyla	Astorga
--Natalia del Valle	Morales
--Daniel Emmanuel	Santi Araoz
--Javier Exequiel	Jiménez
--Thiago Benjamín	Fiol
+## Participantes del Proyecto 
+<li>Sheyla	Astorga</li>
+<li>Natalia del Valle	Morales</li>
+<li>Daniel Emmanuel	Santi Araoz</li>
+<li>Javier Exequiel	Jiménez</li>
+<li>Thiago Benjamín Fiol</li>
 
 ## Librerías 📖
 - Bootstrap 
