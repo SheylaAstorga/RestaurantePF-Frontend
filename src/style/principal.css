@@ -112,6 +112,14 @@ border-radius: 10px;
     .contenedor-modal{
         flex-direction: column;
     }
+    .img-modal-detalles{
+        width: 100%;
+        object-fit: cover;
+    }
+    .fondo-img-modal{
+        width: 100%;
+        height: 50%;
+    }
  }
 
 /* tamaño grande */
