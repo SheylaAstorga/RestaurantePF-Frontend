@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import "../../style/formulariosAdmin.css"
+import { crearProductoAPI } from "../../helpers/queris";
 const FormularioMenu = ({ editar, titulo }) => {
     const {
         register,
@@ -39,41 +40,56 @@ const FormularioMenu = ({ editar, titulo }) => {
     //     }
     //   }
 
-    const productoValidado = async (producto) => {
+    const productoValidado =  async(producto) => {
         console.log(producto)
-        if (editar) {
-            //   const respuesta = await editarProductoAPI(producto,id);
-            //   if(respuesta.status === 200){
-            Swal.fire({
-                title: "Producto modificado",
-                text: `El producto "${producto.nombre}" fue modificado correctamente`,
-                icon: "success",
+       const respuesta = await crearProductoAPI(producto);
+       if(respuesta.status === 201){
+        Swal.fire({
+                    title: "Producto creado",
+                    text: `El producto "${producto.nombre}" fue creado correctamente`,
+                    icon: "success",
+                });
+             reset();
+       }else{
+        Swal.fire({
+              title: "Ocurrio un error",
+              text: `El producto "${producto.nombre}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
+              icon: "error",
             });
-            navegacion('/administrador');
-            //   }else{
-            // Swal.fire({
-            //   title: "Ocurrio un error",
-            //   text: `El producto "${producto.nombre}" no pudo ser modificado. Intente esta operación en unos minutos`,
-            //   icon: "error",
-            // });
-            //   }
-        } else {
-            //   const respuesta = await crearProductoAPI(producto);
-            //   if (respuesta.status === 201) {
-            Swal.fire({
-                title: "Producto creado",
-                text: `El producto "${producto.nombre}" fue creado correctamente`,
-                icon: "success",
-            });
-            reset();
-            //   } else {
-            // Swal.fire({
-            //   title: "Ocurrio un error",
-            //   text: `El producto "${producto.nombre}" no pudo ser creado. Intente esta operación en unos minutos`,
-            //   icon: "error",
-            // });
-            //   }
-        }
+       }
+        // if (editar) {
+        //     //   const respuesta = await editarProductoAPI(producto,id);
+        //     //   if(respuesta.status === 200){
+        //     Swal.fire({
+        //         title: "Producto modificado",
+        //         text: `El producto "${producto.nombre}" fue modificado correctamente`,
+        //         icon: "success",
+        //     });
+        //     navegacion('/administrador');
+        //     //   }else{
+        //     // Swal.fire({
+        //     //   title: "Ocurrio un error",
+        //     //   text: `El producto "${producto.nombre}" no pudo ser modificado. Intente esta operación en unos minutos`,
+        //     //   icon: "error",
+        //     // });
+        //     //   }
+        // } else {
+        //     //   const respuesta = await crearProductoAPI(producto);
+        //     //   if (respuesta.status === 201) {
+        //     Swal.fire({
+        //         title: "Producto creado",
+        //         text: `El producto "${producto.nombre}" fue creado correctamente`,
+        //         icon: "success",
+        //     });
+        //     reset();
+        //     //   } else {
+        //     // Swal.fire({
+        //     //   title: "Ocurrio un error",
+        //     //   text: `El producto "${producto.nombre}" no pudo ser creado. Intente esta operación en unos minutos`,
+        //     //   icon: "error",
+        //     // });
+        //     //   }
+        // }
     };
 
     return (
@@ -152,7 +168,7 @@ const FormularioMenu = ({ editar, titulo }) => {
                         rules={{ required: "Seleccione una categoría" }}
                         render={({ field }) => (
                             <Form.Select {...field}>
-                                <option value="">Seleccione una opcion</option>
+                                <option value="" disabled >Seleccione una opcion</option>
                                 <option value="Entrada">Entrada</option>
                                 <option value="Desayuno">Desayuno</option>
                                 <option value="Plato principal">Plato principal</option>
@@ -198,29 +214,20 @@ const FormularioMenu = ({ editar, titulo }) => {
                     <Controller
                         name="estado"
                         control={control}
-                        defaultValue={false}
+                        rules={{ required: "Seleccione una categoría" }}
                         render={({ field }) => (
-                            <div className="d-flex w-100 flex-column">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value={true}
-                                        onChange={() => field.onChange(true)}
-                                        checked={field.value === true}
-                                    /> Activo
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value={false}
-                                        className="mt-2"
-                                        onChange={() => field.onChange(false)}
-                                        checked={field.value === false}
-                                    /> Inactivo
-                                </label>
-                            </div>
+                            <Form.Select {...field}>
+                                <option value="" disabled>Seleccione una opcion</option>
+                                <option value="Disponible">Disponible</option>
+                                <option value="Agotado">Agotado</option>
+                                <option value="En oferta">En oferta</option>
+                                <option value="Recomendado">Recomendado</option>
+                                <option value="Especial del dia">Especial del día</option>
+                                <option value="Proximamente">Proximamente</option>
+                            </Form.Select>
                         )}
                     />
+                    
                     <Form.Text className="text-danger">
                         {errors.estado?.message}
                     </Form.Text>

@@ -1,40 +1,55 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
-const api_producto = import.meta.env.VITE_API_PRODUCTO
+const api_producto = import.meta.env.VITE_API_PRODUCTO;
+
 
 //mostrar todos los productos
-export const leerProductosAPI = async()=>{
-try{
+export const leerProductosAPI = async () => {
+  try {
     const datita = await fetch(api_productos);
     const listaProductos = await datita.json();
-    console.log(listaProductos);
     return listaProductos;
-}catch(err){
-    console.error(err);
-}
-
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const productosOfertaAPI = async()=>{
-try{
+export const productosOfertaAPI = async () => {
+  try {
     const datita = await fetch(api_productos);
     const listaProductos = await datita.json();
-    let destacados = listaProductos.filter(producto => producto.estado == "En oferta");
+    let destacados = listaProductos.filter(
+      (producto) => producto.estado == "En oferta"
+    );
     console.log(destacados);
     return destacados;
-}catch(err){
-    console.error(err);
-}
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const borrarPlatoAPI = async(id)=>{
-try{
-    const repuesta= await fetch(`${api_producto}/${id}`,{
-        method:"DELETE"
-    })
-    return repuesta;
+export const crearProductoAPI = async (productoNuevo) => {
+  try {
+    const respuesta= await fetch(api_productos,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productoNuevo)
+    });
+    console.log(respuesta);
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-}catch(err){
-    console.error(err)
-}
-}
-
+export const borrarPlatoAPI = async (id) => {
+  try {
+    const respuesta = await fetch(`${api_producto}/${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};
