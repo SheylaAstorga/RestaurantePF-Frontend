@@ -27,7 +27,7 @@ export const productosOfertaAPI = async () => {
   }
 };
 
-const crearProductoAPI = async (productoNuevo) => {
+export const crearProductoAPI = async (productoNuevo) => {
   try {
     const respuesta= await fetch(api_producto,{
         method: "POST",
