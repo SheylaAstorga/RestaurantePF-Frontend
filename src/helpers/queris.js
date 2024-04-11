@@ -12,6 +12,14 @@ export const leerProductosAPI = async () => {
     console.error(error);
   }
 };
+export const obtenerProductoAPI = async (id) => {
+    try {
+      const respuesta = await fetch(api_producto + "/" + id);
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const productosOfertaAPI = async () => {
   try {
@@ -26,6 +34,20 @@ export const productosOfertaAPI = async () => {
     console.error(error);
   }
 };
+export const productosEstadoAPI = async (categoria) => {
+  try {
+    const datita = await fetch(api_productos);
+    const listaProductos = await datita.json();
+    let destacados = listaProductos.filter(
+      (producto) => producto.categoria === categoria
+    );
+    console.log(destacados);
+    return destacados;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 export const crearProductoAPI = async (productoNuevo) => {
   try {
