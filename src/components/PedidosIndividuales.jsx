@@ -8,9 +8,7 @@ import DetallePedido from './DetallePedido';
 import { Link } from 'react-router-dom';
 import Principal from './Principal';
 
-const PedidosIndividuales = ({pedidos}) => {
-
-
+const PedidosIndividuales = () => {
 
   //funciones para el contador de botones
   const [quantity, setQuantity] = React.useState(1);
@@ -31,23 +29,23 @@ const PedidosIndividuales = ({pedidos}) => {
         <Col className="d-flex">
           <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
           <article className='d-flex flex-column'>
-            <h5 className='font-weight-bold mt-2'>hgj</h5>
+            <h5 className='font-weight-bold mt-2'>Nombre</h5>
             <Link to={'/'} className='btn-editar'>Editar</Link>
             <DetallePedido></DetallePedido>
           </article>
         </Col>
         <Col className="d-flex justify-content-center align-items-end flex-column">
-        <p className='m-2'>lhjk</p>
+        <p className='m-2'>Precio</p>
           <article>
             <ButtonGroup aria-label="Quantity buttons">
               <Button variant="outline-danger" onClick={handleDecrement}>
-              <i class="bi bi-trash"></i>
+              <i className="bi bi-trash"></i>
               </Button>
               <Button variant="outline-secondary" disabled>
                 {quantity}
               </Button>
               <Button variant="outline-secondary" onClick={handleIncrement}>
-              <i class="bi bi-plus"></i>
+              <i className="bi bi-plus"></i>
               </Button>
             </ButtonGroup>
           </article>

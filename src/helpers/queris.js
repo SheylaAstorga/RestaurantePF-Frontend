@@ -81,9 +81,9 @@ export const borrarPlatoAPI = async (id) => {
 export const leerPedidosAPI = async () => {
   try {
       const respuesta = await fetch(api_pedidos);
-      const listaPedidos = respuesta.json;
+      const listaPedidos = await respuesta.json();
       return listaPedidos;
   } catch (error) {
       console.log(error);
   }
-}
+};
