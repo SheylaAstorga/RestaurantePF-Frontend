@@ -1,16 +1,24 @@
 import { Card } from "react-bootstrap";
 import "../../style/detalleProducto.css";
+import { Link } from "react-router-dom";
 
-const ItemDetalle = () => {
+
+const ItemDetalle = ({plato}) => {
   return (
     <>
       <Card className="mx-3 mb-5 tamanioCardItemCarousel">
-        <Card.Img variant="top" src="https://media.istockphoto.com/id/1057832648/es/foto/chuleta-de-ternera-frita-milanesa-con-lim%C3%B3n-y-primer-plano-de-papas-fritas-en-un-plato.jpg?s=1024x1024&w=is&k=20&c=y5ZmvqQpg4EN0SMD4HlaSqwiEGerHxRwsQONgH9VEYM=" />
+        <div className="img-detalle-producto-contenedor">
+        <Card.Img variant="top" src={plato.imagen} />
+        </div>
+        
         <Card.Body className="fondoLinkCard text-center">
           <Card.Link className="text-decoration-none text-white">
-            Milanesa con papas
+          {plato.nombre} 
           </Card.Link>
         </Card.Body>
+        <Card.Footer className="fondoLinkCard text-center">
+        <Link  className='btn btn-outline-light w-75 mx-2 my-2' to={`/detalleProducto/${plato._id}`} onClick={window.location.reload}><i className="bi bi-info-circle fs-4"></i></Link>
+        </Card.Footer>
       </Card>
     </>
   );

@@ -11,7 +11,14 @@ import "swiper/css/navigation";
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-const Recomendaciones = ({ setModalShow, producto }) => {
+
+
+
+const Recomendaciones = ({ productos }) => {
+  
+
+
+
   return (
     <article className="glass-efect">
       <h1 className="display-2 text-center color-texto-destacado">Nuestras recomendaciones </h1>
@@ -28,42 +35,18 @@ const Recomendaciones = ({ setModalShow, producto }) => {
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <CardDestacada
-            setModalShow={setModalShow}
-            producto={producto}
-          ></CardDestacada>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDestacada
-            setModalShow={setModalShow}
-            producto={producto}
-          ></CardDestacada>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDestacada
-            setModalShow={setModalShow}
-            producto={producto}
-          ></CardDestacada>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDestacada
-            setModalShow={setModalShow}
-            producto={producto}
-          ></CardDestacada>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CardDestacada
-            setModalShow={setModalShow}
-            producto={producto}
-          ></CardDestacada>
-        </SwiperSlide>
+        {productos.map((producto)=> <SwiperSlide key={producto._id}><CardDestacada  producto={producto}></CardDestacada> </SwiperSlide>)}
+      
+       
+        
       </Swiper>
       <div className="d-grid gap-2 my-3 d-flex justify-content-center">
         <Button variant="outline-light color-texto-destacado" size="md" className="w-50 my-3">
           MENU
         </Button>
       </div>
+     
+              
     </article>
   );
 };
