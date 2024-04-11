@@ -3,8 +3,28 @@ import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { leerPedidosAPI } from "../helpers/queris";
 
 const Pedido = () => {
+  const [pedidos, setPedidos] = useState([]);
+
+  console.log(leerPedidosAPI())
+
+  useEffect(()=>{
+    consultarAPI();
+  }, [])
+
+  const consultarAPI = async() => {
+    try {
+      const respuesta = await leerPedidosAPI();
+      console.log(respuesta)
+      setPedidos(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section className="container c-principal mainPage">
       <article className="d-flex justify-content-between">
@@ -13,10 +33,9 @@ const Pedido = () => {
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
-          <PedidosIndividuales></PedidosIndividuales>
-          <PedidosIndividuales></PedidosIndividuales>
-          <PedidosIndividuales></PedidosIndividuales>
-          <PedidosIndividuales></PedidosIndividuales>
+          {
+            pedidos.map((pedido)=><PedidosIndividuales key={pedido._id} pedido={pedido} producto={producto} setPedidos={setPedidos}></PedidosIndividuales>)
+          }
         </ListGroup.Item>
       </ListGroup>
       <article className="d-flex justify-content-between pt-3">

@@ -1,6 +1,6 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
-const api_pedidos = import.meta.env.VITE_API_PEDIDOS
+const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
 
 
 //mostrar todos los productos
@@ -81,7 +81,7 @@ export const borrarPlatoAPI = async (id) => {
 export const leerPedidosAPI = async () => {
   try {
       const respuesta = await fetch(api_pedidos);
-      const listaPedidos = await respuesta.json;
+      const listaPedidos = respuesta.json;
       return listaPedidos;
   } catch (error) {
       console.log(error);
