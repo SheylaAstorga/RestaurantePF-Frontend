@@ -38,6 +38,7 @@ function App() {
     platosDisponibles: 100,
   };
 
+
   return (
     //rutas
     <BrowserRouter>

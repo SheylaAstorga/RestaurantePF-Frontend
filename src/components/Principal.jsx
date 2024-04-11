@@ -1,19 +1,29 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import BannerPrincial from './paginaPrincipal/BannerPrincial';
 import Recomendaciones from './paginaPrincipal/Recomendaciones';
-import ModalDetalles from './paginaPrincipal/ModalDetalles';
 import ReservasPedidos from './paginaPrincipal/ReservasPedidos';
 import Direccion from './paginaPrincipal/Direccion';
+import { productosOfertaAPI } from '../helpers/queris';
 
-const Principal = ({producto, setModalShow}) => {
-  
+const Principal = ({}) => {
+    
+const [ofertas,setOfertas]=useState([]);
 
+const mostrarOfertas=async()=>{
+    
+    let listaOferta = await productosOfertaAPI();
+    setOfertas(listaOferta);
+}
+
+useEffect(()=>{
+    mostrarOfertas()
+    },[])
 
     return (
        <article className='fondo mainPage'>
            <BannerPrincial></BannerPrincial>
-           <Recomendaciones setModalShow={setModalShow} producto ={producto}></Recomendaciones>
-         
+           <Recomendaciones  productos ={ofertas}></Recomendaciones>
+           
            <ReservasPedidos></ReservasPedidos>
             <Direccion></Direccion>
        </article>
