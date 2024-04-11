@@ -18,6 +18,7 @@ import {
 } from "../../helpers/queris";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Swal from 'sweetalert2';
 
 // Import Swiper styles
 import "swiper/css";
@@ -68,10 +69,21 @@ const DetalleProducto = () => {
         cantidad,
         estado: "Pendiente",
       };
-      const data = await crearPedidoAPI(pedido);
-      console.log(data.mensaje);
+      const { mensaje } = await crearPedidoAPI(pedido);
+      Swal.fire({
+        title: 'Pedido creado',
+        text: mensaje,
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
     } catch (error) {
       console.error("Error al crear el pedido:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo crear el pedido',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
     }
   };
 
