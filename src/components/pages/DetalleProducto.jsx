@@ -11,7 +11,7 @@ import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { obtenerProductoAPI, productosEstadoAPI } from "../../helpers/queris";
+import { crearPedidoAPI, obtenerProductoAPI, productosEstadoAPI } from "../../helpers/queris";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -46,6 +46,20 @@ const DetalleProducto = () => {
   useEffect(()=>{
     Relacionados(producto.categoria);
   },[producto])
+
+  const crearPedido = async () => {
+    try {
+      const pedido = {
+        producto: producto._id,
+        cantidad,
+        estado: "Pendiente",
+      };
+      const data = await crearPedidoAPI(pedido);
+      console.log(data.mensaje);
+    } catch (error) {
+      console.error("Error al crear el pedido:", error);
+    }
+  };
 
 
   return (
