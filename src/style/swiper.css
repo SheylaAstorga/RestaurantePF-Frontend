@@ -39,3 +39,9 @@
     object-fit: cover;
   }
   
+
+  /* tamaño chico */
+@media (max-width: 576px)  { 
+  
+
+}
