@@ -1,5 +1,6 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
+const api_pedidos = import.meta.env.VITE_API_PEDIDOS
 
 
 //mostrar todos los productos
@@ -75,3 +76,22 @@ export const borrarPlatoAPI = async (id) => {
     console.error(error);
   }
 };
+
+
+// //create pedidos
+
+ export const crearPedidoAPI = async (pedido) => {
+   try {
+     const respuesta = await fetch(api_pedidos, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(pedido),
+     });
+     const data = await respuesta.json();
+     return data;
+   } catch (error) {
+     console.log(error);
+   }
+ };
