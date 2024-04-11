@@ -12,7 +12,7 @@ import ItemDetalle from "./ItemDetalle";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
-  
+  crearPedidoAPI,
   obtenerProductoAPI,
   productosEstadoAPI,
 } from "../../helpers/queris";
@@ -30,6 +30,7 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 const DetalleProducto = () => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
+  const [cantidad, setCantidad] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
 
   const cargarProducto = async (id) => {
@@ -50,19 +51,29 @@ const DetalleProducto = () => {
     Relacionados(producto.categoria);
   }, [producto]);
 
-  // const crearPedido = async () => {
-  //   try {
-  //     const pedido = {
-  //       producto: producto._id,
-  //       cantidad,
-  //       estado: "Pendiente",
-  //     };
-  //     const data = await crearPedidoAPI(pedido);
-  //     console.log(data.mensaje);
-  //   } catch (error) {
-  //     console.error("Error al crear el pedido:", error);
-  //   }
-  // };
+  const handleDecrement = () => {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    setCantidad(cantidad + 1);
+  };
+
+  const crearPedido = async () => {
+    try {
+      const pedido = {
+        producto: producto._id,
+        cantidad,
+        estado: "Pendiente",
+      };
+      const data = await crearPedidoAPI(pedido);
+      console.log(data.mensaje);
+    } catch (error) {
+      console.error("Error al crear el pedido:", error);
+    }
+  };
 
   return (
     <>
@@ -85,18 +96,25 @@ const DetalleProducto = () => {
                   <div className="container mt-lg-4">
                     <Form className="row justify-content-between">
                       <Form.Group className="col-3 d-flex px-0">
-                        <Button className="bg-white border-0 text-dark rounded-0 py-0 pe-0 ps-1 p-md-2 m-0">
+                        <Button
+                          className="bg-white border-0 text-dark rounded-0 py-0 pe-0 ps-1 p-md-2 m-0"
+                          onClick={handleDecrement}
+                        >
                           -
                         </Button>
                         <Form.Control
                           className="rounded-0 p-0 p-md-2 text-center border border-white"
-                          defaultValue={1}
+                          value={cantidad}
                           type="tel"
                           minLength={1}
                           maxLength={2}
                           required
+                          readOnly
                         />
-                        <Button className="bg-white border-0 text-dark rounded-0 py-0 pe-1 ps-0 p-md-2 m-0">
+                        <Button
+                          className="bg-white border-0 text-dark rounded-0 py-0 pe-1 ps-0 p-md-2 m-0"
+                          onClick={handleIncrement}
+                        >
                           +
                         </Button>
                       </Form.Group>

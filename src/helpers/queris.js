@@ -78,20 +78,20 @@ export const borrarPlatoAPI = async (id) => {
 };
 
 
-//create pedidos
+// //create pedidos
 
-// export const crearPedidoAPI = async (pedido) => {
-//   try {
-//     const respuesta = await fetch(api_pedidos, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(pedido),
-//     });
-//     const data = await respuesta.json();
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+ export const crearPedidoAPI = async (pedido) => {
+   try {
+     const respuesta = await fetch(api_pedidos, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(pedido),
+     });
+     const data = await respuesta.json();
+     return data;
+   } catch (error) {
+     console.log(error);
+   }
+ };
