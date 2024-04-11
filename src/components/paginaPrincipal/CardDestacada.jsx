@@ -1,23 +1,26 @@
 import Button from 'react-bootstrap/Button';
+import ModalDetalles from "./ModalDetalles";
+import { useState } from "react";
+import { Link } from 'react-router-dom';
 
+const CardDestacada = ({ producto}) => {
+ 
 
-const CardDestacada = ({setModalShow, producto}) => {
   return (
     <>
-      <div className="card d-flex flex-md-row cambio-card-sm my-3 shadow-sm" >
-        <div >
-        <img src={producto.img} className=" card-img-dest" alt="..." />
+      <div className="card d-flex flex-md-row cambio-card-sm my-3 shadow contenedor-card" >
+        <div className='contenedor-img-recomendada' >
+        <img src={producto.imagen} className=" card-img-dest" alt="..." />
         </div>
-        <div className="card-body card-contenido ">
-          <h2 className="card-text  text-center">
+        <div className="card-body card-body-tamanio ">
+          <h2 className=" text-center">
             {producto.nombre}
           </h2>
           <h5 className=" text-center text-black">${producto.precio}</h5>
-          <p>apto: {producto.apto} </p>
+          <p>apto: {producto.categoria} </p>
           <div className="d-flex justify-content-center "> 
-          <Button variant="outline-dark" className='w-25 mx-2 my-2' onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></Button>
-          <Button variant="outline-dark" className='w-25 mx-2 my-2'><i className="bi bi-bag-heart"></i></Button>
-            
+          <Link  className='btn btn-outline-dark w-75 mx-2 my-2' to={`/detalleProducto/${producto._id}`}><i className="bi bi-info-circle fs-4"></i></Link>
+          
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import Swal from 'sweetalert2';
 import { useState } from "react";
 import { borrarPlatoAPI, leerProductosAPI } from "../../helpers/queris";
+import ModalDetalles from '../paginaPrincipal/ModalDetalles';
 
-const ElementoLista = ({ producto, setModalShow,setPlatillos }) => {
- 
+const ElementoLista = ({ producto,setPlatillos }) => {
+  const [modalShow, setModalShow] = useState(false);
 
 
   const eliminarPlato = () => {
@@ -73,6 +74,8 @@ const ElementoLista = ({ producto, setModalShow,setPlatillos }) => {
           
         </div>
       </div>
+      <ModalDetalles show={modalShow} producto={producto}
+              onHide={() => setModalShow(false)}></ModalDetalles>
     </li>
   );
 };

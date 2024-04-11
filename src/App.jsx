@@ -19,23 +19,12 @@ import FormularioMenu from "./components/paginaAdministrador/FormularioMenu";
 function App() {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
   
-  const [modalShow, setModalShow] = useState(false);
+ 
 
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
 
 
-  
-  
-  const producto ={
-    nombre: "Milanesa",
-    precio: 10000,
-    img: "https://cdn.kiwilimon.com/brightcove/6364/6364.jpg",
-    apto: "celiaco, vegano, vegetariano",
-    detalle : "Originaria de la ciudad de Buenos Aires, Argentina, la milanesa napolitana es una preparación de carne, generalmente de vacuno, cubierta con salsa milanesa de tomate, jamón y queso. La carne se reboza para obtener una textura crujiente y luego se cocina en el horno para que el queso se funda. Es un contraste de sabores que gusta tanto a grandes como a pequeños",
-    disponible: true,
-    destacado:true,
-    platosDisponibles:100
-}
+
 
   return (
     //rutas
@@ -45,7 +34,7 @@ function App() {
         setUsuarioLogueado={setUsuarioLogueado}
       ></Menu>
       <Routes>
-       <Route path="/" element={<Principal producto= {producto} setModalShow={setModalShow}></Principal>}></Route>
+       <Route path="/" element={<Principal ></Principal>}></Route>
        <Route exact path="*" element={<Error404></Error404>}></Route>
         <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
@@ -53,15 +42,14 @@ function App() {
         <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
-        <Route exact path="/detalleProducto" element={<DetalleProducto/>}></Route>
-        <Route exact path="/administrador/menu" element={<Adminmenu producto={producto} setModalShow={setModalShow}></Adminmenu>}></Route>
+        <Route exact path="/detalleProducto/:id" element={<DetalleProducto></DetalleProducto>}></Route>
+        <Route exact path="/administrador/menu" element={<Adminmenu></Adminmenu>}></Route>
         <Route exact path="/administrador/crear" element={<FormularioMenu titulo="Crear menú" editar={false}></FormularioMenu>}></Route>
         <Route exact path="/administrador/editar/:id" element={<FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>}></Route>
 
       </Routes>
       <Footer></Footer>
-      <ModalDetalles show={modalShow} producto={producto}
-              onHide={() => setModalShow(false)}></ModalDetalles>
+      
     </BrowserRouter>
   );
 }
