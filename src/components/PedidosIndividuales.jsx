@@ -10,6 +10,8 @@ import Principal from './Principal';
 
 const PedidosIndividuales = () => {
 
+  
+
   //funciones para el contador de botones
   const [quantity, setQuantity] = React.useState(1);
 
