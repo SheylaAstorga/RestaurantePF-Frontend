@@ -11,7 +11,11 @@ import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { crearPedidoAPI, obtenerProductoAPI, productosEstadoAPI } from "../../helpers/queris";
+import {
+  
+  obtenerProductoAPI,
+  productosEstadoAPI,
+} from "../../helpers/queris";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -23,44 +27,42 @@ import "swiper/css/navigation";
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-
 const DetalleProducto = () => {
-  const{id}=useParams()
-  const[producto,setProducto]=useState({})
-  const[relacionados,setRelacionados]=useState([])
-  
-  const cargarProducto = async(id)=>{
-    const respuesta = await obtenerProductoAPI(id)
+  const { id } = useParams();
+  const [producto, setProducto] = useState({});
+  const [relacionados, setRelacionados] = useState([]);
+
+  const cargarProducto = async (id) => {
+    const respuesta = await obtenerProductoAPI(id);
     const productoEncontrado = await respuesta.json();
-    setProducto(productoEncontrado)
-  }
-
-  const Relacionados = async(categoria)=>{
-    const listarRelacionados = await productosEstadoAPI(categoria)
-    setRelacionados(listarRelacionados)
-  }
-
-  useEffect(()=>{
-    cargarProducto(id)
-  },[])
-  useEffect(()=>{
-    Relacionados(producto.categoria);
-  },[producto])
-
-  const crearPedido = async () => {
-    try {
-      const pedido = {
-        producto: producto._id,
-        cantidad,
-        estado: "Pendiente",
-      };
-      const data = await crearPedidoAPI(pedido);
-      console.log(data.mensaje);
-    } catch (error) {
-      console.error("Error al crear el pedido:", error);
-    }
+    setProducto(productoEncontrado);
   };
 
+  const Relacionados = async (categoria) => {
+    const listarRelacionados = await productosEstadoAPI(categoria);
+    setRelacionados(listarRelacionados);
+  };
+
+  useEffect(() => {
+    cargarProducto(id);
+  }, []);
+  useEffect(() => {
+    Relacionados(producto.categoria);
+  }, [producto]);
+
+  // const crearPedido = async () => {
+  //   try {
+  //     const pedido = {
+  //       producto: producto._id,
+  //       cantidad,
+  //       estado: "Pendiente",
+  //     };
+  //     const data = await crearPedidoAPI(pedido);
+  //     console.log(data.mensaje);
+  //   } catch (error) {
+  //     console.error("Error al crear el pedido:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -69,20 +71,17 @@ const DetalleProducto = () => {
           <Card>
             <Row className="justify-content-center">
               <Col md={10} lg={6}>
-                <Card.Img
-                  className=""
-                  src={producto.imagen}
-                />
+                <Card.Img className="" src={producto.imagen} />
               </Col>
               <Col md={10} lg={6}>
                 <Card.Body className="px-0">
                   <Card.Title className="colorLetraTitulo">
-                  {producto.nombre}
+                    {producto.nombre}
                   </Card.Title>
-                  <Card.Text className="h6 mt-lg-3">${producto.precio}</Card.Text>
-                  <Card.Text className="mt-lg-4">
-                  {producto.detalle}
+                  <Card.Text className="h6 mt-lg-3">
+                    ${producto.precio}
                   </Card.Text>
+                  <Card.Text className="mt-lg-4">{producto.detalle}</Card.Text>
                   <div className="container mt-lg-4">
                     <Form className="row justify-content-between">
                       <Form.Group className="col-3 d-flex px-0">
@@ -101,7 +100,10 @@ const DetalleProducto = () => {
                           +
                         </Button>
                       </Form.Group>
-                      <Button className="rounded-0 col-6 tamanioLetraBoton">
+                      <Button
+                        className="rounded-0 col-6 tamanioLetraBoton"
+                        onClick={crearPedido}
+                      >
                         Agregar al pedido
                       </Button>
                     </Form>
@@ -130,27 +132,29 @@ const DetalleProducto = () => {
         </Container>
       </section>
       <section className="cardsActivas">
-        <h3 className="colorLetraTitulo text-center mt-4 mb-3">Productos Relacionados</h3>
+        <h3 className="colorLetraTitulo text-center mt-4 mb-3">
+          Productos Relacionados
+        </h3>
         <Container>
-
-        <Swiper
-        spaceBetween={50}
-        pagination={{
-          type: "progressbar",
-        }}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation, Autoplay]}
-        className="mySwiper"
-      >
-        {relacionados.map((platoRelacionado)=> <SwiperSlide key={platoRelacionado._id}><ItemDetalle plato={platoRelacionado}></ItemDetalle></SwiperSlide>)}
-      
-       
-        
-      </Swiper> 
+          <Swiper
+            spaceBetween={50}
+            pagination={{
+              type: "progressbar",
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation, Autoplay]}
+            className="mySwiper"
+          >
+            {relacionados.map((platoRelacionado) => (
+              <SwiperSlide key={platoRelacionado._id}>
+                <ItemDetalle plato={platoRelacionado}></ItemDetalle>
+              </SwiperSlide>
+            ))}
+          </Swiper>
           {/* <Carousel slide={false} className="carousel carousel-dark slide mb-2">
           <Carousel.Item className="d-flex justify-content-center" >
            {relacionados.map((platoRelacionado)=><ItemDetalle key={platoRelacionado._id} plato={platoRelacionado}></ItemDetalle>)}
@@ -160,7 +164,6 @@ const DetalleProducto = () => {
           </Carousel> */}
         </Container>
       </section>
-  
     </>
   );
 };
