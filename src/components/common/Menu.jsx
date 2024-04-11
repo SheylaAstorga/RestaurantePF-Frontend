@@ -30,8 +30,8 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                         </>
                     ) : (
                         <>
-                            <NavLink end className="nav-link text-light btn colorBoton2 me-1" to="/registro" title="Registrar">
-                                <i className="bi bi-person-fill-add fs-3 px-2"></i>
+                            <NavLink end className="nav-link text-light btn colorBoton2 me-2" to="/registro" title="Registrar">
+                                <i className="bi bi-person-fill-add fs-3 px-2 "></i>
                             </NavLink>
                             <NavLink end className="nav-link text-light btn colorBoton1" to="/login" title="Iniciar Secion">
                                 <i className="bi bi-person-fill fs-3 px-2"></i>

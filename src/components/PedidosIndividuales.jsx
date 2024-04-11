@@ -25,7 +25,7 @@ const PedidosIndividuales = () => {
 
   return (
     <section>
-      <Row className='fondo-pedidos' xs={2}>
+      <Row className='fondo-pedidos mb-3' xs={2}>
         <Col className="d-flex">
           <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
           <article className='d-flex flex-column'>

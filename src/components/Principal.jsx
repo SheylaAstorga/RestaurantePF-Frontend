@@ -24,7 +24,6 @@ const mostrarOfertas=async()=>{
        <article className='fondo mainPage'>
            <BannerPrincial></BannerPrincial>
            <Recomendaciones  productos ={ofertas}></Recomendaciones>
-           
            <ReservasPedidos></ReservasPedidos>
             <Direccion></Direccion>
        </article>
