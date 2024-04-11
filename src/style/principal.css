@@ -74,12 +74,12 @@ border-radius: 10px;
 @media (max-width: 576px)  { 
     .contenedor-img-recomendada{
         width: 90%;
-        height: 200px;
+        
     }
     .swiper-slide img{
-       padding-left: 6px;
-        width: 43%;
-       
+       display: flex;
+       justify-content: center;
+       align-content: center;
     }
    
     .contenedor-modal{
@@ -97,11 +97,8 @@ border-radius: 10px;
     }
     .fondo-img-modal{
         width: 100%;
-        height: 50%;
-       
-        
+        height: 50%; 
     }
-    
 }
 /* tamaño medio */
 @media (min-width: 577px) and (max-width: 991px){ 
