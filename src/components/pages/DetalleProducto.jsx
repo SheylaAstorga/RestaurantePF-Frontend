@@ -9,8 +9,45 @@ import {
 } from "react-bootstrap";
 import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { obtenerProductoAPI, productosEstadoAPI } from "../../helpers/queris";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "../../style/swiper.css";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+
 
 const DetalleProducto = () => {
+  const{id}=useParams()
+  const[producto,setProducto]=useState({})
+  const[relacionados,setRelacionados]=useState([])
+  
+  const cargarProducto = async(id)=>{
+    const respuesta = await obtenerProductoAPI(id)
+    const productoEncontrado = await respuesta.json();
+    setProducto(productoEncontrado)
+  }
+
+  const Relacionados = async(categoria)=>{
+    const listarRelacionados = await productosEstadoAPI(categoria)
+    setRelacionados(listarRelacionados)
+  }
+
+  useEffect(()=>{
+    cargarProducto(id)
+  },[])
+  useEffect(()=>{
+    Relacionados(producto.categoria);
+  },[producto])
+
+
   return (
     <>
       <section className="py-4 py-lg-3">
@@ -20,23 +57,17 @@ const DetalleProducto = () => {
               <Col md={10} lg={6}>
                 <Card.Img
                   className=""
-                  src="https://media.istockphoto.com/id/1057832648/es/foto/chuleta-de-ternera-frita-milanesa-con-lim%C3%B3n-y-primer-plano-de-papas-fritas-en-un-plato.jpg?s=1024x1024&w=is&k=20&c=y5ZmvqQpg4EN0SMD4HlaSqwiEGerHxRwsQONgH9VEYM="
+                  src={producto.imagen}
                 />
               </Col>
               <Col md={10} lg={6}>
                 <Card.Body className="px-0">
                   <Card.Title className="colorLetraTitulo">
-                    Milanesa con papas
+                  {producto.nombre}
                   </Card.Title>
-                  <Card.Text className="h6 mt-lg-3">$1000</Card.Text>
+                  <Card.Text className="h6 mt-lg-3">${producto.precio}</Card.Text>
                   <Card.Text className="mt-lg-4">
-                    La milanesa dorada y jugosa, envuelta en su crujiente capa
-                    de pan rallado, se fusiona perfectamente con las papas
-                    fritas, creando un festín irresistible para los sentidos.
-                    Cada bocado es un viaje culinario que deja una huella de
-                    satisfacción duradera. El equilibrio entre la textura
-                    crujiente y la suavidad interior hacen de este plato una
-                    experiencia gastronómica inigualable.
+                  {producto.detalle}
                   </Card.Text>
                   <div className="container mt-lg-4">
                     <Form className="row justify-content-between">
@@ -87,25 +118,35 @@ const DetalleProducto = () => {
       <section className="cardsActivas">
         <h3 className="colorLetraTitulo text-center mt-4 mb-3">Productos Relacionados</h3>
         <Container>
-          <Carousel slide={false} className="carousel carousel-dark slide mb-2">
-            <Carousel.Item className="d-flex justify-content-center">
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-            </Carousel.Item>
-            <Carousel.Item className="d-flex justify-content-center">
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-            </Carousel.Item>
-            <Carousel.Item className="d-flex justify-content-center">
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-              <ItemDetalle></ItemDetalle>
-            </Carousel.Item>
-          </Carousel>
+
+        <Swiper
+        spaceBetween={50}
+        pagination={{
+          type: "progressbar",
+        }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation, Autoplay]}
+        className="mySwiper"
+      >
+        {relacionados.map((platoRelacionado)=> <SwiperSlide key={platoRelacionado._id}><ItemDetalle plato={platoRelacionado}></ItemDetalle></SwiperSlide>)}
+      
+       
+        
+      </Swiper> 
+          {/* <Carousel slide={false} className="carousel carousel-dark slide mb-2">
+          <Carousel.Item className="d-flex justify-content-center" >
+           {relacionados.map((platoRelacionado)=><ItemDetalle key={platoRelacionado._id} plato={platoRelacionado}></ItemDetalle>)}
+           </Carousel.Item>
+            
+            
+          </Carousel> */}
         </Container>
       </section>
+  
     </>
   );
 };
