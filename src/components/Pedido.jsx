@@ -2,14 +2,18 @@ import "../style/pedido.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Pedido = () => {
   return (
     <section className="container c-principal mainPage">
-      <article className="d-flex justify-content-between">
-      <h1>Mi pedido</h1>
-      <Button variant="primary" className="m-3">Limpiar</Button>
+      <article className="d-flex justify-content-between pedido-container">
+        <h2>Mi pedido</h2>
+        <div className="boton-pedido">
+          <Button variant="primary" className="m-3">
+            Limpiar
+          </Button>
+        </div>
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
@@ -24,10 +28,10 @@ const Pedido = () => {
         <h3>$8700$</h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
-        <Link to={'/'}>
-        <Button variant="outline-secondary" size="lg" className="btn-Seguir">
-          Seguir pidiendo
-        </Button>
+        <Link to={"/"}>
+          <Button variant="outline-secondary" size="lg" className="btn-Seguir">
+            Seguir pidiendo
+          </Button>
         </Link>
         <Button type="submit" size="lg" className="btn_pagar">
           Pagar

@@ -10,9 +10,9 @@ const CardDestacada = ({ producto}) => {
     <>
       <div className="card d-flex flex-md-row cambio-card-sm my-3 shadow contenedor-card" >
         <div className='contenedor-img-recomendada' >
-        <img src={producto.imagen} className=" card-img-dest" alt="..." />
+        <img src={producto.imagen} className="card-img-dest" alt="imagenes menus" />
         </div>
-        <div className="card-body card-body-tamanio ">
+        <div className="card-body card-body-tamanio mt-lg-5 mt-md-5">
           <h2 className=" text-center">
             {producto.nombre}
           </h2>
