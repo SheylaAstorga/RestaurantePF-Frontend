@@ -8,7 +8,7 @@ import { leerPedidosAPI } from "../helpers/queris";
 
 const Pedido = () => {
   const [pedidos, setPedidos] = useState([]);
-  
+
   useEffect(() => {
     consultarAPI();
   }, []);
@@ -32,19 +32,24 @@ const Pedido = () => {
         </Button>
       </article>
       <ListGroup className="border-bottom-list">
-      <ListGroup.Item>
-          {pedidos.map((pedido) => (
+        <ListGroup.Item>
+          {pedidos.map((producto) => (
             <PedidosIndividuales
-              key={pedido._id}
-              pedido={pedido}
-              setPedidos={setPedidos}
+              key={producto._id}
+              producto={producto}
             ></PedidosIndividuales>
           ))}
-         </ListGroup.Item>
+        </ListGroup.Item>
       </ListGroup>
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
-        <h3>$8700$</h3>
+        <h3>$
+          {pedidos.reduce((total, producto) => {
+            const subtotal = producto.cantidad * producto.precio;
+            total = total + subtotal;
+            return total;
+          }, 0)}
+        </h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
         <Link to={"/"}>
