@@ -77,6 +77,22 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
+
+export const modificarProductoAPI = async (productoModificado, id) => {
+  try {
+    const respuesta = await fetch(`${api_producto}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productoModificado),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /* PEDIDOS */
 export const leerPedidosAPI = async () => {
   try {

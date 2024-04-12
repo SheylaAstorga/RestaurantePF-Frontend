@@ -4,6 +4,12 @@
   padding: 12px 10px 12px 10px;
   border-radius: 7px;
 }
+.boton-formulario-admin-cancelar {
+  border: 0px;
+  color: #ffff;
+  padding: 13.5px 10px 13.5px 10px;
+  border-radius: 7px;
+}
 .confirmar {
   background: #4baf23;
   transition: 0.3s ease-in-out;
@@ -23,10 +29,11 @@
   width: 10%;
   padding-top: 15px;
   padding-bottom: 15px;
+  padding-inline: 25px;
 }
 
 @media all and (max-width: 767px) {
-  .boton-formulario-admin {
+  .boton-formulario-admin, .boton-formulario-admin-cancelar {
     width: 45%;
   }
   .div-confirmar {

@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { useState } from "react";
 import { borrarPlatoAPI, leerProductosAPI } from "../../helpers/queris";
 import ModalDetalles from '../paginaPrincipal/ModalDetalles';
+import { Link } from 'react-router-dom';
 
 const ElementoLista = ({ producto,setPlatillos }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -61,9 +62,9 @@ const ElementoLista = ({ producto,setPlatillos }) => {
           >
             <i className="bi bi-file-text"></i>
           </button>
-          <button type="button" className="btn btn-outline-success mx-1">
+          <Link type="button" className="btn btn-outline-success mx-1" to={"/administrador/editar/"+producto._id}>
             <i className="bi bi-pencil-square"></i>
-          </button>
+          </Link>
           <button
             type="button"
             className="btn btn-outline-danger mx-1"

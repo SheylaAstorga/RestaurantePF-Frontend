@@ -25,11 +25,13 @@ const Pedido = () => {
 
   return (
     <section className="container c-principal mainPage">
-      <article className="d-flex justify-content-between">
-        <h1>Mi pedido</h1>
-        <Button variant="primary" className="m-3">
-          Limpiar
-        </Button>
+      <article className="d-flex justify-content-between pedido-container">
+        <h2>Mi pedido</h2>
+        <div className="boton-pedido">
+          <Button variant="primary" className="m-3">
+            Limpiar
+          </Button>
+        </div>
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
