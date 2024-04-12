@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import "../../style/formulariosAdmin.css";
 import {
@@ -239,12 +239,12 @@ const FormularioMenu = ({ editar, titulo }) => {
           </Form.Text>
         </Form.Group>
         <div className="div-confirmar justify-content-between">
-          <button type="submit" className="boton-formulario-admin confirmar">
+          <button type="submit" className="boton-formulario-admin confirmar text-decoration-none">
             Guardar
           </button>
-          <button type="text" className="boton-formulario-admin cancelar ms-3">
+          <Link type="text" className="boton-formulario-admin-cancelar cancelar ms-3 text-decoration-none text-center" to={"/administrador/menu"}>
             Cancelar
-          </button>
+          </Link>
         </div>
       </Form>
     </section>
