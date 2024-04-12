@@ -9,12 +9,12 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
-import Adminmenu from "./components/Adminmenu";
 import ModalDetalles from "./components/paginaPrincipal/ModalDetalles";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
 import DetalleProducto from "./components/pages/DetalleProducto";
 import DetallePedido from "./components/DetallePedido";
-import FormularioMenu from "./components/paginaAdministrador/FormularioMenu";
+import RutasProtegidas from "./components/routes/RutasProtegidas";
+import RutasAdmin from "./components/routes/RutasAdmin";
 
 function App() {
   const usuario =
@@ -53,23 +53,13 @@ function App() {
         ></Route>
         <Route
           exact
-          path="/administrador/menu"
-          element={<Adminmenu></Adminmenu>}
-        ></Route>
-        <Route
-          exact
-          path="/administrador/crear"
+          path="/administrador/*"
           element={
-            <FormularioMenu titulo="Crear menú" editar={false}></FormularioMenu>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/administrador/editar/:id"
-          element={
-            <FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>
-          }
-        ></Route>
+            <RutasProtegidas>
+              <RutasAdmin></RutasAdmin>
+            </RutasProtegidas>
+          }>
+        </Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

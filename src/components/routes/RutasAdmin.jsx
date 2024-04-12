@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Adminmenu from "../Adminmenu";
 import FormularioMenu from "../paginaAdministrador/FormularioMenu";
+import UsuariosAdmin from "../paginaAdministrador/UsuariosAdmin";
 
 const RutasAdmin = () => {
   return (
@@ -8,13 +9,22 @@ const RutasAdmin = () => {
       <Routes>
         <Route
           exact
-          path="/"
+          path="/crear"
           element={
-            <Adminmenu
-              producto={producto}
-              setModalShow={setModalShow}
-            ></Adminmenu>
+            <FormularioMenu titulo="Crear menú" editar={false}></FormularioMenu>
           }
+        ></Route>
+        <Route
+          exact
+          path="/editar/:id"
+          element={
+            <FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/menu"
+          element={<Adminmenu></Adminmenu>}
         ></Route>
         <Route
           exact
@@ -28,6 +38,20 @@ const RutasAdmin = () => {
           path="/editar/:id"
           element={
             <FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/usuario"
+          element={
+            <UsuariosAdmin></UsuariosAdmin>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/usuario/crear"
+          element={
+            <UsuariosAdmin></UsuariosAdmin>
           }
         ></Route>
       </Routes>
