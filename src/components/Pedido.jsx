@@ -4,10 +4,10 @@ import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { leerPedidosAPI } from "../helpers/queris";
+import { leerPedidoAPI } from "../helpers/queris.js";
 
 const Pedido = () => {
-  const [pedidos, setPedidos] = useState([]);
+  const [filas, setFilas] = useState([]);
 
   useEffect(() => {
     consultarAPI();
@@ -15,9 +15,9 @@ const Pedido = () => {
 
   const consultarAPI = async () => {
     try {
-      const respuesta = await leerPedidosAPI();
+      const respuesta = await leerPedidoAPI();
       console.log(respuesta);
-      setPedidos(respuesta);
+      setFilas(respuesta);
     } catch (error) {
       console.log(error);
     }
@@ -35,10 +35,11 @@ const Pedido = () => {
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
-          {pedidos.map((producto) => (
+          {filas.map((fila) => (
             <PedidosIndividuales
-              key={producto._id}
-              producto={producto}
+              key={fila._id}
+              fila={fila.producto}
+              cantidad={fila.cantidad}
             ></PedidosIndividuales>
           ))}
         </ListGroup.Item>
@@ -46,8 +47,8 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
         <h3>$
-          {pedidos.reduce((total, producto) => {
-            const subtotal = producto.cantidad * producto.precio;
+          {filas.reduce((total, fila) => {
+            const subtotal = fila.cantidad * fila.precio;
             total = total + subtotal;
             return total;
           }, 0)}

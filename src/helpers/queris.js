@@ -94,11 +94,11 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 };
 
 /* PEDIDOS */
-export const leerPedidosAPI = async () => {
+export const leerPedidoAPI = async () => {
   try {
       const respuesta = await fetch(api_pedidos);
-      const listaPedidos = await respuesta.json();
-      return listaPedidos;
+      const listaPedido = await respuesta.json();
+      return listaPedido;
   } catch (error) {
       console.log(error);
   }
