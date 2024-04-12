@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom';
 import hamburguesa from "../assets/hamburguesa.png";
 import DetallePedido from './DetallePedido';
 
-const PedidosIndividuales = ({fila,cantidad}) => {
+const PedidosIndividuales = ({producto,cantidad}) => {
   const nombreProd = () => {
-    if(fila !== undefined){
-      return fila.nombre
+    if(producto !== undefined){
+      return producto.nombre
     } else {
-      return "nombre";
+      return "Nombre Producto";
     }
   }
 
   const precioProd = () => {
-    if(fila !== undefined){
-      return fila.precio
+    if(producto !== undefined){
+      return producto.precio
     } else {
       return 0;
     }
   }
 
   const detalleProd = () => {
-    if(fila !== undefined){
-      return fila.detalle
+    if(producto !== undefined){
+      return producto.detalle
     } else {
-      return "no se encontro ningun comentario";
+      return "No se encontro ningun comentario";
     }
   }
   
@@ -33,7 +33,13 @@ const PedidosIndividuales = ({fila,cantidad}) => {
     if(cantidad !== undefined){
       return cantidad;
     } else {
-      return 1;
+      return 0;
+    }
+  }
+
+  const imagenProd = () => {
+    if(producto !== undefined){
+      return producto.imagen;
     }
   }
 
@@ -53,10 +59,10 @@ const PedidosIndividuales = ({fila,cantidad}) => {
     <section className="p-3 fondo-pedidos mb-3">
       <Row>
         <Col xs={12} md={6} className="d-flex align-items-center card-pedido-individual">
-          <img className='img-fluid' src={hamburguesa} alt="Hamburguesa" style={{ maxWidth: '150px', marginRight: '10px' }} />
-          <div className='text-center ms-lg-3'>
+          <img className='img-fluid' src={imagenProd()} alt="Hamburguesa" style={{ maxWidth: '150px', marginRight: '10px' }} />
+          <div className='text-center text-lg-start ms-lg-3 mt-1'>
             <h5>{nombreProd()}</h5>
-            <Link to='/' className='btn btn-primary mt-lg-3 '>Editar</Link>
+            <Link to='/' className='btn btn-primary mt-2 mt-lg-3 '>Editar</Link>
             <DetallePedido comentario={detalleProd()}/>
           </div>
         </Col>

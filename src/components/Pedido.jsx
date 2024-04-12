@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { leerPedidoAPI } from "../helpers/queris.js";
 
 const Pedido = () => {
+  let total = 0;
   const [filas, setFilas] = useState([]);
 
   useEffect(() => {
@@ -23,6 +24,24 @@ const Pedido = () => {
     }
   };
 
+  const precioProducto = (producto) => {
+    if(producto !== undefined){
+      if(producto.precio !== undefined){
+        return producto.precio;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  const cantidadProducto = (cantidad) => {
+    if(cantidad !== undefined){
+      return cantidad;
+    } else {
+      return 0;
+    }
+  }
+
   return (
     <section className="container c-principal mainPage">
       <article className="d-flex justify-content-between pedido-container">
@@ -38,7 +57,7 @@ const Pedido = () => {
           {filas.map((fila) => (
             <PedidosIndividuales
               key={fila._id}
-              fila={fila.producto}
+              producto={fila.producto}
               cantidad={fila.cantidad}
             ></PedidosIndividuales>
           ))}
@@ -47,11 +66,12 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
         <h3>$
-          {filas.reduce((total, fila) => {
-            const subtotal = fila.cantidad * fila.precio;
-            total = total + subtotal;
-            return total;
-          }, 0)}
+          {
+            filas.reduce((acumulador, fila) =>{
+              let subtotal = cantidadProducto(fila.cantidad) * precioProducto(fila.producto);
+              return acumulador + subtotal;
+            }, 0)
+          }
         </h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
