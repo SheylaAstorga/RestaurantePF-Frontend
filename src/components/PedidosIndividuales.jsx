@@ -31,6 +31,7 @@ const PedidosIndividuales = ({producto}) => {
           <article className='d-flex flex-column'>
               <h5 className='font-weight-bold mt-2'>{producto.nombre}</h5>
             <Link to={'/'} className='btn-editar'>Editar</Link>
+            <span>(Pendiente)</span>
             <DetallePedido></DetallePedido>
           </article>
         </Col>
