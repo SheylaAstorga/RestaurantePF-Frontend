@@ -1,10 +1,6 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
-<<<<<<< HEAD
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
-=======
-const api_pedidos = import.meta.env.VITE_API_PEDIDOS
->>>>>>> dev
 
 
 //mostrar todos los productos
