@@ -12,17 +12,12 @@ import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 
-
-
-
 const Recomendaciones = ({ productos }) => {
-  
-
-
-
   return (
-    <article className="glass-efect">
-      <h1 className="display-2 text-center color-texto-destacado">Nuestras recomendaciones </h1>
+    <article className="glass-efect p-lg-3 text-center">
+      <h1 className="display-2 text-center color-texto-destacado">
+        Nuestras recomendaciones{" "}
+      </h1>
       <Swiper
         spaceBetween={50}
         pagination={{
@@ -36,18 +31,17 @@ const Recomendaciones = ({ productos }) => {
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
-        {productos.map((producto)=> <SwiperSlide key={producto._id}><CardDestacada  producto={producto}></CardDestacada> </SwiperSlide>)}
-      
-       
-        
+        {productos.map((producto) => (
+          <SwiperSlide key={producto._id}>
+            <CardDestacada producto={producto}></CardDestacada>{" "}
+          </SwiperSlide>
+        ))}
       </Swiper>
       <div className="d-grid gap-2 my-3 d-flex justify-content-center">
         <Link  className="w-75 my-3 btn btn-outline-light btn-lg efecto-card-menu text-black" to={"/menu"}>
           MENU
         </Link>
       </div>
-     
-              
     </article>
   );
 };

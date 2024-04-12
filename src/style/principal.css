@@ -1,5 +1,6 @@
 .imgbanner{
     width: 100%;
+    height: 70vh;
     object-fit: cover;
 }
 
@@ -17,8 +18,8 @@ object-fit: cover;
 border-radius: 10px;
 }
 .contenedor-img-recomendada{
-    width: 350px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
 }
 .card-body-tamanio{
     
@@ -48,6 +49,9 @@ border-radius: 10px;
     color: #642c29;
     border-color: #642c29;
 }
+.direccion-cards{
+    background-color: #642c29;
+}
 .glass-efect{
     margin: 0.6rem;
     box-shadow: 0 1rem 2rem rgba(0,0,0,.3);
@@ -70,9 +74,6 @@ border-radius: 10px;
     height: 50vh;
     padding-right: 15px; 
 }
-
-
-
 
 .efecto-card-menu {
     display: grid;
@@ -151,15 +152,19 @@ border-radius: 10px;
 
 
 /* tamaño chico */
+
 @media (max-width: 576px)  { 
+    .imgbanner{
+        height: 40vh;
+    }
     .contenedor-img-recomendada{
         width: 90%;
-        height: 200px;
+        
     }
     .swiper-slide img{
-       padding-left: 6px;
-        width: 43%;
-       
+       display: flex;
+       justify-content: center;
+       align-content: center;
     }
    
     .contenedor-modal{
@@ -177,6 +182,7 @@ border-radius: 10px;
     }
     .fondo-img-modal{
         width: 100%;
+
         height: 50%;
     }
 
@@ -189,8 +195,11 @@ width: 90%;
     }
     
 }
-/* tamaño medio */
+
 @media (min-width: 577px) and (max-width: 991px){ 
+    .imgbanner{
+        height: 40vh;
+    }
     .card-contenido{
         padding-top: 5rem;
         height: 100%;
@@ -208,7 +217,7 @@ width: 90%;
     }
  }
 
-/* tamaño grande */
+
 @media (min-width: 992px) {
    
  }

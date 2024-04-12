@@ -24,7 +24,7 @@
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-  height: auto;
+    height: auto;
   
     /* Center slide text vertically */
     display: flex;
@@ -39,3 +39,9 @@
     object-fit: cover;
   }
   
+
+  /* tamaño chico */
+@media (max-width: 576px)  { 
+  
+
+}
