@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import ElementoLista from "./paginaAdministrador/ElementoLista";
 import { useEffect, useState } from "react";
 import { leerProductosAPI } from "../helpers/queris";
+import { Link } from "react-router-dom";
 
 const Adminmenu = ({ setModalShow}) => {
   const [platillos, setPlatillos] = useState([]);
@@ -20,9 +21,9 @@ const mostrarProductosAPI= async ()=>{
         <h1 className="display-2 mx-4">Administrar Menú</h1>
         
         <ul className="list-group px-4">
-          <li className="list-group-item border-bottom border-black text-end"><Button variant="outline-success" >
+          <li className="list-group-item border-bottom border-black text-end"><Link variant="outline-success" to={"/administrador/crear"}>
             <i className="bi bi-file-earmark-plus"> agregar</i>
-          </Button></li>
+          </Link></li>
           {platillos.map((plato)=><ElementoLista key={plato._id} producto ={plato} setModalShow={setModalShow} setPlatillos={setPlatillos}></ElementoLista>)}
             
           
