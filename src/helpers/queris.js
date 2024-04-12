@@ -1,7 +1,7 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
-const api_pedidos = import.meta.env.VITE_API_PEDIDOS
-
+const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
+const api_usuarios = import.meta.env.VITE_API_USUARIOS;
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
@@ -110,3 +110,16 @@ export const modificarProductoAPI = async (productoModificado, id) => {
      console.log(error);
    }
  };
+
+ // usuarios
+
+
+ export const leerUsuarios = async () => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}usuarios`)
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

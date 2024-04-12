@@ -1,4 +1,4 @@
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -45,22 +45,6 @@ const FormularioMenu = ({ editar, titulo }) => {
   };
 
   const productoValidado = async (producto) => {
-    console.log(producto);
-    // const respuesta = await crearProductoAPI(producto);
-    // if (respuesta.status === 201) {
-    //   Swal.fire({
-    //     title: "Producto creado",
-    //     text: `El producto "${producto.nombre}" fue creado correctamente`,
-    //     icon: "success",
-    //   });
-    //   reset();
-    // } else {
-    //   Swal.fire({
-    //     title: "Ocurrio un error",
-    //     text: `El producto "${producto.nombre}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
-    //     icon: "error",
-    //   });
-    // }
     if (editar) {
       const respuesta = await modificarProductoAPI(producto, id);
       if (respuesta.status === 200) {
