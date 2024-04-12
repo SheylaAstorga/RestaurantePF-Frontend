@@ -77,7 +77,6 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
-<<<<<<< HEAD
 /* PEDIDOS */
 export const leerPedidosAPI = async () => {
   try {
@@ -88,7 +87,6 @@ export const leerPedidosAPI = async () => {
       console.log(error);
   }
 };
-=======
 
 // //create pedidos
 
@@ -107,4 +105,3 @@ export const leerPedidosAPI = async () => {
      console.log(error);
    }
  };
->>>>>>> dev
