@@ -1,7 +1,6 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
-const api_pedidos = import.meta.env.VITE_API_PEDIDOS
-
+const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
@@ -14,13 +13,13 @@ export const leerProductosAPI = async () => {
   }
 };
 export const obtenerProductoAPI = async (id) => {
-    try {
-      const respuesta = await fetch(api_producto + "/" + id);
-      return respuesta;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  try {
+    const respuesta = await fetch(api_producto + "/" + id);
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const productosOfertaAPI = async () => {
   try {
@@ -49,15 +48,14 @@ export const productosEstadoAPI = async (categoria) => {
   }
 };
 
-
 export const crearProductoAPI = async (productoNuevo) => {
   try {
-    const respuesta= await fetch(api_productos,{
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productoNuevo)
+    const respuesta = await fetch(api_productos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productoNuevo),
     });
     console.log(respuesta);
     return respuesta;
@@ -92,21 +90,36 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-
 // //create pedidos
 
- export const crearPedidoAPI = async (pedido) => {
-   try {
-     const respuesta = await fetch(api_pedidos, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(pedido),
-     });
-     const data = await respuesta.json();
-     return data;
-   } catch (error) {
-     console.log(error);
-   }
- };
+export const crearPedidoAPI = async (pedido) => {
+  try {
+    const respuesta = await fetch(api_pedidos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedido),
+    });
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const modificarPedidoAPI = async (pedidoModificado, id) => {
+  try {
+    const respuesta = await fetch(`${api_pedidos}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedidoModificado),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
