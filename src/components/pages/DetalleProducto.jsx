@@ -11,7 +11,7 @@ import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { obtenerProductoAPI, productosEstadoAPI } from "../../helpers/queris";
+import { obtenerProductoAPI, productosCategoriaAPI } from "../../helpers/queris";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -36,7 +36,7 @@ const DetalleProducto = () => {
   }
 
   const Relacionados = async(categoria)=>{
-    const listarRelacionados = await productosEstadoAPI(categoria)
+    const listarRelacionados = await productosCategoriaAPI(categoria)
     setRelacionados(listarRelacionados)
   }
 
