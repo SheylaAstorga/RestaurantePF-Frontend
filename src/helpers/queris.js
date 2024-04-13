@@ -35,7 +35,7 @@ export const productosOfertaAPI = async () => {
     console.error(error);
   }
 };
-export const productosEstadoAPI = async (categoria) => {
+export const productosCategoriaAPI = async (categoria) => {
   try {
     const datita = await fetch(api_productos);
     const listaProductos = await datita.json();
