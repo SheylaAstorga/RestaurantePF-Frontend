@@ -4,6 +4,7 @@ import logoSazón from "../../src/img/LogoSazon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const LoginModal = () => {
   const {
@@ -14,8 +15,11 @@ const LoginModal = () => {
   } = useForm();
 
   const usuarioValidado = (usuario) => {
-    console.log(usuario);
-    reset()
+    try{
+      
+    }catch(error){
+
+    }
   };
 
   return (
@@ -49,16 +53,10 @@ const LoginModal = () => {
                 placeholder="Correo electrónico"
                 {...register("email", {
                   required: "El email es obligatorio",
-                  minLength: {
-                    value: 12,
-                    message:
-                      "El email del usuario debe tener como minimo 12 caracteres",
-                  },
-                  maxLength: {
-                    value: 256,
-                    message:
-                      "El email del usuario debe tener como maximo 256 caracteres",
-                  },
+                  pattern: {
+                      value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                      message: "Debe ingresar un email valido",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
@@ -71,13 +69,9 @@ const LoginModal = () => {
                 placeholder="Contraseña"
                 {...register('password',{
                   required:"La contraseña es obligatoria",
-                  minLength:{
-                    value:8,
-                    message:"La contraseña del usuario debe tener como minimo 8 caracteres"
-                  },
-                  maxLength:{
-                    value:16,
-                    message:"La contraseña del usuario debe tener como maximo 16 caracteres"
+                  pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                      message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
                   }
                 })}
               />

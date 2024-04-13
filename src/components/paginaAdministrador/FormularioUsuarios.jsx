@@ -51,7 +51,6 @@ const FormularioUsuarios = () => {
                 icon: "error"
             });
         }
-        se
     }
 
     return (

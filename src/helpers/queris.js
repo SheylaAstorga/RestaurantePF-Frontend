@@ -199,3 +199,18 @@ export const crearUsuariosAdmin = async (usuario) => {
     console.log(error);
   }
 };
+
+export const crearUsuario = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}registrar` , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    })
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+}

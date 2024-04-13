@@ -3,19 +3,59 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { crearUsuario } from "../helpers/queris";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const RegistroModal = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     reset
   } = useForm();
+  const navegacion = useNavigate()
+  const password = watch("password", "");
 
-  const usuarioValidadoRegistro = (usuario) => {
-    console.log(usuario);
-    reset()
-  };
+  const generarColorRandom = () => {
+    return `rgb(${Math.floor(Math.random() * 251)},${Math.floor(Math.random() * 251)},${Math.floor(Math.random() * 251)})`
+  }
+
+  const usuarioValidadoRegistro = async (usuarioValidado) => {
+    try {
+      const usuario = {
+        email: usuarioValidado.email,
+        password: usuarioValidado.password,
+        nombreUsuario: usuarioValidado.nombreUsuario,
+        rol: usuarioValidado.rol,
+        perfilRGB: generarColorRandom()
+      }
+      const respuesta = await crearUsuario(usuario);
+      const datos = await respuesta.json()
+      if (respuesta.status === 201) {
+        Swal.fire({
+          title: "Usuario creado",
+          text: `El usuario "${usuario.nombreUsuario}" fue creado correctamente`,
+          icon: "success",
+        });
+        reset();
+        navegacion("/");
+      } else {
+        Swal.fire({
+          title: "Ocurrio un error",
+          text: datos.mensaje,
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Ocurrio un error",
+        text: "a ocurrido un error inesperado, intententelo mas tarde",
+        icon: "error"
+      });
+    }
+  }
   return (
     <div
       className="modal show"
@@ -45,7 +85,7 @@ const RegistroModal = () => {
               <Form.Control
                 type="text"
                 placeholder="Ingrese su nombre"
-                {...register("Nombre", {
+                {...register("nombreUsuario", {
                   required: "El nombre es obligatorio",
                   minLength: {
                     value: 4,
@@ -53,17 +93,16 @@ const RegistroModal = () => {
                       "El nombre del usuario debe tener como minimo 4 caracteres",
                   },
                   maxLength: {
-                    value: 25,
+                    value: 15,
                     message:
                       "El nombre del usuario debe tener como maximo 25 caracteres",
                   },
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.Nombre?.message}
+                {errors.nombreUsuario?.message}
               </Form.Text>
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Email:</Form.Label>
               <Form.Control
@@ -71,16 +110,10 @@ const RegistroModal = () => {
                 placeholder="correo@correo.com"
                 {...register("email", {
                   required: "El email es obligatorio",
-                  minLength: {
-                    value: 12,
-                    message:
-                      "El email del usuario debe tener como minimo 12 caracteres",
-                  },
-                  maxLength: {
-                    value: 256,
-                    message:
-                      "El email del usuario debe tener como maximo 256 caracteres",
-                  },
+                  pattern: {
+                      value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                      message: "Debe ingresar un email valido",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
@@ -92,41 +125,30 @@ const RegistroModal = () => {
               <Form.Control
                 type="password"
                 placeholder="Ingrese una contraseña"
-                {...register('password',{
-                  required:"La contraseña es obligatoria",
-                  minLength:{
-                    value:8,
-                    message:"La contraseña del usuario debe tener como minimo 8 caracteres"
-                  },
-                  maxLength:{
-                    value:16,
-                    message:"La contraseña del usuario debe tener como maximo 16 caracteres"
+                {...register('password', {
+                  required: "La contraseña es obligatoria",
+                  pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                      message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
                   }
                 })}
               />
-               <Form.Text className="text-danger">
+              <Form.Text className="text-danger">
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Confirmar contraseña:</Form.Label>
+              <Form.Label>Repita la contraseña*</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Ingrese nuevamente su contraseña"
-                {...register('password',{
-                  required:"Ingrese su contraseña",
-                  minLength:{
-                    value:8,
-                    message:"Ingrese nuevamente la contraseña, debe tener como minimo 8 caracteres"
-                  },
-                  maxLength:{
-                    value:16,
-                    message:"Ingrese nuevamente la contraseña, debe tener como maximo 16 caracteres"
-                  }
+                placeholder="Repita su contraseña"
+                {...register("password_repeat", {
+                  required: "Debe repetir la contraseña",
+                  validate: value => value === password || "Las contraseñas no coinciden"
                 })}
               />
-               <Form.Text className="text-danger">
-                {errors.password?.message}
+              <Form.Text className="text-danger">
+                {errors.password_repeat?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -157,8 +179,8 @@ const RegistroModal = () => {
         </Modal.Body>
         <Modal.Footer>
           <p>¿Ya tienes una cuenta?</p>
-          <a href="/registro" className="text-decoration-none linkRegistrate">
-            Inicia sessión aquí
+          <a href="/login" className="text-decoration-none linkRegistrate">
+            Inicia seción aquí
           </a>
         </Modal.Footer>
       </Modal.Dialog>
