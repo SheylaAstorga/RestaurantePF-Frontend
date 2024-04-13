@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../style/formulariosAdmin.css";
 import { crearUsuariosAdmin } from "../../helpers/queris";
 
@@ -20,28 +20,37 @@ const FormularioUsuarios = () => {
     }
 
     const usuarioValidado = async (usuarioValidado) => {
-        const usuario = {
-            email: usuarioValidado.email,
-            password: usuarioValidado.password,
-            nombreUsuario: usuarioValidado.nombreUsuario,
-            rol: usuarioValidado.rol,
-            perfilRGB: generarColorRandom()
-        }
-        const respuesta = await crearUsuariosAdmin(usuario)
-        if (respuesta.status === 201) {
-            Swal.fire({
-                title: "Usuario creado",
-                text: `El usuario "${usuario.nombreUsuario}" fue creado correctamente`,
-                icon: "success",
-            });
-            reset();
-        } else {
+        try {
+            const usuario = {
+                email: usuarioValidado.email,
+                password: usuarioValidado.password,
+                nombreUsuario: usuarioValidado.nombreUsuario,
+                rol: usuarioValidado.rol,
+                perfilRGB: generarColorRandom()
+            }
+            const respuesta = await crearUsuariosAdmin(usuario)
+            if (respuesta.status === 201) {
+                Swal.fire({
+                    title: "Usuario creado",
+                    text: `El usuario "${usuario.nombreUsuario}" fue creado correctamente`,
+                    icon: "success",
+                });
+                reset();
+            } else {
+                Swal.fire({
+                    title: "Ocurrio un error",
+                    text: `El usuario "${usuario.nombreUsuario}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
+                    icon: "error",
+                });
+            }
+        } catch (error) {
             Swal.fire({
                 title: "Ocurrio un error",
-                text: `El usuario "${usuario.nombreUsuario}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
-                icon: "error",
+                text: "a ocurrido un error inesperado, intententelo mas tarde",
+                icon: "error"
             });
         }
+        se
     }
 
     return (
