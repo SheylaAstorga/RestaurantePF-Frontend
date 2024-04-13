@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 
-const DetallePedido = () => {
+const DetallePedido = ({comentario}) => {
 
     const [open, setOpen] = useState(false);
 
@@ -14,7 +14,7 @@ const DetallePedido = () => {
         ></i>
       <Collapse in={open}>
         <div id="example-collapse-text">
-       <p> Papas Fritas Medianas - Sal - Coca-Cola Zero - Hielo - Pan XL - Carne - Queso Cheddar en fetas - Cebolla - Tomate - Lechuga - Salsa Tasty - Salsa Spicy</p>
+       <p>{comentario}</p>
         </div>
       </Collapse>
       </>
