@@ -171,9 +171,9 @@ const CartillaMenu = () => {
   return (
     <>
       <article className="">
-        <h1 className="display-1 text-center">Nuestro Menu</h1>
+        <h1 className="display-1 text-center my-4">Nuestro Menu</h1>
 
-        <Form.Group controlId="formBasicSelect">
+        <Form.Group controlId="formBasicSelect " className="my-5">
           
           <Form.Select
             value={seleccion}
