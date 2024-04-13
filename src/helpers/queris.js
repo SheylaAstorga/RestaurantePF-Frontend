@@ -35,7 +35,7 @@ export const productosOfertaAPI = async () => {
     console.error(error);
   }
 };
-export const productosEstadoAPI = async (categoria) => {
+export const productosCategoriaAPI = async (categoria) => {
   try {
     const datita = await fetch(api_productos);
     const listaProductos = await datita.json();
@@ -77,6 +77,7 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
+
 export const modificarProductoAPI = async (productoModificado, id) => {
   try {
     const respuesta = await fetch(`${api_producto}/${id}`, {
@@ -92,6 +93,16 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
+/* PEDIDOS */
+export const leerPedidoAPI = async () => {
+  try {
+      const respuesta = await fetch(api_pedidos);
+      const listaPedido = await respuesta.json();
+      return listaPedido;
+  } catch (error) {
+      console.log(error);
+  }
+};
 
 // //create pedidos
 
@@ -112,7 +123,6 @@ export const modificarProductoAPI = async (productoModificado, id) => {
  };
 
  // usuarios
-
 
  export const leerUsuarios = async () => {
   try {
