@@ -1,0 +1,19 @@
+.usuarioPerfil{
+    width: 100px;
+    height: 100px;
+}
+
+.usuarioIsActivo{
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+}
+
+.botonesUsuario {
+    flex-direction: row;
+}
+@media all and (max-width: 767px) {
+    .botonesUsuario {
+        flex-direction: column;
+    }
+}

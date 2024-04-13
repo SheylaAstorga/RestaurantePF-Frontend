@@ -8,10 +8,11 @@ const UsuariosAdmin = () => {
     const [usuarios, setUsuarios] = useState([]);
     useEffect(()=> {
         hacerSolicitud()
-    })
+    },[])
 
     const hacerSolicitud = async() => {
         const respuesta = await leerUsuarios();
+        console.log(respuesta)
         setUsuarios(respuesta)
     }
     return (
