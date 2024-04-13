@@ -2,13 +2,16 @@ import { Button } from "react-bootstrap";
 import "../../style/usuarios.css"
 
 const UsuariosItem = ({ usuario, borrarUsuario, suspenderUsuario, habilitarUsuario }) => {
+    const emailRespuesta = {
+        email: usuario.email
+    }
     const estiloColor = {
         backgroundColor: usuario.perfilRGB,
         margin: "auto",
     };
     const isSuspendido = usuario.suspendido ?
-     (<Button className="ms-lg-3 ms-md-3 mt-2" onClick={()=>habilitarUsuario(usuario.email)} variant="warning"><i className="bi bi-ban"></i> habilitar</Button>) : 
-     (<Button className="ms-lg-3 ms-md-3 mt-2" onClick={()=>suspenderUsuario(usuario.email)} variant="info"><i className="bi bi-ban"></i> Suspender</Button>);
+     (<Button className="ms-lg-3 ms-md-3 mt-2" onClick={()=>habilitarUsuario(emailRespuesta)} variant="warning"><i className="bi bi-ban"></i> habilitar</Button>) : 
+     (<Button className="ms-lg-3 ms-md-3 mt-2" onClick={()=>suspenderUsuario(emailRespuesta)} variant="info"><i className="bi bi-ban"></i> Suspender</Button>);
     
      const estiloActivo = {
         backgroundColor: usuario.isActive ? "#4baf23" : "#3e3f3d"
@@ -29,7 +32,7 @@ const UsuariosItem = ({ usuario, borrarUsuario, suspenderUsuario, habilitarUsuar
                 <p className="email">{usuario.email}</p>
                 <hr />
                 <div className="d-flex botonesUsuario">
-                    <Button onClick={()=>borrarUsuario(usuario.email)} className="mt-2" variant="danger"><i className="bi bi-trash3"></i> Borrar</Button>
+                    <Button onClick={()=>borrarUsuario(emailRespuesta)} className="mt-2" variant="danger"><i className="bi bi-trash3"></i> Borrar</Button>
                     {isSuspendido}
                 </div>
             </div>

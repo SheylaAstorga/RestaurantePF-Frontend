@@ -123,3 +123,37 @@ export const modificarProductoAPI = async (productoModificado, id) => {
     console.log(error);
   }
 };
+
+
+export const borrarUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}borrarUsuario` , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const suspenderUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}suspenderUsuario` , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
