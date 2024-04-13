@@ -174,3 +174,18 @@ export const habilitarUsuarios = async (email) => {
     console.log(error);
   }
 };
+
+export const crearUsuariosAdmin = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}registroAdmin` , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    })
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
