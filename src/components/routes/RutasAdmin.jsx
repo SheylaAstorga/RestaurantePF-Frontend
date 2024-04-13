@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Adminmenu from "../Adminmenu";
 import FormularioMenu from "../paginaAdministrador/FormularioMenu";
 import UsuariosAdmin from "../paginaAdministrador/UsuariosAdmin";
+import FormularioUsuarios from "../paginaAdministrador/FormularioUsuarios";
 
 const RutasAdmin = () => {
   return (
@@ -51,7 +52,7 @@ const RutasAdmin = () => {
           exact
           path="/usuario/crear"
           element={
-            <UsuariosAdmin></UsuariosAdmin>
+            <FormularioUsuarios></FormularioUsuarios>
           }
         ></Route>
       </Routes>

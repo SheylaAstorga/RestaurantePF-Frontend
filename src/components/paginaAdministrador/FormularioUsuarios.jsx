@@ -43,144 +43,101 @@ const FormularioUsuarios = () => {
               <Form.Label>Nombre Usuario*</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Ej: Cafe"
+                placeholder="Ej: usuario1234"
                 {...register("nombreUsuario", {
-                  required: "El nombre del producto es obligatorio",
+                  required: "El nombre del usuario es obligatorio",
                   minLength: {
-                    value: 2,
+                    value: 4,
                     message:
-                      "Debe ingresar como minimo 2 caracteres para el nombre del producto",
+                      "Debe ingresar como minimo 4 caracteres para el nombre del usuario",
                   },
                   maxLength: {
-                    value: 50,
+                    value: 15,
                     message:
-                      "Debe ingresar como maximo 50 caracteres para el nombre del producto",
+                      "Debe ingresar como maximo 15 caracteres para el nombre del usuario",
                   },
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.nombre?.message}
+                {errors.nombreUsuario?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPrecio">
-              <Form.Label>Precio*</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Ej: 50"
-                {...register("precio", {
-                  required: "El precio es obligatorio",
-                  min: {
-                    value: 50,
-                    message: "El precio como minimo debe ser de $50",
-                  },
-                  max: {
-                    value: 10000,
-                    message: "El precio como maximo debe ser de $10000",
-                  },
-                })}
-              />
-              <Form.Text className="text-danger">
-                {errors.precio?.message}
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formImagen">
-              <Form.Label>Imagen URL*</Form.Label>
+              <Form.Label>Email*</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
-                {...register("imagen", {
-                  required: "La imagen es obligatoria",
+                placeholder="usuario1234@gmail.com"
+                {...register("email", {
+                  required: "El email es obligatorio",
                   pattern: {
-                    value: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/,
-                    message: "Debe ingresar una URL valida (jpg|jpeg|gif|png)",
-                  },
+                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                    message: "Debe ingresar un email valido",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.imagen?.message}
+                {errors.email?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formCategoria">
-              <Form.Label>Categoría*</Form.Label>
+              <Form.Label>rol del usuario*</Form.Label>
               <Controller
-                name="categoria"
+                name="rol"
                 control={control}
-                rules={{ required: "Seleccione una categoría" }}
+                rules={{ required: "Seleccione un rol" }}
                 render={({ field }) => (
                   <Form.Select {...field}>
                     <option value="" disabled>
                       Seleccione una opcion
                     </option>
-                    <option value="Entrada">Entrada</option>
-                    <option value="Desayuno">Desayuno</option>
-                    <option value="Plato principal">Plato principal</option>
-                    <option value="Postre">Postre</option>
-                    <option value="Menu infantil">Menu infantil</option>
-                    <option value="Menu ejecutivo">Menu ejecutivo</option>
-                    <option value="Vegano">Vegano</option>
-                    <option value="Vegetariano">Vegetariano</option>
-                    <option value="Celíaco">Celíaco</option>
+                    <option value="user">usuario</option>
+                    <option value="admin">administrador</option>
                   </Form.Select>
                 )}
               />
               <Form.Text className="text-danger">
-                {errors.categoria?.message}
+                {errors.rol?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Detalles*</Form.Label>
+              <Form.Label>Contraseña*</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Ej: Una taza de café suave y aromático."
-                as="textarea"
-                {...register("detalle", {
-                  required: "el detalle del producto es obligatorio",
-                  minLength: {
-                    value: 10,
-                    message:
-                      "Debe ingresar como minimo 10 caracteres para el detalle",
-                  },
-                  maxLength: {
-                    value: 300,
-                    message:
-                      "Debe ingresar como maximo 300 caracteres para el detalle",
-                  },
+                type="password"
+                placeholder="seleccione su contraseña"
+                {...register("password", {
+                  required: "la contraseña es obligatoria",
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "la contraseña debe contener por lo menos 8 caracteres, letras tanto minusculaas y mayusculas y numeros",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.detalle?.message}
+                {errors.password?.message}
               </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formEstado">
-              <Form.Label>Estado del Menú*</Form.Label>
-              <Controller
-                name="estado"
-                control={control}
-                rules={{ required: "Seleccione una categoría" }}
-                render={({ field }) => (
-                  <Form.Select {...field}>
-                    <option value="" disabled>
-                      Seleccione una opcion
-                    </option>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Agotado">Agotado</option>
-                    <option value="En oferta">En oferta</option>
-                    <option value="Recomendado">Recomendado</option>
-                    <option value="Especial del dia">Especial del día</option>
-                    <option value="Proximamente">Proximamente</option>
-                  </Form.Select>
-                )}
+            <Form.Group className="mb-3">
+              <Form.Label>Repita la contraseña*</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="seleccione su contraseña"
+                {...register("password", {
+                  required: "la contraseña es obligatoria",
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "la contraseña debe contener por lo menos 8 caracteres, letras tanto minusculaas y mayusculas y numeros",
+                  }
+                })}
               />
-    
               <Form.Text className="text-danger">
-                {errors.estado?.message}
+                {errors.password?.message}
               </Form.Text>
             </Form.Group>
             <div className="div-confirmar justify-content-between">
               <button type="submit" className="boton-formulario-admin confirmar text-decoration-none">
                 Guardar
               </button>
-              <Link type="text" className="boton-formulario-admin-cancelar cancelar ms-3 text-decoration-none text-center" to={"/administrador/menu"}>
+              <Link type="text" className="boton-formulario-admin-cancelar cancelar ms-3 text-decoration-none text-center" to={"/administrador/usuario"}>
                 Cancelar
               </Link>
             </div>

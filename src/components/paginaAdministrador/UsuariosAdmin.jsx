@@ -124,7 +124,7 @@ const UsuariosAdmin = () => {
             <h2 className="text-center">Administrar Usuario</h2>
             <div className="d-flex justify-content-between align-content-center">
                 <p className="fs-2 m-0">Lista de Usuario</p>
-                <Link className="m-0 text-decoration-none btn btn-primary text-center" to={"/administrador/usuarios/crear"}>
+                <Link className="m-0 text-decoration-none btn btn-primary text-center" to={"/administrador/usuario/crear"}>
                     Nuevo Usuario
                 </Link>
             </div>
