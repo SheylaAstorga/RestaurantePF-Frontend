@@ -28,7 +28,8 @@ const FormularioUsuarios = () => {
                 rol: usuarioValidado.rol,
                 perfilRGB: generarColorRandom()
             }
-            const respuesta = await crearUsuariosAdmin(usuario)
+            const respuesta = await crearUsuariosAdmin(usuario);
+            const datos = await respuesta.json()
             if (respuesta.status === 201) {
                 Swal.fire({
                     title: "Usuario creado",
@@ -39,7 +40,7 @@ const FormularioUsuarios = () => {
             } else {
                 Swal.fire({
                     title: "Ocurrio un error",
-                    text: `El usuario "${usuario.nombreUsuario}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
+                    text: datos.mensaje,
                     icon: "error",
                 });
             }
