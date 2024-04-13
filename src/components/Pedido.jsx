@@ -2,45 +2,58 @@ import "../style/pedido.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { leerPedidoAPI } from "../helpers/queris.js";
+
+import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { crearPedidoAPI } from '../helpers/queris';
+
 
 const Pedido = () => {
-  let total = 0;
-  const [filas, setFilas] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    consultarAPI();
-  }, []);
+  const handleComprar = async () => {
+    if (!isUserAuthenticated()) {
+      // Redirigir al usuario al formulario de login
+      navigate('/login');
+      return;
+    }
 
-  const consultarAPI = async () => {
     try {
-      const respuesta = await leerPedidoAPI();
-      console.log(respuesta);
-      setFilas(respuesta);
+      const token = localStorage.getItem('authToken');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const pedido = {
+        // Datos del pedido que seran rellenados
+      };
+
+      const { mensaje } = await crearPedidoAPI(pedido, config);
+      Swal.fire({
+        title: 'Pedido creado',
+        text: mensaje,
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
     } catch (error) {
-      console.log(error);
+      console.error('Error al crear el pedido:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo crear el pedido',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
     }
   };
 
-  const precioProducto = (producto) => {
-    if(producto !== undefined){
-      if(producto.precio !== undefined){
-        return producto.precio;
-      }
-    } else {
-      return 0;
-    }
-  }
+  const isUserAuthenticated = () => {
+    const token = localStorage.getItem('authToken');
+    return token !== null && token !== undefined;
+  };
 
-  const cantidadProducto = (cantidad) => {
-    if(cantidad !== undefined){
-      return cantidad;
-    } else {
-      return 0;
-    }
-  }
 
   return (
     <section className="container c-principal mainPage">
@@ -80,7 +93,7 @@ const Pedido = () => {
             Seguir pidiendo
           </Button>
         </Link>
-        <Button type="submit" size="lg" className="btn_pagar">
+        <Button type="submit" size="lg" className="btn_pagar" onClick={handleComprar}>
           Pagar
         </Button>
       </article>
