@@ -157,3 +157,20 @@ export const suspenderUsuarios = async (email) => {
     console.log(error);
   }
 };
+
+
+export const habilitarUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}habilitarUsuario` , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

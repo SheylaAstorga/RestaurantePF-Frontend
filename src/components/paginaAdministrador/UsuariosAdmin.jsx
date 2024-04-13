@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { borrarUsuarios, leerUsuarios, suspenderUsuarios } from "../../helpers/queris";
+import { borrarUsuarios, habilitarUsuarios, leerUsuarios, suspenderUsuarios } from "../../helpers/queris";
 import UsuariosItem from "./UsuariosItem";
 import Swal from "sweetalert2";
 
@@ -85,8 +85,8 @@ const UsuariosAdmin = () => {
 
     }
 
-    const habilitarUsuario = (email) => {
-        Swal.fire({
+    const habilitarUsuario = async (email) => {
+        const result = await Swal.fire({
             title: "¿Seguro quieres habilitar el usuario?",
             text: "el usuario podra hacer pedidos y demas opciones otra ves",
             icon: "warning",
@@ -95,17 +95,30 @@ const UsuariosAdmin = () => {
             cancelButtonColor: "#3e3f3d",
             confirmButtonText: "habilitar",
             cancelButtonText: "cancelar"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Usuario Habilitado",
-                    text: `el usuario ${email} a sido habilitado`,
-                    icon: "success"
-                });
-            }
-        });
+        })
 
-    }
+        if (result.isConfirmed) {
+            const resultado = await habilitarUsuarios(email);
+            if (!resultado) {
+                Swal.fire({
+                    title: "Ocurrio un error",
+                    text: resultado.mensaje,
+                    icon: "error"
+                });
+            } else {
+                hacerSolicitud()
+                Swal.fire({
+                    title: "Usuario habilitado",
+                    text: resultado.mensaje,
+                    icon: "success"
+                })
+            }
+            return { success: true };
+        } else {
+            return null;
+        }
+    };
+
     return (
         <Container className="my-3">
             <h2 className="text-center">Administrar Usuario</h2>
