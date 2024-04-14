@@ -14,8 +14,7 @@ const LoginModal = () => {
   } = useForm();
 
   const usuarioValidado = (usuario) => {
-    console.log(usuario);
-    reset()
+    reset();
   };
 
   return (
@@ -69,19 +68,21 @@ const LoginModal = () => {
               <Form.Control
                 type="password"
                 placeholder="Contraseña"
-                {...register('password',{
-                  required:"La contraseña es obligatoria",
-                  minLength:{
-                    value:8,
-                    message:"La contraseña del usuario debe tener como minimo 8 caracteres"
+                {...register("password", {
+                  required: "La contraseña es obligatoria",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "La contraseña del usuario debe tener como minimo 8 caracteres",
                   },
-                  maxLength:{
-                    value:16,
-                    message:"La contraseña del usuario debe tener como maximo 16 caracteres"
-                  }
+                  maxLength: {
+                    value: 16,
+                    message:
+                      "La contraseña del usuario debe tener como maximo 16 caracteres",
+                  },
                 })}
               />
-               <Form.Text className="text-danger">
+              <Form.Text className="text-danger">
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>

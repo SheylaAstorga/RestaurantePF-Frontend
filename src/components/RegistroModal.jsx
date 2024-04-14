@@ -13,7 +13,7 @@ const RegistroModal = () => {
   } = useForm();
 
   const usuarioValidadoRegistro = (usuario) => {
-    console.log(usuario);
+    
     reset()
   };
   return (

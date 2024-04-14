@@ -1,6 +1,10 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
+<<<<<<< HEAD
+=======
+const api_usuarios = import.meta.env.VITE_API_USUARIOS;
+>>>>>>> b6917210aa00dadf197ebcae1c1700719987348c
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
@@ -28,20 +32,20 @@ export const productosOfertaAPI = async () => {
     let destacados = listaProductos.filter(
       (producto) => producto.estado == "En oferta"
     );
-    console.log(destacados);
+
     return destacados;
   } catch (error) {
     console.error(error);
   }
 };
-export const productosEstadoAPI = async (categoria) => {
+export const productosCategoriaAPI = async (categoria) => {
   try {
     const datita = await fetch(api_productos);
     const listaProductos = await datita.json();
     let destacados = listaProductos.filter(
       (producto) => producto.categoria === categoria
     );
-    console.log(destacados);
+    
     return destacados;
   } catch (error) {
     console.error(error);
@@ -57,10 +61,10 @@ export const crearProductoAPI = async (productoNuevo) => {
       },
       body: JSON.stringify(productoNuevo),
     });
-    console.log(respuesta);
+   
     return respuesta;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -75,6 +79,7 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
+
 export const modificarProductoAPI = async (productoModificado, id) => {
   try {
     const respuesta = await fetch(`${api_producto}/${id}`, {
@@ -86,15 +91,68 @@ export const modificarProductoAPI = async (productoModificado, id) => {
     });
     return respuesta;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+};
+
+/* PEDIDOS */
+export const leerPedidoAPI = async () => {
+  try {
+      const respuesta = await fetch(api_pedidos);
+      const listaPedido = await respuesta.json();
+      return listaPedido;
+  } catch (error) {
+      console.error(error);
   }
 };
 
 // //create pedidos
 
-export const crearPedidoAPI = async (pedido) => {
+ export const crearPedidoAPI = async (pedido) => {
+   try {
+     const respuesta = await fetch(api_pedidos, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(pedido),
+     });
+     const data = await respuesta.json();
+     return data;
+   } catch (error) {
+     console.error(error);
+   }
+ };
+
+
+
+ export const borrarPedidoAPI = async (id) => {
   try {
-    const respuesta = await fetch(api_pedidos, {
+    const respuesta = await fetch(`${api_pedidos}/${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+ // usuarios
+
+ export const leerUsuarios = async () => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}usuarios`)
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+export const borrarUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}borrarUsuario` , {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
