@@ -3,24 +3,46 @@ import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 import logo from "../../assets/LogoSazon.png"
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { logoutBack } from "../../helpers/queris";
+import { isRol, logoutBack } from "../../helpers/queris";
+import "../../helpers/queris.js"
 
-const Menu = ({ usuarioLogueado, setUsuarioLogueado , actualizarUsuario}) => {
+const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
     const navegacion = useNavigate()
     const [isAdmin, setIsAdmin] = useState(false)
 
-    useEffect(()=> {
-        const estado = verificarIsAdmin();
-        setIsAdmin(estado)
-    },[])
-
     const verificarIsAdmin = async () => {
-        return false
+        try {
+            if(usuarioLogueado.email !== ""){
+            const respuesta = await isRol({ email: usuarioLogueado.email })
+            const datos = await respuesta.json(respuesta)
+            console.log(datos)
+            if (respuesta.status === 200) {
+                setIsAdmin(datos.role)
+            } else {
+                localStorage.removeItem('usuarioSazonDelAlma');
+                navegacion("/login");
+                Swal.fire({
+                    title: "Ocurrio un error",
+                    text: datos.mensaje,
+                    icon: "error",
+                });
+            }}else{
+                navegacion("/login");
+                setIsAdmin(false)
+            }
+        } catch (error) {
+            console.log(error)
+            setIsAdmin(false)
+        }
     }
+
+    useEffect(() => {
+        verificarIsAdmin()
+    }, [usuarioLogueado])
 
     const logout = async () => {
         try {
-            const respuesta = await logoutBack({ email: usuarioLogueado.email});
+            const respuesta = await logoutBack({ email: usuarioLogueado.email });
             const datos = await respuesta.json()
             if (respuesta.status === 200) {
                 if (respuesta.status === 200) {
@@ -62,19 +84,19 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado , actualizarUsuario}) => {
                                 <i className="bi bi-person-fill-x fs-3 px-2"></i>
                             </Button>
                             {
-                            isAdmin ? (
-                                <NavDropdown title="Administrador" id="navbarScrollingDropdown">
-                                    <NavDropdown.Item>Action</NavDropdown.Item>
-                                    <NavDropdown.Item>
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                            ) : (<></>)
-                        }
+                                isAdmin ? (
+                                    <NavDropdown title="Administrador" id="navbarScrollingDropdown">
+                                        <NavDropdown.Item>Action</NavDropdown.Item>
+                                        <NavDropdown.Item>
+                                            Another action
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="#action5">
+                                            Something else here
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                ) : (<></>)
+                            }
                         </>
                     ) : (
                         <>

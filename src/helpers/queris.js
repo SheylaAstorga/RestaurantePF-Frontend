@@ -239,3 +239,19 @@ export const logoutBack = async (usuario) => {
     console.log(error);
   }
 };
+
+
+export const isRol = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}isAdmin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
