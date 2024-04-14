@@ -18,7 +18,7 @@ export const obtenerProductoAPI = async (id) => {
       const respuesta = await fetch(api_producto + "/" + id);
       return respuesta;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -29,7 +29,7 @@ export const productosOfertaAPI = async () => {
     let destacados = listaProductos.filter(
       (producto) => producto.estado == "En oferta"
     );
-    console.log(destacados);
+
     return destacados;
   } catch (error) {
     console.error(error);
@@ -42,7 +42,7 @@ export const productosCategoriaAPI = async (categoria) => {
     let destacados = listaProductos.filter(
       (producto) => producto.categoria === categoria
     );
-    console.log(destacados);
+    
     return destacados;
   } catch (error) {
     console.error(error);
@@ -59,10 +59,10 @@ export const crearProductoAPI = async (productoNuevo) => {
         },
         body: JSON.stringify(productoNuevo)
     });
-    console.log(respuesta);
+   
     return respuesta;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -89,7 +89,7 @@ export const modificarProductoAPI = async (productoModificado, id) => {
     });
     return respuesta;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -100,7 +100,7 @@ export const leerPedidoAPI = async () => {
       const listaPedido = await respuesta.json();
       return listaPedido;
   } catch (error) {
-      console.log(error);
+      console.error(error);
   }
 };
 
@@ -118,7 +118,7 @@ export const leerPedidoAPI = async () => {
      const data = await respuesta.json();
      return data;
    } catch (error) {
-     console.log(error);
+     console.error(error);
    }
  };
 
@@ -143,7 +143,7 @@ export const leerPedidoAPI = async () => {
     const data = await respuesta.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -160,7 +160,7 @@ export const borrarUsuarios = async (email) => {
     const data = await respuesta.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -177,7 +177,7 @@ export const suspenderUsuarios = async (email) => {
     const data = await respuesta.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -194,7 +194,7 @@ export const habilitarUsuarios = async (email) => {
     const data = await respuesta.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -209,7 +209,7 @@ export const crearUsuariosAdmin = async (usuario) => {
     })
     return respuesta;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

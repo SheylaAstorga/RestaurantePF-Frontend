@@ -14,7 +14,7 @@ const LoginModal = () => {
   } = useForm();
 
   const usuarioValidado = (usuario) => {
-    console.log(usuario);
+    
     reset()
   };
 
