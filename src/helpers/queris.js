@@ -121,3 +121,15 @@ export const leerPedidoAPI = async () => {
      console.log(error);
    }
  };
+
+
+ export const borrarPedidoAPI = async (id) => {
+  try {
+    const respuesta = await fetch(`${api_pedidos}/${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};
