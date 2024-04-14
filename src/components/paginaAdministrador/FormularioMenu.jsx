@@ -62,21 +62,21 @@ const FormularioMenu = ({ editar, titulo }) => {
         });
       }
     } else {
-        const respuesta = await crearProductoAPI(producto);
-        if (respuesta.status === 201) {
-          Swal.fire({
-            title: "Producto creado",
-            text: `El producto "${producto.nombre}" fue creado correctamente`,
-            icon: "success",
-          });
-          reset();
-        } else {
-          Swal.fire({
-            title: "Ocurrio un error",
-            text: `El producto "${producto.nombre}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
-            icon: "error",
-          });
-        }
+      const respuesta = await crearProductoAPI(producto);
+      if (respuesta.status === 201) {
+        Swal.fire({
+          title: "Producto creado",
+          text: `El producto "${producto.nombre}" fue creado correctamente`,
+          icon: "success",
+        });
+        reset();
+      } else {
+        Swal.fire({
+          title: "Ocurrio un error",
+          text: `El producto "${producto.nombre}" no pudo ser creado correctamente. Intente esta operación en unos minutos`,
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -223,10 +223,17 @@ const FormularioMenu = ({ editar, titulo }) => {
           </Form.Text>
         </Form.Group>
         <div className="div-confirmar justify-content-between">
-          <button type="submit" className="boton-formulario-admin confirmar text-decoration-none">
+          <button
+            type="submit"
+            className="boton-formulario-admin confirmar text-decoration-none"
+          >
             Guardar
           </button>
-          <Link type="text" className="boton-formulario-admin-cancelar cancelar ms-3 text-decoration-none text-center" to={"/administrador/menu"}>
+          <Link
+            type="text"
+            className="boton-formulario-admin-cancelar cancelar ms-3 text-decoration-none text-center"
+            to={"/administrador/menu"}
+          >
             Cancelar
           </Link>
         </div>

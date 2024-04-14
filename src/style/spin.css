@@ -28,7 +28,6 @@
 	stroke-dashoffset: 175.92;
 }
 
-/* Dark theme */
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bg: hsl(var(--hue),90%,5%);
@@ -39,7 +38,6 @@
 	}
 }
 
-/* Animations */
 @keyframes worm1 {
 	from,
 	to {

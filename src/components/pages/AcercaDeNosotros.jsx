@@ -68,7 +68,7 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-            <div className="tamanioImg">
+              <div className="tamanioImg">
                 <Image
                   src={integrante3}
                   alt="Javier Exequiel Jiménez"
@@ -94,7 +94,7 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-            <div className="tamanioImg">
+              <div className="tamanioImg">
                 <Image
                   src={integrante4}
                   alt="Natalia del Valle Morales"
@@ -120,7 +120,7 @@ const AcercaDeNostros = () => {
 
           <Col xs={10} md={6} lg={4} className="py-2">
             <Card className="text-center colorFondoCardAN colorLetraCardAN p-3">
-            <div className="tamanioImg">
+              <div className="tamanioImg">
                 <Image
                   src={integrante5}
                   alt="Daniel Emmanuel Santi Araoz"

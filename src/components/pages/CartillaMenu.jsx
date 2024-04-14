@@ -66,56 +66,55 @@ const CartillaMenu = () => {
     setpVegetariano(productos);
   };
 
-  const contenedorCategorias =[
+  const contenedorCategorias = [
     {
-      nombre:'Desayunos',
+      nombre: "Desayunos",
       mapear: pDesayuno,
-      tamanio: pDesayuno.length
+      tamanio: pDesayuno.length,
     },
     {
-      nombre:'Entradas',
-      mapear:pEntrada,
-      tamanio: pEntrada.length
+      nombre: "Entradas",
+      mapear: pEntrada,
+      tamanio: pEntrada.length,
     },
     {
-      nombre:'Plato Princial',
-      mapear:pPrincipal,
-      tamanio: pPrincipal.length
+      nombre: "Plato Princial",
+      mapear: pPrincipal,
+      tamanio: pPrincipal.length,
     },
     {
-      nombre:'Menu Infantil',
-      mapear:pMenuInfantil,
-      tamanio: pMenuInfantil.length
+      nombre: "Menu Infantil",
+      mapear: pMenuInfantil,
+      tamanio: pMenuInfantil.length,
     },
     {
-      nombre:'Menu Ejecutivo',
-      mapear:pMenuEjecutivo,
-      tamanio: pMenuEjecutivo.length
+      nombre: "Menu Ejecutivo",
+      mapear: pMenuEjecutivo,
+      tamanio: pMenuEjecutivo.length,
     },
     {
-      nombre:'Opciones veganas',
-      mapear:pVegano,
-      tamanio: pVegano.length
+      nombre: "Opciones veganas",
+      mapear: pVegano,
+      tamanio: pVegano.length,
     },
     {
-      nombre:'Opciones celíacos',
-      mapear:pCeliaco,
-      tamanio: pCeliaco.length
+      nombre: "Opciones celíacos",
+      mapear: pCeliaco,
+      tamanio: pCeliaco.length,
     },
     {
-      nombre:'Opciones Vegetarianas',
-      mapear:pVegetariano,
-      tamanio: pVegetariano.length
+      nombre: "Opciones Vegetarianas",
+      mapear: pVegetariano,
+      tamanio: pVegetariano.length,
     },
     {
-      nombre:'Postres',
-      mapear:pPostre,
-      tamanio: pPostre.length
-    }
-  ]
+      nombre: "Postres",
+      mapear: pPostre,
+      tamanio: pPostre.length,
+    },
+  ];
 
   const opcionesDeCategoria = (x) => {
-   
     switch (x) {
       case "todo":
         return contenedorCategorias.map((cate, index) => {
@@ -128,45 +127,72 @@ const CartillaMenu = () => {
               />
             );
           }
-        } 
-      );
+        });
       case "Entrada":
-        return <CategoriaFiltrada categoria={pEntrada} nombre={"Entradas"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pEntrada}
+            nombre={"Entradas"}
+          ></CategoriaFiltrada>
+        );
       case "Desayuno":
-        return <CategoriaFiltrada categoria={pDesayuno} nombre={"Desayunos"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pDesayuno}
+            nombre={"Desayunos"}
+          ></CategoriaFiltrada>
+        );
       case "Plato principal":
-        return <CategoriaFiltrada categoria={pPrincipal} nombre={"Plato Princial"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pPrincipal}
+            nombre={"Plato Princial"}
+          ></CategoriaFiltrada>
+        );
       case "Postre":
-        return <CategoriaFiltrada categoria={pPostre} nombre={"Postres"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pPostre}
+            nombre={"Postres"}
+          ></CategoriaFiltrada>
+        );
       case "Menu infantil":
-        return <CategoriaFiltrada categoria={pMenuInfantil} nombre={"Menu Infantil"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pMenuInfantil}
+            nombre={"Menu Infantil"}
+          ></CategoriaFiltrada>
+        );
       case "Menu ejecutivo":
-        return <CategoriaFiltrada categoria={pMenuEjecutivo} nombre={"Menu Ejecutivo"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pMenuEjecutivo}
+            nombre={"Menu Ejecutivo"}
+          ></CategoriaFiltrada>
+        );
       case "Vegano":
-        return <CategoriaFiltrada categoria={pVegano} nombre={"Opciones veganas"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pVegano}
+            nombre={"Opciones veganas"}
+          ></CategoriaFiltrada>
+        );
       case "Vegetariano":
-        return <CategoriaFiltrada categoria={pVegetariano} nombre={"Opciones Vegetarianas"}></CategoriaFiltrada>
-        ;
+        return (
+          <CategoriaFiltrada
+            categoria={pVegetariano}
+            nombre={"Opciones Vegetarianas"}
+          ></CategoriaFiltrada>
+        );
       case "Celíaco":
-        return <CategoriaFiltrada categoria={pCeliaco} nombre={"Opciones celíacos"}></CategoriaFiltrada>
-        ;
-      }
-  
+        return (
+          <CategoriaFiltrada
+            categoria={pCeliaco}
+            nombre={"Opciones celíacos"}
+          ></CategoriaFiltrada>
+        );
+    }
   };
-
-  
-
-  //carga por categoria
-
- 
-  
 
   return (
     <>
@@ -174,7 +200,6 @@ const CartillaMenu = () => {
         <h1 className="display-1 text-center my-4">Nuestro Menu</h1>
 
         <Form.Group controlId="formBasicSelect " className="my-5">
-          
           <Form.Select
             value={seleccion}
             onChange={(e) => setSeleccion(e.target.value)}
@@ -193,17 +218,6 @@ const CartillaMenu = () => {
         </Form.Group>
 
         {opcionesDeCategoria(seleccion)}
-      
-
-        {/* {cargarCategoriaDesayuno()}
-          {cargarCategoriaEntrada()}
-          {cargarCategoria()}
-          {cargarCategoriaInfantil()}
-          {cargarCategoriaEjecutivo()}
-          {cargarCategoriaVegano()}
-          {cargarCategoriaCelíaco()}
-          {cargarCategoriaVegetariano()}
-          {cargarCategoriaPostre()} */}
       </article>
     </>
   );

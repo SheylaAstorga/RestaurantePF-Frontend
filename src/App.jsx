@@ -9,12 +9,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
-import ModalDetalles from "./components/paginaPrincipal/ModalDetalles";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
 import DetalleProducto from "./components/pages/DetalleProducto";
-import DetallePedido from "./components/DetallePedido";
 import RutasProtegidas from "./components/routes/RutasProtegidas";
 import RutasAdmin from "./components/routes/RutasAdmin";
+import CartillaMenu from "./components/pages/CartillaMenu";
 
 function App() {
   const usuario =
@@ -50,10 +49,14 @@ function App() {
             <RutasProtegidas>
               <RutasAdmin></RutasAdmin>
             </RutasProtegidas>
-          }>
-        </Route>
-        <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
-       <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
+          }
+        ></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
+        <Route
+          exact
+          path="/menu"
+          element={<CartillaMenu></CartillaMenu>}
+        ></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
