@@ -1,10 +1,7 @@
 const api_productos = import.meta.env.VITE_API_PRODUCTOS;
 const api_producto = import.meta.env.VITE_API_PRODUCTO;
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
-<<<<<<< HEAD
-=======
 const api_usuarios = import.meta.env.VITE_API_USUARIOS;
->>>>>>> b6917210aa00dadf197ebcae1c1700719987348c
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
