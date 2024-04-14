@@ -14,13 +14,13 @@ export const leerProductosAPI = async () => {
   }
 };
 export const obtenerProductoAPI = async (id) => {
-    try {
-      const respuesta = await fetch(api_producto + "/" + id);
-      return respuesta;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  try {
+    const respuesta = await fetch(api_producto + "/" + id);
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const productosOfertaAPI = async () => {
   try {
@@ -189,9 +189,10 @@ export const habilitarUsuarios = async (email) => {
     const data = await respuesta.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
+
 
 export const crearUsuariosAdmin = async (usuario) => {
   try {
@@ -207,6 +208,7 @@ export const crearUsuariosAdmin = async (usuario) => {
     console.error(error);
   }
 };
+
 
 export const crearUsuario = async (usuario) => {
   try {
