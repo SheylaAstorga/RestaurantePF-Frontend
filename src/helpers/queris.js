@@ -76,7 +76,6 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
-
 export const modificarProductoAPI = async (productoModificado, id) => {
   try {
     const respuesta = await fetch(`${api_producto}/${id}`, {
@@ -95,11 +94,11 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 /* PEDIDOS */
 export const leerPedidoAPI = async () => {
   try {
-      const respuesta = await fetch(api_pedidos);
-      const listaPedido = await respuesta.json();
-      return listaPedido;
+    const respuesta = await fetch(api_pedidos);
+    const listaPedido = await respuesta.json();
+    return listaPedido;
   } catch (error) {
-      console.error(error);
+    console.log(error);
   }
 };
 
@@ -134,11 +133,27 @@ export const leerPedidoAPI = async () => {
   }
 };
 
- // usuarios
+// usuarios
 
- export const leerUsuarios = async () => {
+export const leerUsuarios = async () => {
   try {
-    const respuesta = await fetch(`${api_usuarios}usuarios`)
+    const respuesta = await fetch(`${api_usuarios}usuarios`);
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const borrarUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}borrarUsuario`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    });
     const data = await respuesta.json();
     return data;
   } catch (error) {
@@ -146,15 +161,30 @@ export const leerPedidoAPI = async () => {
   }
 };
 
-
-export const borrarUsuarios = async (email) => {
+export const suspenderUsuarios = async (email) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}borrarUsuario` , {
+    const respuesta = await fetch(`${api_usuarios}suspenderUsuario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(pedido),
+      body: JSON.stringify(email),
+    });
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const habilitarUsuarios = async (email) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}habilitarUsuario`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
     });
     const data = await respuesta.json();
     return data;
@@ -163,14 +193,31 @@ export const borrarUsuarios = async (email) => {
   }
 };
 
-export const modificarPedidoAPI = async (pedidoModificado, id) => {
+
+export const crearUsuariosAdmin = async (usuario) => {
   try {
-    const respuesta = await fetch(`${api_pedidos}/${id}`, {
-      method: "PUT",
+    const respuesta = await fetch(`${api_usuarios}registroAdmin`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(pedidoModificado),
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+export const crearUsuario = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}registrar`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
     });
     return respuesta;
   } catch (error) {
@@ -178,3 +225,48 @@ export const modificarPedidoAPI = async (pedidoModificado, id) => {
   }
 };
 
+export const login = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logoutBack = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const isRol = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}isAdmin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -20,7 +20,6 @@ const FormularioUsuarios = () => {
       Math.random() * 251
     )},${Math.floor(Math.random() * 251)})`;
   };
-
   const usuarioValidado = async (usuarioValidado) => {
     try {
       const usuario = {
@@ -28,10 +27,10 @@ const FormularioUsuarios = () => {
         password: usuarioValidado.password,
         nombreUsuario: usuarioValidado.nombreUsuario,
         rol: usuarioValidado.rol,
-        perfilRGB: generarColorRandom(),
-      };
+        perfilRGB: generarColorRandom()
+      }
       const respuesta = await crearUsuariosAdmin(usuario);
-      const datos = await respuesta.json();
+      const datos = await respuesta.json()
       if (respuesta.status === 201) {
         Swal.fire({
           title: "Usuario creado",
@@ -50,11 +49,10 @@ const FormularioUsuarios = () => {
       Swal.fire({
         title: "Ocurrio un error",
         text: "a ocurrido un error inesperado, intententelo mas tarde",
-        icon: "error",
+        icon: "error"
       });
     }
-    se;
-  };
+  }
 
   return (
     <section className="container mainSection">
