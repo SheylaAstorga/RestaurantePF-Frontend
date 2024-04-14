@@ -40,7 +40,7 @@ const FormularioMenu = ({ editar, titulo }) => {
         setValue("imagen", productoEncontrado.imagen);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

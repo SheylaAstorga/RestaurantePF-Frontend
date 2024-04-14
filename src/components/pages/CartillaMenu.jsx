@@ -115,7 +115,7 @@ const CartillaMenu = () => {
   ]
 
   const opcionesDeCategoria = (x) => {
-    console.log("dentro de opcionesCategoria");
+   
     switch (x) {
       case "todo":
         return contenedorCategorias.map((cate, index) => {

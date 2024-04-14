@@ -14,7 +14,7 @@ const Adminmenu = ({ setModalShow }) => {
     const productos = await leerProductosAPI();
     setPlatillos(productos);
   };
-  console.log(platillos);
+ 
   return (
     <>
       <article className="fondo my-5 mainPage d-flex flex-column">
