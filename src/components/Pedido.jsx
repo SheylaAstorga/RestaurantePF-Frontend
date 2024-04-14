@@ -2,14 +2,45 @@ import "../style/pedido.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
-
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import { crearPedidoAPI } from "../helpers/queris";
+import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
+
 
 const Pedido = () => {
+  const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    consultarAPI();
+  }, []);
+
+  const consultarAPI = async () => {
+    try {
+      const respuesta = await leerPedidoAPI();
+      setFilas(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const precioProducto = (producto) => {
+    if(producto !== undefined && producto !== null){
+      return producto.precio;
+    } else {
+      return 0;
+    }
+  }
+
+  const cantidadProducto = (cantidad) => {
+    if(cantidad !== undefined && cantidad !== null){
+      return cantidad;
+    } else {
+      return 0;
+    }
+  }
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -25,7 +56,9 @@ const Pedido = () => {
         },
       };
 
-      const pedido = {};
+      const pedido = {     
+        // Datos del pedido que seran rellenados
+      };
 
       const { mensaje } = await crearPedidoAPI(pedido, config);
       Swal.fire({

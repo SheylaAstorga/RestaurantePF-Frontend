@@ -57,7 +57,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         icon: "error",
                     });
                 }
-            }else{
+            } else {
                 localStorage.removeItem('usuarioSazonDelAlma');
                 actualizarUsuario();
                 navegacion("/login");
@@ -85,18 +85,18 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                 <div className="d-flex order-lg-5 flex-grow-0 botones-seciones justify-content-end">
                     {usuarioLogueado.email !== "" ? (
                         <>
-                            <Button className="nav-link text-light" variant="danger" onClick={logout}>
-                                <i className="bi bi-person-fill-x fs-3 px-2"></i>
-                            </Button>
                             {
                                 isAdmin === "admin" ? (
-                                    <NavDropdown className="text-light mt-3" title="Admin" id="navbarScrollingDropdown">
+                                    <NavDropdown className="text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link" title="Admin" id="navbarScrollingDropdown">
                                         <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/administrador/pedidos">pedidos</NavDropdown.Item>
                                     </NavDropdown>
                                 ) : (<></>)
                             }
+                            <Button className="nav-link text-light" variant="danger" onClick={logout}>
+                                <i className="bi bi-person-fill-x fs-3 px-2"></i>
+                            </Button>
                         </>
                     ) : (
                         <>
