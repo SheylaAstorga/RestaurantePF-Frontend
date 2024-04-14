@@ -9,10 +9,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
-import ModalDetalles from "./components/paginaPrincipal/ModalDetalles";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
 import DetalleProducto from "./components/pages/DetalleProducto";
-import DetallePedido from "./components/DetallePedido";
 import RutasProtegidas from "./components/routes/RutasProtegidas";
 import RutasAdmin from "./components/routes/RutasAdmin";
 import CartillaMenu from "./components/pages/CartillaMenu";
@@ -20,17 +18,16 @@ import CartillaMenu from "./components/pages/CartillaMenu";
 function App() {
   const usuario =
     JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
-
+  const [modalShow, setModalShow] = useState(false);
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
-
   return (
-    //rutas
     <BrowserRouter>
       <Menu
         usuarioLogueado={usuarioLogueado}
         setUsuarioLogueado={setUsuarioLogueado}
       ></Menu>
       <Routes>
+        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="*" element={<Error404></Error404>}></Route>
         <Route
@@ -39,7 +36,6 @@ function App() {
           element={<RegistroModal></RegistroModal>}
         ></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
-        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
         <Route
           exact
@@ -53,10 +49,14 @@ function App() {
             <RutasProtegidas>
               <RutasAdmin></RutasAdmin>
             </RutasProtegidas>
-          }>
-        </Route>
-        <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
-       <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
+          }
+        ></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
+        <Route
+          exact
+          path="/menu"
+          element={<CartillaMenu></CartillaMenu>}
+        ></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

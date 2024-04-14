@@ -2,9 +2,9 @@
     background-color: var(--colorFondo);
 }
 img{
-    width: 50%; /* Ancho de la imagen */
-    height: auto; /* Altura automática para mantener la proporción */
-    max-width: 100%; /* Ancho máximo de la imagen */
+    width: 50%; 
+    height: auto;
+    max-width: 100%; 
 }
 
 .btn.btn-primary{

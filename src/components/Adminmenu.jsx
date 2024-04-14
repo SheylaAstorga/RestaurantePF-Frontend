@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import ElementoLista from "./paginaAdministrador/ElementoLista";
 import { useEffect, useState } from "react";
 import { leerProductosAPI } from "../helpers/queris";
@@ -14,12 +13,11 @@ const Adminmenu = ({ setModalShow }) => {
     const productos = await leerProductosAPI();
     setPlatillos(productos);
   };
-  console.log(platillos);
+
   return (
     <>
       <article className="fondo my-5 mainPage d-flex flex-column">
         <h1 className="display-2 mx-4">Administrar Menú</h1>
-
         <ul className="list-group px-4">
           <li className="list-group-item border-bottom border-black text-end">
             <Link

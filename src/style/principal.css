@@ -140,7 +140,7 @@ border-radius: 10px;
   }
   
   hr{
-    overflow: visible; /* For IE */
+    overflow: visible;
     height: 3px;
     border-style: solid;
     border-color: rgb(2, 29, 167);
@@ -149,9 +149,6 @@ border-radius: 10px;
 }
 
 
-
-
-/* tamaño chico */
 
 @media (max-width: 576px)  { 
     .imgbanner{
@@ -217,7 +214,3 @@ width: 90%;
     }
  }
 
-
-@media (min-width: 992px) {
-   
- }
