@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { login } from "../helpers/queris";
+import { useNavigate } from "react-router";
 
 const LoginModal = () => {
   const {
@@ -14,11 +16,37 @@ const LoginModal = () => {
     reset,
   } = useForm();
 
-  const usuarioValidado = (usuario) => {
-    try{
-      
-    }catch(error){
-
+  const navegacion = useNavigate();
+  const usuarioValidado = async (usuario) => {
+    try {
+      const respuesta = await login(usuario);
+      const datos = await respuesta.json();
+      if (respuesta.status === 200) {
+        localStorage.removeItem('usuarioSazonDelAlma');
+        localStorage.setItem('usuarioSazonDelAlma', JSON.stringify({
+          email: datos.email,
+          token: datos.token
+        }));
+        Swal.fire({
+          title: "Bienvenido de vuelta",
+          text: datos.mensaje,
+          icon: "success",
+        });
+        reset();
+        navegacion("/");
+      } else {
+        Swal.fire({
+          title: "Ocurrio un error",
+          text: datos.mensaje,
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Ocurrio un error",
+        text: "ocurrio un error inesperado, intente esta operacion mas tarde",
+        icon: "error",
+      });
     }
   };
 
@@ -54,8 +82,8 @@ const LoginModal = () => {
                 {...register("email", {
                   required: "El email es obligatorio",
                   pattern: {
-                      value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
-                      message: "Debe ingresar un email valido",
+                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                    message: "Debe ingresar un email valido",
                   }
                 })}
               />
@@ -67,15 +95,15 @@ const LoginModal = () => {
               <Form.Control
                 type="password"
                 placeholder="Contraseña"
-                {...register('password',{
-                  required:"La contraseña es obligatoria",
+                {...register('password', {
+                  required: "La contraseña es obligatoria",
                   pattern: {
-                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                      message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
                   }
                 })}
               />
-               <Form.Text className="text-danger">
+              <Form.Text className="text-danger">
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>

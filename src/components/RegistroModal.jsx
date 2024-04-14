@@ -34,9 +34,14 @@ const RegistroModal = () => {
       const respuesta = await crearUsuario(usuario);
       const datos = await respuesta.json()
       if (respuesta.status === 201) {
+        localStorage.removeItem('usuarioSazonDelAlma');
+        localStorage.setItem('usuarioSazonDelAlma', JSON.stringify({
+          email: datos.email,
+          token: datos.token
+        }));
         Swal.fire({
-          title: "Usuario creado",
-          text: `El usuario "${usuario.nombreUsuario}" fue creado correctamente`,
+          title: "Bienvenido",
+          text: datos.mensaje,
           icon: "success",
         });
         reset();
@@ -111,8 +116,8 @@ const RegistroModal = () => {
                 {...register("email", {
                   required: "El email es obligatorio",
                   pattern: {
-                      value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
-                      message: "Debe ingresar un email valido",
+                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                    message: "Debe ingresar un email valido",
                   }
                 })}
               />
@@ -128,8 +133,8 @@ const RegistroModal = () => {
                 {...register('password', {
                   required: "La contraseña es obligatoria",
                   pattern: {
-                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                      message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
                   }
                 })}
               />

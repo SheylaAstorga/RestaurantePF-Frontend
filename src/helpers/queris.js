@@ -14,13 +14,13 @@ export const leerProductosAPI = async () => {
   }
 };
 export const obtenerProductoAPI = async (id) => {
-    try {
-      const respuesta = await fetch(api_producto + "/" + id);
-      return respuesta;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  try {
+    const respuesta = await fetch(api_producto + "/" + id);
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const productosOfertaAPI = async () => {
   try {
@@ -49,15 +49,14 @@ export const productosCategoriaAPI = async (categoria) => {
   }
 };
 
-
 export const crearProductoAPI = async (productoNuevo) => {
   try {
-    const respuesta= await fetch(api_productos,{
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productoNuevo)
+    const respuesta = await fetch(api_productos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productoNuevo),
     });
     console.log(respuesta);
     return respuesta;
@@ -77,7 +76,6 @@ export const borrarPlatoAPI = async (id) => {
   }
 };
 
-
 export const modificarProductoAPI = async (productoModificado, id) => {
   try {
     const respuesta = await fetch(`${api_producto}/${id}`, {
@@ -96,37 +94,25 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 /* PEDIDOS */
 export const leerPedidoAPI = async () => {
   try {
-      const respuesta = await fetch(api_pedidos);
-      const listaPedido = await respuesta.json();
-      return listaPedido;
+    const respuesta = await fetch(api_pedidos);
+    const listaPedido = await respuesta.json();
+    return listaPedido;
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 
 // //create pedidos
 
- export const crearPedidoAPI = async (pedido) => {
-   try {
-     const respuesta = await fetch(api_pedidos, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(pedido),
-     });
-     const data = await respuesta.json();
-     return data;
-   } catch (error) {
-     console.log(error);
-   }
- };
-
- // usuarios
-
- export const leerUsuarios = async () => {
+export const crearPedidoAPI = async (pedido) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}usuarios`)
+    const respuesta = await fetch(api_pedidos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedido),
+    });
     const data = await respuesta.json();
     return data;
   } catch (error) {
@@ -134,33 +120,43 @@ export const leerPedidoAPI = async () => {
   }
 };
 
+// usuarios
+
+export const leerUsuarios = async () => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}usuarios`);
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const borrarUsuarios = async (email) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}borrarUsuario` , {
+    const respuesta = await fetch(`${api_usuarios}borrarUsuario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(email),
-    })
+    });
     const data = await respuesta.json();
     return data;
   } catch (error) {
     console.log(error);
   }
 };
-
 
 export const suspenderUsuarios = async (email) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}suspenderUsuario` , {
+    const respuesta = await fetch(`${api_usuarios}suspenderUsuario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(email),
-    })
+    });
     const data = await respuesta.json();
     return data;
   } catch (error) {
@@ -168,16 +164,15 @@ export const suspenderUsuarios = async (email) => {
   }
 };
 
-
 export const habilitarUsuarios = async (email) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}habilitarUsuario` , {
+    const respuesta = await fetch(`${api_usuarios}habilitarUsuario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(email),
-    })
+    });
     const data = await respuesta.json();
     return data;
   } catch (error) {
@@ -187,13 +182,13 @@ export const habilitarUsuarios = async (email) => {
 
 export const crearUsuariosAdmin = async (usuario) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}registroAdmin` , {
+    const respuesta = await fetch(`${api_usuarios}registroAdmin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(usuario),
-    })
+    });
     return respuesta;
   } catch (error) {
     console.log(error);
@@ -202,15 +197,30 @@ export const crearUsuariosAdmin = async (usuario) => {
 
 export const crearUsuario = async (usuario) => {
   try {
-    const respuesta = await fetch(`${api_usuarios}registrar` , {
+    const respuesta = await fetch(`${api_usuarios}registrar`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(usuario),
-    })
+    });
     return respuesta;
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+export const login = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
