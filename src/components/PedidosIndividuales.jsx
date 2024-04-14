@@ -6,7 +6,7 @@ import DetallePedido from './DetallePedido';
 
 const PedidosIndividuales = ({producto,cantidad}) => {
   const nombreProd = () => {
-    if(producto !== undefined){
+    if(producto !== undefined || producto !== null){
       return producto.nombre
     } else {
       return "Nombre Producto";
@@ -14,7 +14,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
 
   const precioProd = () => {
-    if(producto !== undefined){
+    if(producto !== undefined || producto !== null){
       return producto.precio
     } else {
       return 0;
@@ -22,7 +22,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
 
   const detalleProd = () => {
-    if(producto !== undefined){
+    if(producto !== undefined || producto !== null){
       return producto.detalle
     } else {
       return "No se encontro ningun comentario";
@@ -30,7 +30,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
   
   const cantidadProd = () => {
-    if(cantidad !== undefined){
+    if(cantidad !== undefined || cantidad !== null){
       return cantidad;
     } else {
       return 0;
@@ -38,8 +38,10 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
 
   const imagenProd = () => {
-    if(producto !== undefined){
-      return producto.imagen;
+    if(producto !== undefined || producto !== null){
+      if(producto.imagen !== undefined || producto.imagen !== null){
+        return producto.imagen;
+      }
     }
   }
 

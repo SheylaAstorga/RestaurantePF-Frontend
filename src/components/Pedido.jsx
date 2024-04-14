@@ -2,15 +2,48 @@ import "../style/pedido.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
-
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { crearPedidoAPI } from '../helpers/queris';
+import { crearPedidoAPI, leerPedidoAPI } from '../helpers/queris.js';
 
 
 const Pedido = () => {
+  const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    consultarAPI();
+  }, []);
+
+  const consultarAPI = async () => {
+    try {
+      const respuesta = await leerPedidoAPI();
+      console.log(respuesta);
+      setFilas(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const precioProducto = (producto) => {
+    if(producto !== undefined || producto !== null){
+      if(producto.precio !== undefined || producto.precio !== null){
+        return producto.precio;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  const cantidadProducto = (cantidad) => {
+    if(cantidad !== undefined){
+      return cantidad;
+    } else {
+      return 0;
+    }
+  }
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -27,7 +60,7 @@ const Pedido = () => {
         },
       };
 
-      const pedido = {
+      const pedido = {     
         // Datos del pedido que seran rellenados
       };
 
@@ -79,12 +112,12 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
         <h3>$
-          {
+          {/* {
             filas.reduce((acumulador, fila) =>{
               let subtotal = cantidadProducto(fila.cantidad) * precioProducto(fila.producto);
               return acumulador + subtotal;
             }, 0)
-          }
+          } */}
         </h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
