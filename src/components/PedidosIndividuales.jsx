@@ -1,17 +1,49 @@
-import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import hamburguesa  from "../assets/hamburguesa.png";
-import DetallePedido from './DetallePedido';
+import React, { useState } from 'react';
+import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Principal from './Principal';
+import hamburguesa from "../assets/hamburguesa.png";
+import DetallePedido from './DetallePedido';
 
-const PedidosIndividuales = () => {
+const PedidosIndividuales = ({producto,cantidad}) => {
+  const nombreProd = () => {
+    if(producto !== undefined){
+      return producto.nombre
+    } else {
+      return "Nombre Producto";
+    }
+  }
 
-  //funciones para el contador de botones
-  const [quantity, setQuantity] = React.useState(1);
+  const precioProd = () => {
+    if(producto !== undefined){
+      return producto.precio
+    } else {
+      return 0;
+    }
+  }
+
+  const detalleProd = () => {
+    if(producto !== undefined){
+      return producto.detalle
+    } else {
+      return "No se encontro ningun comentario";
+    }
+  }
+  
+  const cantidadProd = () => {
+    if(cantidad !== undefined){
+      return cantidad;
+    } else {
+      return 0;
+    }
+  }
+
+  const imagenProd = () => {
+    if(producto !== undefined){
+      return producto.imagen;
+    }
+  }
+
+  const [quantity, setQuantity] = React.useState(cantidadProd());
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -24,32 +56,29 @@ const PedidosIndividuales = () => {
   };
 
   return (
-    <section>
-      <Row className='fondo-pedidos' xs={2}>
-        <Col className="d-flex">
-          <img className='imgHamburguesa' src={hamburguesa} alt="imagen del producto" />
-          <article className='d-flex flex-column'>
-            <h5 className='font-weight-bold mt-2'>McCombo Mediano Grand Tasty Spicy Doble</h5>
-            <Link to={'/'} className='btn-editar'>Editar</Link>
-            <span>(Pendiente)</span>
-            <DetallePedido></DetallePedido>
-          </article>
+    <section className="p-3 fondo-pedidos mb-3">
+      <Row>
+        <Col xs={12} md={6} className="d-flex align-items-center card-pedido-individual">
+          <img className='img-fluid' src={imagenProd()} alt="Hamburguesa" style={{ maxWidth: '150px', marginRight: '10px' }} />
+          <div className='text-center text-lg-start ms-lg-3 mt-1'>
+            <h5>{nombreProd()}</h5>
+            <Link to='/' className='btn btn-primary mt-2 mt-lg-3 '>Editar</Link>
+            <DetallePedido comentario={detalleProd()}/>
+          </div>
         </Col>
-        <Col className="d-flex justify-content-center align-items-end flex-column">
-        <p className='m-2'>8.000$</p>
-          <article>
-            <ButtonGroup aria-label="Quantity buttons">
-              <Button variant="outline-danger" onClick={handleDecrement}>
-              <i class="bi bi-trash"></i>
-              </Button>
-              <Button variant="outline-secondary" disabled>
-                {quantity}
-              </Button>
-              <Button variant="outline-secondary" onClick={handleIncrement}>
-              <i class="bi bi-plus"></i>
-              </Button>
-            </ButtonGroup>
-          </article>
+        <Col xs={12} md={6} className="d-flex justify-content-md-end align-items-center mt-3 mt-md-0 pedido-precio">
+          <p className='mr-3 my-lg-4 mx-lg-3'>${precioProd()}</p>
+          <ButtonGroup>
+            <Button variant="outline-danger" onClick={handleDecrement}>
+              <i className="bi bi-dash"></i>
+            </Button>
+            <Button variant="outline-secondary" disabled>
+              {quantity}
+            </Button>
+            <Button variant="outline-success" onClick={handleIncrement}>
+              <i className="bi bi-plus"></i>
+            </Button>
+          </ButtonGroup>
         </Col>
       </Row>
     </section>

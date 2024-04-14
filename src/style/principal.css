@@ -1,5 +1,6 @@
 .imgbanner{
     width: 100%;
+    height: 70vh;
     object-fit: cover;
 }
 
@@ -17,8 +18,8 @@ object-fit: cover;
 border-radius: 10px;
 }
 .contenedor-img-recomendada{
-    width: 350px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
 }
 .card-body-tamanio{
     
@@ -48,6 +49,9 @@ border-radius: 10px;
     color: #642c29;
     border-color: #642c29;
 }
+.direccion-cards{
+    background-color: #642c29;
+}
 .glass-efect{
     margin: 0.6rem;
     box-shadow: 0 1rem 2rem rgba(0,0,0,.3);
@@ -70,8 +74,89 @@ border-radius: 10px;
     height: 50vh;
     padding-right: 15px; 
 }
+
+.efecto-card-menu {
+    display: grid;
+    place-items: center;
+    background: #e9e0c8;
+    padding: 1.0em;
+    border-radius: 5px;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+            -2px -2px 10px -1px rgba(124, 124, 124, 0.7);
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+  
+  .efecto-card-menu:hover {
+    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+            inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+            -0.5px -0.5px 0px rgba(255,255,255,1),
+            0.5px 0.5px 0px rgba(0,0,0,0.15),
+            0px 12px 10px -10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    transform: translateY(0.5em);
+  }
+  
+  .efecto-card-menu .card-link {
+    transition: transform 0.5s;
+  }
+  
+  .efecto-card-menu:hover .scard-link {
+    transform: scale(0.9);
+    fill: #333333;
+  }
+  
+.efecto-btn-recomendaciones {
+    display: grid;
+    place-items: center;
+    background: #a59360;
+    padding: 1.0em;
+    border-radius: 5px;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+            -2px -2px 10px -1px #642c29;
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+  
+  .efecto-btn-recomendaciones:hover {
+    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+            inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+            -0.5px -0.5px 0px rgba(255,255,255,1),
+            0.5px 0.5px 0px rgba(0,0,0,0.15),
+            0px 12px 10px -10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    transform: translateY(0.5em);
+  }
+  
+  .efecto-btn-recomendaciones .card-link {
+    transition: transform 0.5s;
+  }
+  
+  .efecto-btn-recomendaciones:hover .scard-link {
+    transform: scale(0.9);
+    fill: #333333;
+  }
+  
+  hr{
+    overflow: visible; /* For IE */
+    height: 3px;
+    border-style: solid;
+    border-color: rgb(2, 29, 167);
+    border-width: 1px 0 0 0;
+    border-radius: 2px;
+}
+
+
+
+
 /* tamaño chico */
+
 @media (max-width: 576px)  { 
+    .imgbanner{
+        height: 40vh;
+    }
     .contenedor-img-recomendada{
         width: 90%;
         
@@ -97,11 +182,24 @@ border-radius: 10px;
     }
     .fondo-img-modal{
         width: 100%;
-        height: 50%; 
+
+        height: 50%;
     }
+
+    .efecto-card-menu{
+width: 90%;
+    }
+
+    .margin-card-menu{
+        margin-top: 10px;
+    }
+    
 }
-/* tamaño medio */
+
 @media (min-width: 577px) and (max-width: 991px){ 
+    .imgbanner{
+        height: 40vh;
+    }
     .card-contenido{
         padding-top: 5rem;
         height: 100%;
@@ -119,7 +217,7 @@ border-radius: 10px;
     }
  }
 
-/* tamaño grande */
+
 @media (min-width: 992px) {
    
  }
