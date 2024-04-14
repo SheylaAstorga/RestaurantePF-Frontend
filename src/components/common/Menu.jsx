@@ -12,21 +12,21 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
 
     const verificarIsAdmin = async () => {
         try {
-            if(usuarioLogueado.email !== ""){
-            const respuesta = await isRol({ email: usuarioLogueado.email })
-            const datos = await respuesta.json(respuesta)
-            console.log(datos)
-            if (respuesta.status === 200) {
-                setIsAdmin(datos.role)
+            if (usuarioLogueado.email !== "") {
+                const respuesta = await isRol({ email: usuarioLogueado.email })
+                const datos = await respuesta.json(respuesta)
+                if (respuesta.status === 200) {
+                    setIsAdmin(datos.role)
+                } else {
+                    localStorage.removeItem('usuarioSazonDelAlma');
+                    navegacion("/login");
+                    Swal.fire({
+                        title: "Ocurrio un error",
+                        text: datos.mensaje,
+                        icon: "error",
+                    });
+                }
             } else {
-                localStorage.removeItem('usuarioSazonDelAlma');
-                navegacion("/login");
-                Swal.fire({
-                    title: "Ocurrio un error",
-                    text: datos.mensaje,
-                    icon: "error",
-                });
-            }}else{
                 navegacion("/login");
                 setIsAdmin(false)
             }
@@ -85,16 +85,11 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                             </Button>
                             {
                                 isAdmin ? (
-                                    <NavDropdown title="Administrador" id="navbarScrollingDropdown">
-                                        <NavDropdown.Item>Action</NavDropdown.Item>
-                                        <NavDropdown.Item>
-                                            Another action
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action5">
-                                            Something else here
-                                        </NavDropdown.Item>
-                                    </NavDropdown>
+                                <NavDropdown className="text-light mt-3" title="Admin" id="navbarScrollingDropdown">
+                                    <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to="/administrador/usuarios">usuarios</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to="/administrador/pedidos">pedidos</NavDropdown.Item>
+                                </NavDropdown>
                                 ) : (<></>)
                             }
                         </>
