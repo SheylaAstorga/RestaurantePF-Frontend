@@ -5,31 +5,31 @@ import DetallePedido from "./DetallePedido";
 
 const PedidosIndividuales = ({ producto, cantidad }) => {
   const nombreProd = () => {
-    if (producto !== undefined) {
-      return producto.nombre;
+    if(producto !== undefined && producto !== null){
+      return producto.nombre
     } else {
-      return "Nombre Producto";
+      return "";
     }
   };
 
   const precioProd = () => {
-    if (producto !== undefined) {
-      return producto.precio;
+    if(producto !== undefined && producto !== null){
+      return producto.precio
     } else {
       return 0;
     }
   };
 
   const detalleProd = () => {
-    if (producto !== undefined) {
-      return producto.detalle;
+    if(producto !== undefined && producto !== null){
+      return producto.detalle
     } else {
       return "No se encontro ningun comentario";
     }
   };
 
   const cantidadProd = () => {
-    if (cantidad !== undefined) {
+    if(cantidad !== undefined && cantidad !== null){
       return cantidad;
     } else {
       return 0;
@@ -37,7 +37,7 @@ const PedidosIndividuales = ({ producto, cantidad }) => {
   };
 
   const imagenProd = () => {
-    if (producto !== undefined) {
+    if(producto !== undefined && producto !== null){
       return producto.imagen;
     }
   };
@@ -65,7 +65,7 @@ const PedidosIndividuales = ({ producto, cantidad }) => {
           <img
             className="img-fluid"
             src={imagenProd()}
-            alt="Hamburguesa"
+            alt={nombreProd()}
             style={{ maxWidth: "150px", marginRight: "10px" }}
           />
           <div className="text-center text-lg-start ms-lg-3 mt-1">
