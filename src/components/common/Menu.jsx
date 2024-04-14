@@ -90,7 +90,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                                     <NavDropdown className="text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link" title="Admin" id="navbarScrollingDropdown">
                                         <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
-                                        <NavDropdown.Item as={Link} to="/administrador/pedidos">pedidos</NavDropdown.Item>
                                     </NavDropdown>
                                 ) : (<></>)
                             }
