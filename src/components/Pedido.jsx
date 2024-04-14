@@ -28,17 +28,15 @@ const Pedido = () => {
   };
 
   const precioProducto = (producto) => {
-    if(producto !== undefined || producto !== null){
-      if(producto.precio !== undefined || producto.precio !== null){
-        return producto.precio;
-      }
+    if(producto !== undefined && producto !== null){
+      return producto.precio;
     } else {
       return 0;
     }
   }
 
   const cantidadProducto = (cantidad) => {
-    if(cantidad !== undefined){
+    if(cantidad !== undefined && cantidad !== null){
       return cantidad;
     } else {
       return 0;
@@ -112,12 +110,12 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
         <h3>$
-          {/* {
+          {
             filas.reduce((acumulador, fila) =>{
               let subtotal = cantidadProducto(fila.cantidad) * precioProducto(fila.producto);
               return acumulador + subtotal;
             }, 0)
-          } */}
+          }
         </h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">

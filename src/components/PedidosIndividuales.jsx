@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import hamburguesa from "../assets/hamburguesa.png";
 import DetallePedido from './DetallePedido';
 
 const PedidosIndividuales = ({producto,cantidad}) => {
   const nombreProd = () => {
-    if(producto !== undefined || producto !== null){
+    if(producto !== undefined && producto !== null){
       return producto.nombre
     } else {
-      return "Nombre Producto";
+      return "";
     }
   }
 
+  console.log(nombreProd())
+
   const precioProd = () => {
-    if(producto !== undefined || producto !== null){
+    if(producto !== undefined && producto !== null){
       return producto.precio
     } else {
       return 0;
@@ -22,7 +23,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
 
   const detalleProd = () => {
-    if(producto !== undefined || producto !== null){
+    if(producto !== undefined && producto !== null){
       return producto.detalle
     } else {
       return "No se encontro ningun comentario";
@@ -30,7 +31,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
   
   const cantidadProd = () => {
-    if(cantidad !== undefined || cantidad !== null){
+    if(cantidad !== undefined && cantidad !== null){
       return cantidad;
     } else {
       return 0;
@@ -38,10 +39,8 @@ const PedidosIndividuales = ({producto,cantidad}) => {
   }
 
   const imagenProd = () => {
-    if(producto !== undefined || producto !== null){
-      if(producto.imagen !== undefined || producto.imagen !== null){
-        return producto.imagen;
-      }
+    if(producto !== undefined && producto !== null){
+      return producto.imagen;
     }
   }
 
@@ -69,7 +68,7 @@ const PedidosIndividuales = ({producto,cantidad}) => {
           </div>
         </Col>
         <Col xs={12} md={6} className="d-flex justify-content-md-end align-items-center mt-3 mt-md-0 pedido-precio">
-          <p className='mr-3 my-lg-4 mx-lg-3'>${precioProd()}</p>
+          <p className='me-md-3 my-lg-4 mx-lg-3 '>${precioProd()}</p>
           <ButtonGroup>
             <Button variant="outline-danger" onClick={handleDecrement}>
               <i className="bi bi-dash"></i>
