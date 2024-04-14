@@ -9,12 +9,12 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
-import Adminmenu from "./components/Adminmenu";
 import ModalDetalles from "./components/paginaPrincipal/ModalDetalles";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
 import DetalleProducto from "./components/pages/DetalleProducto";
 import DetallePedido from "./components/DetallePedido";
-import FormularioMenu from "./components/paginaAdministrador/FormularioMenu";
+import RutasProtegidas from "./components/routes/RutasProtegidas";
+import RutasAdmin from "./components/routes/RutasAdmin";
 import CartillaMenu from "./components/pages/CartillaMenu";
 
 function App() {
@@ -33,7 +33,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="*" element={<Error404></Error404>}></Route>
-        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route
           exact
           path="/registro"
@@ -41,16 +40,23 @@ function App() {
         ></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
         <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
-
-        <Route exact path="/registro" element={<RegistroModal></RegistroModal>}></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
+        <Route
+          exact
+          path="/detalleProducto/:id"
+          element={<DetalleProducto></DetalleProducto>}
+        ></Route>
+        <Route
+          exact
+          path="/administrador/*"
+          element={
+            <RutasProtegidas>
+              <RutasAdmin></RutasAdmin>
+            </RutasProtegidas>
+          }>
+        </Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
        <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
-        <Route exact path="/detalleProducto/:id" element={<DetalleProducto></DetalleProducto>}></Route>
-        <Route exact path="/administrador/menu" element={<Adminmenu></Adminmenu>}></Route>
-        <Route exact path="/administrador/crear" element={<FormularioMenu titulo="Crear menú" editar={false}></FormularioMenu>}></Route>
-        <Route exact path="/administrador/editar/:id" element={<FormularioMenu titulo="Editar menú" editar={true}></FormularioMenu>}></Route>
-
-
       </Routes>
       <Footer></Footer>
     </BrowserRouter>
