@@ -20,41 +20,6 @@ const FormularioUsuarios = () => {
       Math.random() * 251
     )},${Math.floor(Math.random() * 251)})`;
   };
-
-<<<<<<< HEAD
-    const usuarioValidado = async (usuarioValidado) => {
-        try {
-            const usuario = {
-                email: usuarioValidado.email,
-                password: usuarioValidado.password,
-                nombreUsuario: usuarioValidado.nombreUsuario,
-                rol: usuarioValidado.rol,
-                perfilRGB: generarColorRandom()
-            }
-            const respuesta = await crearUsuariosAdmin(usuario);
-            const datos = await respuesta.json()
-            if (respuesta.status === 201) {
-                Swal.fire({
-                    title: "Usuario creado",
-                    text: `El usuario "${usuario.nombreUsuario}" fue creado correctamente`,
-                    icon: "success",
-                });
-                reset();
-            } else {
-                Swal.fire({
-                    title: "Ocurrio un error",
-                    text: datos.mensaje,
-                    icon: "error",
-                });
-            }
-        } catch (error) {
-            Swal.fire({
-                title: "Ocurrio un error",
-                text: "a ocurrido un error inesperado, intententelo mas tarde",
-                icon: "error"
-            });
-        }
-=======
   const usuarioValidado = async (usuarioValidado) => {
     try {
       const usuario = {
@@ -62,10 +27,10 @@ const FormularioUsuarios = () => {
         password: usuarioValidado.password,
         nombreUsuario: usuarioValidado.nombreUsuario,
         rol: usuarioValidado.rol,
-        perfilRGB: generarColorRandom(),
-      };
+        perfilRGB: generarColorRandom()
+      }
       const respuesta = await crearUsuariosAdmin(usuario);
-      const datos = await respuesta.json();
+      const datos = await respuesta.json()
       if (respuesta.status === 201) {
         Swal.fire({
           title: "Usuario creado",
@@ -84,12 +49,10 @@ const FormularioUsuarios = () => {
       Swal.fire({
         title: "Ocurrio un error",
         text: "a ocurrido un error inesperado, intententelo mas tarde",
-        icon: "error",
+        icon: "error"
       });
->>>>>>> 3fa49c292dd96ae7618226b2b3fbf32dcd4fcf73
     }
-    se;
-  };
+  }
 
   return (
     <section className="container mainSection">

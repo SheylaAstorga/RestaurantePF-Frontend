@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { login } from "../helpers/queris";
 import { useNavigate } from "react-router";
 
-const LoginModal = ({actualizarUsuario}) => {
+const LoginModal = ({ actualizarUsuario }) => {
   const {
     register,
     handleSubmit,
@@ -43,6 +43,7 @@ const LoginModal = ({actualizarUsuario}) => {
         });
       }
     } catch (error) {
+      console.log(error)
       Swal.fire({
         title: "Ocurrio un error",
         text: "ocurrio un error inesperado, intente esta operacion mas tarde",

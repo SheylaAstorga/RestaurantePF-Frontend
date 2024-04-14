@@ -28,7 +28,6 @@ function App() {
         actualizarUsuario={actualizarUsuario}
       ></Menu>
       <Routes>
-        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="*" element={<Error404></Error404>}></Route>
         <Route
@@ -48,7 +47,8 @@ function App() {
           exact
           path="/administrador/*"
           element={
-            <RutasProtegidas>
+            <RutasProtegidas
+              usuarioLogueado={usuarioLogueado}>
               <RutasAdmin></RutasAdmin>
             </RutasProtegidas>
           }
