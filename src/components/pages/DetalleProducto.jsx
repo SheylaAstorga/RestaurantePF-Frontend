@@ -18,11 +18,9 @@ import {
   productosCategoriaAPI,
 } from "../../helpers/queris";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -42,11 +40,10 @@ const DetalleProducto = () => {
     setProducto(productoEncontrado);
   };
 
-  const Relacionados = async(categoria)=>{
-    const listarRelacionados = await productosCategoriaAPI(categoria)
-    setRelacionados(listarRelacionados)
-  }
-
+  const Relacionados = async (categoria) => {
+    const listarRelacionados = await productosCategoriaAPI(categoria);
+    setRelacionados(listarRelacionados);
+  };
 
   useEffect(() => {
     cargarProducto(id);
@@ -74,18 +71,18 @@ const DetalleProducto = () => {
       };
       const { mensaje } = await crearPedidoAPI(pedido);
       Swal.fire({
-        title: 'Pedido creado',
+        title: "Pedido creado",
         text: mensaje,
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
+        icon: "success",
+        confirmButtonText: "Aceptar",
       });
     } catch (error) {
       console.error("Error al crear el pedido:", error);
       Swal.fire({
-        title: 'Error',
-        text: 'No se pudo crear el pedido',
-        icon: 'error',
-        confirmButtonText: 'Aceptar',
+        title: "Error",
+        text: "No se pudo crear el pedido",
+        icon: "error",
+        confirmButtonText: "Aceptar",
       });
     }
   };
@@ -188,7 +185,6 @@ const DetalleProducto = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-  
         </Container>
       </section>
     </>

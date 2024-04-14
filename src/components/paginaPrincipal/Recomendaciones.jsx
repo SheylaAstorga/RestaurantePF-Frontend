@@ -1,13 +1,8 @@
 import CardDestacada from "./CardDestacada";
-import { Button } from "react-bootstrap";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
@@ -38,7 +33,10 @@ const Recomendaciones = ({ productos }) => {
         ))}
       </Swiper>
       <div className="d-grid gap-2 my-3 d-flex justify-content-center">
-        <Link  className="w-75 my-3 btn btn-outline-light btn-lg efecto-card-menu text-black" to={"/menu"}>
+        <Link
+          className="w-75 my-3 btn btn-outline-light btn-lg efecto-card-menu text-black"
+          to={"/menu"}
+        >
           MENU
         </Link>
       </div>

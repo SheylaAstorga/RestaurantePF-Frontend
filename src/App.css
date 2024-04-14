@@ -40,7 +40,6 @@ body {
   font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: italic;
-  /* background-color: #e9e0c8; */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -145,7 +144,6 @@ footer,
     width: 35%;
   }
 }
-/* login */
 
 .botonSesion{
   background-color:#642c29;

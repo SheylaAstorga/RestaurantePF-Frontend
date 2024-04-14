@@ -9,10 +9,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Pedido from "./components/Pedido";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Principal from "./components/Principal";
-import ModalDetalles from "./components/paginaPrincipal/ModalDetalles";
 import AcercaDeNosotros from "./components/pages/AcercaDeNosotros";
 import DetalleProducto from "./components/pages/DetalleProducto";
-import DetallePedido from "./components/DetallePedido";
 import RutasProtegidas from "./components/routes/RutasProtegidas";
 import RutasAdmin from "./components/routes/RutasAdmin";
 import CartillaMenu from "./components/pages/CartillaMenu";
@@ -30,6 +28,7 @@ function App() {
         actualizarUsuario={actualizarUsuario}
       ></Menu>
       <Routes>
+        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
         <Route path="/" element={<Principal></Principal>}></Route>
         <Route exact path="*" element={<Error404></Error404>}></Route>
         <Route
@@ -52,10 +51,14 @@ function App() {
             <RutasProtegidas>
               <RutasAdmin></RutasAdmin>
             </RutasProtegidas>
-          }>
-        </Route>
+          }
+        ></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
-        <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
+        <Route
+          exact
+          path="/menu"
+          element={<CartillaMenu></CartillaMenu>}
+        ></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

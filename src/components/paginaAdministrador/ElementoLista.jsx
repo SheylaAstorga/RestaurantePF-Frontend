@@ -1,12 +1,11 @@
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { borrarPlatoAPI, leerProductosAPI } from "../../helpers/queris";
-import ModalDetalles from '../paginaPrincipal/ModalDetalles';
-import { Link } from 'react-router-dom';
+import ModalDetalles from "../paginaPrincipal/ModalDetalles";
+import { Link } from "react-router-dom";
 
-const ElementoLista = ({ producto,setPlatillos }) => {
+const ElementoLista = ({ producto, setPlatillos }) => {
   const [modalShow, setModalShow] = useState(false);
-
 
   const eliminarPlato = () => {
     Swal.fire({
@@ -26,8 +25,8 @@ const ElementoLista = ({ producto,setPlatillos }) => {
             text: `${producto.nombre} fue eliminado`,
             icon: "success",
           });
-         const listaActual = await leerProductosAPI();
-         setPlatillos(listaActual);
+          const listaActual = await leerProductosAPI();
+          setPlatillos(listaActual);
         } else {
           Swal.fire({
             title: "error",
@@ -62,7 +61,11 @@ const ElementoLista = ({ producto,setPlatillos }) => {
           >
             <i className="bi bi-file-text"></i>
           </button>
-          <Link type="button" className="btn btn-outline-success mx-1" to={"/administrador/editar/"+producto._id}>
+          <Link
+            type="button"
+            className="btn btn-outline-success mx-1"
+            to={"/administrador/editar/" + producto._id}
+          >
             <i className="bi bi-pencil-square"></i>
           </Link>
           <button
@@ -72,14 +75,15 @@ const ElementoLista = ({ producto,setPlatillos }) => {
           >
             <i className="bi bi-trash"></i>
           </button>
-          
         </div>
       </div>
-      <ModalDetalles show={modalShow} producto={producto}
-              onHide={() => setModalShow(false)}></ModalDetalles>
+      <ModalDetalles
+        show={modalShow}
+        producto={producto}
+        onHide={() => setModalShow(false)}
+      ></ModalDetalles>
     </li>
   );
 };
 
 export default ElementoLista;
- 
