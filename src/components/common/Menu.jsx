@@ -1,14 +1,48 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 import logo from "../../assets/LogoSazon.png"
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { logoutBack } from "../../helpers/queris";
 
-const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
+const Menu = ({ usuarioLogueado, setUsuarioLogueado , actualizarUsuario}) => {
     const navegacion = useNavigate()
-    const usuario = sessionStorage.getItem("usuarioSazonDelAlma") || []
-    const logout = () => {
-        sessionStorage.removeItem("usuarioSazonDelAlma");
-        setUsuarioLogueado("");
-        navegacion("/");
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    useEffect(()=> {
+        const estado = verificarIsAdmin();
+        setIsAdmin(estado)
+    },[])
+
+    const verificarIsAdmin = async () => {
+        return false
+    }
+
+    const logout = async () => {
+        try {
+            const respuesta = await logoutBack({ email: usuarioLogueado.email});
+            const datos = await respuesta.json()
+            if (respuesta.status === 200) {
+                if (respuesta.status === 200) {
+                    localStorage.removeItem('usuarioSazonDelAlma');
+                    actualizarUsuario();
+                    navegacion("/login");
+                }
+            } else {
+                Swal.fire({
+                    title: "Ocurrio un error",
+                    text: datos.mensaje,
+                    icon: "error",
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire({
+                title: "Ocurrio un error",
+                text: "ocurrio un error inesperado, intente esta operacion mas tarde",
+                icon: "error",
+            });
+        }
     };
     return (
         <Navbar expand="lg" className="NavFondo" variant="dark">
@@ -22,11 +56,25 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                     />
                 </Navbar.Brand>
                 <div className="d-flex order-lg-5 flex-grow-0 botones-seciones justify-content-end">
-                    {usuarioLogueado !== "" ? (
+                    {usuarioLogueado.email !== "" ? (
                         <>
                             <Button className="nav-link text-light" variant="danger" onClick={logout}>
                                 <i className="bi bi-person-fill-x fs-3 px-2"></i>
                             </Button>
+                            {
+                            isAdmin ? (
+                                <NavDropdown title="Administrador" id="navbarScrollingDropdown">
+                                    <NavDropdown.Item>Action</NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        Another action
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action5">
+                                        Something else here
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            ) : (<></>)
+                        }
                         </>
                     ) : (
                         <>
@@ -40,7 +88,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                     )}
                 </div>
                 <Navbar.Collapse id="basic-navbar-nav" className="order-lg-3 links-nav flex-grow-0">
-                    {/* modificar todas las rutas cuando este terminado el frontend */}
                     <Nav className="me-auto">
                         <NavLink end className="nav-link footerTitulos" to="/">
                             <i className="bi bi-house"></i> Inicio
@@ -51,20 +98,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
                         <NavLink end className="nav-link footerTitulos" to="/pedido">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
-                        {
-                            usuario.rol === "admin" ? (
-                                <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                            ) : (<></>)
-                        }
                     </Nav>
                 </Navbar.Collapse>
             </div>

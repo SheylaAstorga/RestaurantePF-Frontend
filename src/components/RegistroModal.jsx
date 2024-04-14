@@ -7,7 +7,7 @@ import { crearUsuario } from "../helpers/queris";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
-const RegistroModal = () => {
+const RegistroModal = ({actualizarUsuario}) => {
   const {
     register,
     handleSubmit,
@@ -39,6 +39,7 @@ const RegistroModal = () => {
           email: datos.email,
           token: datos.token
         }));
+        actualizarUsuario()
         Swal.fire({
           title: "Bienvenido",
           text: datos.mensaje,

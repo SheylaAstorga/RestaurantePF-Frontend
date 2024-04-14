@@ -224,3 +224,18 @@ export const login = async (usuario) => {
     console.log(error);
   }
 };
+
+export const logoutBack = async (usuario) => {
+  try {
+    const respuesta = await fetch(`${api_usuarios}logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};

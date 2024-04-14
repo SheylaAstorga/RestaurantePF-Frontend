@@ -18,17 +18,16 @@ import RutasAdmin from "./components/routes/RutasAdmin";
 import CartillaMenu from "./components/pages/CartillaMenu";
 
 function App() {
-  const usuario =
-    JSON.parse(sessionStorage.getItem("usuarioSazonDelAlma")) || "";
-
-  const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
-
+  const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuarioSazonDelAlma')) || { email: "", token: "" });
+  const actualizarUsuario = () => {
+    setUsuarioLogueado(JSON.parse(localStorage.getItem('usuarioSazonDelAlma')) || { email: "", token: "" })
+  }
   return (
-    //rutas
     <BrowserRouter>
       <Menu
         usuarioLogueado={usuarioLogueado}
         setUsuarioLogueado={setUsuarioLogueado}
+        actualizarUsuario={actualizarUsuario}
       ></Menu>
       <Routes>
         <Route path="/" element={<Principal></Principal>}></Route>
@@ -36,10 +35,10 @@ function App() {
         <Route
           exact
           path="/registro"
-          element={<RegistroModal></RegistroModal>}
+          element={<RegistroModal actualizarUsuario={actualizarUsuario}></RegistroModal>}
         ></Route>
         <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
-        <Route exact path="/login" element={<LoginModal></LoginModal>}></Route>
+        <Route exact path="/login" element={<LoginModal actualizarUsuario={actualizarUsuario}></LoginModal>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
         <Route
           exact
@@ -55,8 +54,8 @@ function App() {
             </RutasProtegidas>
           }>
         </Route>
-        <Route exact path="/nosotros" element={<AcercaDeNosotros/>}></Route>
-       <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
+        <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
+        <Route exact path="/menu" element={<CartillaMenu></CartillaMenu>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

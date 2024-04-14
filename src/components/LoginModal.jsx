@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { login } from "../helpers/queris";
 import { useNavigate } from "react-router";
 
-const LoginModal = () => {
+const LoginModal = ({actualizarUsuario}) => {
   const {
     register,
     handleSubmit,
@@ -27,6 +27,7 @@ const LoginModal = () => {
           email: datos.email,
           token: datos.token
         }));
+        actualizarUsuario()
         Swal.fire({
           title: "Bienvenido de vuelta",
           text: datos.mensaje,
