@@ -20,7 +20,6 @@ const Pedido = () => {
   const consultarAPI = async () => {
     try {
       const respuesta = await leerPedidoAPI();
-      console.log(respuesta);
       setFilas(respuesta);
     } catch (error) {
       console.log(error);

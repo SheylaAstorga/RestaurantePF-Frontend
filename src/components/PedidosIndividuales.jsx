@@ -12,8 +12,6 @@ const PedidosIndividuales = ({ producto, cantidad }) => {
     }
   };
 
-  console.log(nombreProd())
-
   const precioProd = () => {
     if(producto !== undefined && producto !== null){
       return producto.precio
@@ -67,7 +65,7 @@ const PedidosIndividuales = ({ producto, cantidad }) => {
           <img
             className="img-fluid"
             src={imagenProd()}
-            alt="Hamburguesa"
+            alt={nombreProd()}
             style={{ maxWidth: "150px", marginRight: "10px" }}
           />
           <div className="text-center text-lg-start ms-lg-3 mt-1">
