@@ -196,10 +196,10 @@ const CartillaMenu = () => {
 
   return (
     <>
-      <article className="">
+      <article >
         <h1 className="display-1 text-center my-4">Nuestro Menu</h1>
 
-        <Form.Group controlId="formBasicSelect " className="my-5">
+        <Form.Group controlId="formBasicSelect " className="my-5 mx-lg-5 mx-md-4 mx-3">
           <Form.Select
             value={seleccion}
             onChange={(e) => setSeleccion(e.target.value)}

@@ -4,10 +4,9 @@ import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
-
 
 const Pedido = () => {
   const [filas, setFilas] = useState([]);
@@ -27,20 +26,20 @@ const Pedido = () => {
   };
 
   const precioProducto = (producto) => {
-    if(producto !== undefined && producto !== null){
+    if (producto !== undefined && producto !== null) {
       return producto.precio;
     } else {
       return 0;
     }
-  }
+  };
 
   const cantidadProducto = (cantidad) => {
-    if(cantidad !== undefined && cantidad !== null){
+    if (cantidad !== undefined && cantidad !== null) {
       return cantidad;
     } else {
       return 0;
     }
-  }
+  };
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -56,7 +55,7 @@ const Pedido = () => {
         },
       };
 
-      const pedido = {     
+      const pedido = {
         // Datos del pedido que seran rellenados
       };
 
@@ -98,9 +97,10 @@ const Pedido = () => {
           {filas.map((fila) => (
             <PedidosIndividuales
               key={fila._id}
+              id={fila._id} 
               producto={fila.producto}
               cantidad={fila.cantidad}
-            ></PedidosIndividuales>
+            />
           ))}
         </ListGroup.Item>
       </ListGroup>

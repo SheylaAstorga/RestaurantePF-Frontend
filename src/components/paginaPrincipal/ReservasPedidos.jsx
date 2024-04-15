@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ReservasPedidos = () => {
   return (
@@ -16,21 +17,23 @@ const ReservasPedidos = () => {
           Disfruta de la comodidad y del arte culinario desde el primer momento
         </h2>
         <section className="d-flex align-content-end  justify-content-center mb-4 me-lg-4 mt-lg-5 mt-3">
-          <Button
+          <Link
             variant="outline-light "
             size="md"
-            className="w-50 mx-3 color-texto-destacado"
+            className="w-50 mx-3 color-texto-destacado btn"
+            to={"/login"}
           >
             {" "}
             <i className="bi bi-calendar-check"></i> Reservar
-          </Button>
-          <Button
+          </Link>
+          <Link
             variant="outline-light"
             size="md"
-            className="w-50 mx-1 color-texto-destacado "
+            className="w-50 mx-1 color-texto-destacado btn"
+            to={"/pedido"}
           >
             <i className="bi bi-cart4"></i> Pedidos
-          </Button>
+          </Link>
         </section>
       </section>
       <section className="d-flex">

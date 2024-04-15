@@ -91,18 +91,7 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-/* PEDIDOS */
-export const leerPedidoAPI = async () => {
-  try {
-    const respuesta = await fetch(api_pedidos);
-    const listaPedido = await respuesta.json();
-    return listaPedido;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-// //create pedidos
 
  export const crearPedidoAPI = async (pedido) => {
    try {
@@ -110,6 +99,8 @@ export const leerPedidoAPI = async () => {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
+         "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
+         
        },
        body: JSON.stringify(pedido),
      });
@@ -120,14 +111,42 @@ export const leerPedidoAPI = async () => {
    }
  };
 
+ export const leerPedidoAPI = async () => {
+  try {
+    const respuesta = await fetch(api_pedidos);
+    const listaPedido = await respuesta.json();
+    return listaPedido;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+ export const modificarPedidoAPI = async (pedidoModificado, id) => {
+  try {
+    const respuesta = await fetch(`${api_pedidos}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedidoModificado),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
  export const borrarPedidoAPI = async (id) => {
   try {
     const respuesta = await fetch(`${api_pedidos}/${id}`, {
       method: "DELETE",
+      headers:{
+        "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
+      }
     });
     return respuesta;
+    console.log(respuesta)
   } catch (error) {
     console.error(error);
   }

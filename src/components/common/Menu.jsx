@@ -87,9 +87,9 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         <>
                             {
                                 isAdmin === "admin" ? (
-                                    <NavDropdown className="text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link" title="Admin" id="navbarScrollingDropdown">
-                                        <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
-                                        <NavDropdown.Item as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
+                                    <NavDropdown className=" text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link dropstart " data-bs-theme="dark"   title="Admin" id="navbarScrollingDropdown" data-toggle="dropdown">
+                                        <NavDropdown.Item   as={Link} to="/administrador/menu">menu</NavDropdown.Item>
+                                        <NavDropdown.Item   as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
                                     </NavDropdown>
                                 ) : (<></>)
                             }

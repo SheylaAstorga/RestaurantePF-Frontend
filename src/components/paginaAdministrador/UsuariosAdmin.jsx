@@ -6,7 +6,7 @@ import {
   habilitarUsuarios,
   leerUsuarios,
   suspenderUsuarios,
-} from "../../helpers/queris";
+} from "../../helpers/queris.js";
 import UsuariosItem from "./UsuariosItem";
 import Swal from "sweetalert2";
 import "../../style/spin.css";
