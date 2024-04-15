@@ -121,6 +121,18 @@ footer,
     width: 0%;
   }
 }
+.btWp-contenedor{
+  position: fixed;
+  z-index: 5;
+ 
+  
+}
+.btnWp{
+  background-color: #31ff08;
+  border-radius: 45px;
+  text-decoration: none;
+  
+}
 @media all and (min-width: 768px) and (max-width: 991px) {
   .logoFooter {
     width: 35%;
