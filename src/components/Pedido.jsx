@@ -93,6 +93,7 @@ const Pedido = () => {
               id={fila._id} 
               producto={fila.producto}
               cantidad={fila.cantidad}
+              consultarAPI={consultarAPI}
             />
           ))}
         </ListGroup.Item>
