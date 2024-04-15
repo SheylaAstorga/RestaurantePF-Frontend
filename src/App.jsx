@@ -1,6 +1,6 @@
 import Menu from "./components/common/Menu";
 import Footer from "./components/common/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Error404 from "./components/pages/Error404";
 import LoginModal from "./components/LoginModal";
 import RegistroModal from "./components/RegistroModal";
