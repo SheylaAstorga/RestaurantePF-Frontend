@@ -35,8 +35,10 @@ const PedidosIndividuales = ({ producto, cantidad, id,consultarAPI }) => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
+
         const respuesta = await borrarPedidoAPI(id);
         console.log(respuesta);
+
         if (respuesta.status === 200) {
           Swal.fire({
             title: "Pedido eliminado",
