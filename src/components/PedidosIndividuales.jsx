@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DetallePedido from "./DetallePedido";
@@ -24,16 +24,6 @@ const PedidosIndividuales = ({ producto, cantidad, id }) => {
     setQuantity(quantity + 1);
   };
 
-
-  useEffect(() => {
-    const cargarPedidos = async () => {
-      const pedidosDesdeAPI = await leerPedidoAPI();
-      setPedidos(pedidosDesdeAPI);
-    };
-
-    cargarPedidos();
-  }, []);
-
   const eliminarPedido = (id) => {
     Swal.fire({
       title: "¿Estás seguro de eliminar el pedido?",
@@ -46,16 +36,16 @@ const PedidosIndividuales = ({ producto, cantidad, id }) => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const respuesta = await borrarPedidoAPI(id); 
-        console.log(respuesta)
+        const respuesta = await borrarPedidoAPI(id);
+        console.log(respuesta);
         if (respuesta.status === 200) {
           Swal.fire({
             title: "Pedido eliminado",
             text: "El pedido fue eliminado correctamente.",
             icon: "success",
           });
-          const listaPedidosActualizada = await leerPedidoAPI();
-          setPedidos(listaPedidosActualizada); 
+
+          location.reload();
         } else {
           Swal.fire({
             title: "Ocurrió un error",
@@ -65,6 +55,7 @@ const PedidosIndividuales = ({ producto, cantidad, id }) => {
         }
       }
     });
+    
   };
 
   return (
