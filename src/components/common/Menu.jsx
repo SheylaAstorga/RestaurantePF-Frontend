@@ -119,6 +119,9 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         <NavLink end className="nav-link footerTitulos" to="/pedido">
                             <i className="bi bi-cart"></i> Mis pedidos
                         </NavLink>
+                        <NavLink end className="nav-link footerTitulos  " to="menu">
+                        <i className="bi bi-menu-up "></i> Menú
+                        </NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </div>

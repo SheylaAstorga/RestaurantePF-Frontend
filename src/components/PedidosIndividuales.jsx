@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DetallePedido from "./DetallePedido";
@@ -6,7 +6,6 @@ import { borrarPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 import Swal from "sweetalert2";
 
 const PedidosIndividuales = ({ producto, cantidad, id }) => {
-  const [pedidos, setPedidos] = useState([]);
   const nombreProd = () => producto?.nombre ?? "";
   const precioProd = () => producto?.precio ?? 0;
   const detalleProd = () =>
