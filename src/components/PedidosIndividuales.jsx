@@ -5,7 +5,8 @@ import DetallePedido from "./DetallePedido";
 import { borrarPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 import Swal from "sweetalert2";
 
-const PedidosIndividuales = ({ producto, cantidad, id }) => {
+const PedidosIndividuales = ({ producto, cantidad, id, setPedidos }) => {
+
   const nombreProd = () => producto?.nombre ?? "";
   const precioProd = () => producto?.precio ?? 0;
   const detalleProd = () =>
@@ -35,8 +36,10 @@ const PedidosIndividuales = ({ producto, cantidad, id }) => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
+
         const respuesta = await borrarPedidoAPI(id);
         console.log(respuesta);
+
         if (respuesta.status === 200) {
           Swal.fire({
             title: "Pedido eliminado",
@@ -44,7 +47,9 @@ const PedidosIndividuales = ({ producto, cantidad, id }) => {
             icon: "success",
           });
 
+
           location.reload();
+
         } else {
           Swal.fire({
             title: "Ocurrió un error",

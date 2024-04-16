@@ -4,7 +4,7 @@ import { borrarPlatoAPI, leerProductosAPI } from "../../helpers/queris";
 import ModalDetalles from "../paginaPrincipal/ModalDetalles";
 import { Link } from "react-router-dom";
 
-const ElementoLista = ({ producto, setPlatillos }) => {
+const ElementoLista = ({ producto, setPlatillos, consultarAPI }) => {
   const [modalShow, setModalShow] = useState(false);
 
   const eliminarPlato = () => {
