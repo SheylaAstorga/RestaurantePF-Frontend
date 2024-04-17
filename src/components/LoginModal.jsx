@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { login } from "../helpers/queris";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const LoginModal = ({ actualizarUsuario }) => {
   const {
@@ -140,9 +141,9 @@ const LoginModal = ({ actualizarUsuario }) => {
         </Modal.Body>
         <Modal.Footer>
           <p>¿No tienes una cuenta?</p>
-          <a href="/registro" className="text-decoration-none linkRegistrate">
+          <Link to="/registro" className="text-decoration-none linkRegistrate">
             Regístrate aquí
-          </a>
+          </Link>
         </Modal.Footer>
       </Modal.Dialog>
     </div>
