@@ -18,6 +18,17 @@ const RegistroModal = ({ actualizarUsuario }) => {
     reset,
   } = useForm();
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const contraseña = watch("password");
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleRepeatPasswordVisibility = () => {
+    setShowRepeatPassword(!showRepeatPassword);
+  };
 
   const handleCheckboxChange = (event) => {
     setShowModal(event.target.checked);
@@ -144,33 +155,55 @@ const RegistroModal = ({ actualizarUsuario }) => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Contraseña:</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Ingrese una contraseña"
-                {...register("password", {
-                  required: "La contraseña es obligatoria",
-                  pattern: {
-                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                    message:
-                      "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
-                  },
-                })}
-              />
+              <div className="d-flex justify-content-between">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Ingrese una contraseña"
+                  {...register("password", {
+                    required: "La contraseña es obligatoria",
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                      message:
+                        "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
+                    },
+                  })}
+                />
+                <div
+                  variant="outline-dark"
+                  onClick={togglePasswordVisibility}
+                  className="mt-2 ms-2"
+                >
+                  <i
+                    className={`bi ${showPassword ? "bi-eye" : "bi-eye-slash"}`}
+                  ></i>
+                </div>
+              </div>
               <Form.Text className="text-danger">
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Repita la contraseña*</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Repita su contraseña"
-                {...register("password_repeat", {
-                  required: "Debe repetir la contraseña",
-                  validate: (value) =>
-                    value === password || "Las contraseñas no coinciden",
-                })}
-              />
+              <div className="d-flex justify-content-between">
+                <Form.Control
+                  type={showRepeatPassword ? "text" : "password"}
+                  placeholder="Repita su contraseña"
+                  {...register("password_repeat", {
+                    required: "Debe repetir la contraseña",
+                    validate: (value) =>
+                      value === password || "Las contraseñas no coinciden",
+                  })}
+                />
+                <div
+                  variant="outline-dark"
+                  onClick={toggleRepeatPasswordVisibility}
+                  className="mt-2 ms-2"
+                >
+                  <i
+                    className={`bi ${showRepeatPassword ? "bi-eye" : "bi-eye-slash"}`}
+                  ></i>
+                </div>
+              </div>
               <Form.Text className="text-danger">
                 {errors.password_repeat?.message}
               </Form.Text>
