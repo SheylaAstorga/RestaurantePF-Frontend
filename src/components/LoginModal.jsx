@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import logoSazón from "../../src/img/LogoSazon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,13 +9,21 @@ import { login } from "../helpers/queris";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
+
 const LoginModal = ({ actualizarUsuario }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+  const contraseña = watch("password");
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const navegacion = useNavigate();
   const usuarioValidado = async (usuario) => {
@@ -23,12 +31,15 @@ const LoginModal = ({ actualizarUsuario }) => {
       const respuesta = await login(usuario);
       const datos = await respuesta.json();
       if (respuesta.status === 200) {
-        localStorage.removeItem('usuarioSazonDelAlma');
-        localStorage.setItem('usuarioSazonDelAlma', JSON.stringify({
-          email: datos.email,
-          token: datos.token
-        }));
-        actualizarUsuario()
+        localStorage.removeItem("usuarioSazonDelAlma");
+        localStorage.setItem(
+          "usuarioSazonDelAlma",
+          JSON.stringify({
+            email: datos.email,
+            token: datos.token,
+          })
+        );
+        actualizarUsuario();
         Swal.fire({
           title: "Bienvenido de vuelta",
           text: datos.mensaje,
@@ -44,7 +55,7 @@ const LoginModal = ({ actualizarUsuario }) => {
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       Swal.fire({
         title: "Ocurrio un error",
         text: "ocurrio un error inesperado, intente esta operacion mas tarde",
@@ -85,27 +96,41 @@ const LoginModal = ({ actualizarUsuario }) => {
                 {...register("email", {
                   required: "El email es obligatorio",
                   pattern: {
-                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                    value:
+                      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
                     message: "Debe ingresar un email valido",
-                  }
+                  },
                 })}
               />
               <Form.Text className="text-danger">
                 {errors.email?.message}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Control
-                type="password"
-                placeholder="Contraseña"
-                {...register('password', {
-                  required: "La contraseña es obligatoria",
-                  pattern: {
-                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                    message: "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
-                  }
-                })}
-              />
+            <Form.Group className="mb-3">
+              <Form.Label>Contraseña:</Form.Label>
+              <div className="d-flex justify-content-between">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Ingrese una contraseña"
+                  {...register("password", {
+                    required: "La contraseña es obligatoria",
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                      message:
+                        "La contraseña debe contener por lo menos 8 caracteres, letras tanto minúsculas y mayúsculas y números",
+                    },
+                  })}
+                />
+                <div
+                  variant="outline-dark"
+                  onClick={togglePasswordVisibility}
+                  className="mt-2 ms-2"
+                >
+                  <i
+                    className={`bi ${showPassword ? "bi-eye" : "bi-eye-slash"}`}
+                  ></i>
+                </div>
+              </div>
               <Form.Text className="text-danger">
                 {errors.password?.message}
               </Form.Text>
