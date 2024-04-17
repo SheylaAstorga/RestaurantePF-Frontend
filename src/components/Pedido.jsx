@@ -11,6 +11,7 @@ import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 const Pedido = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     consultarAPI();
@@ -48,15 +49,7 @@ const Pedido = () => {
     }
 
     try {
-      const token = localStorage.getItem("authToken");
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       const pedido = {
-        // Datos del pedido que seran rellenados
       };
 
       const { mensaje } = await crearPedidoAPI(pedido, config);
