@@ -123,16 +123,35 @@ footer,
 }
 .btWp-contenedor{
   position: fixed;
+  width: 40px;
+    height: 40px;
+    bottom: 40px;
+    right: 36px;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
  
-  
+ 
 }
 .btnWp{
   background-color: #31ff08;
-  border-radius: 45px;
+  border-radius: 100%;
   text-decoration: none;
-  
+  font-size: 23px;
+ 
 }
+
+.btWp-contenedor:hover {
+  color: #ffffff;
+  background: #31ff08;
+  border-radius: 100%;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 51px #1eff00, 0 0 50px #1eff00, 0 0 50px #1eff00,
+    0 0 100px #008cff;
+}
+
+
 @media all and (min-width: 768px) and (max-width: 991px) {
   .logoFooter {
     width: 35%;
