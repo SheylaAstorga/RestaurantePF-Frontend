@@ -105,17 +105,17 @@ const Menu = ({ usuarioLogueado, actualizarUsuario }) => {
                                     </NavDropdown>
                                 ) : (<></>)
                             }
-                            <Button className="nav-link text-light" variant="danger" onClick={logout}>
-                                <i className="bi bi-person-fill-x fs-3 px-2"></i>
+                            <Button className="nav-link text-light pe-2 ps-2 d-flex flex-column align-items-center" variant="danger" onClick={logout}>
+                                <i className="bi bi-person-fill-x iconos-botones px-2"></i><b className="texto-boton">Cerrar Secion</b>
                             </Button>
                         </>
                     ) : (
                         <>
-                            <NavLink end className="nav-link text-light btn colorBoton2 me-2" to="/registro" title="Registrar">
-                                <i className="bi bi-person-fill-add fs-3 px-2 "></i>
+                            <NavLink end className="nav-link ps-2 text-light btn colorBoton2 me-2 pe-2 d-flex flex-column align-items-center" to="/registro" title="Registrar">
+                                <i className="bi bi-person-fill-add iconos-botones px-2 "></i><b className="texto-boton">Registrarse</b>
                             </NavLink>
-                            <NavLink end className="nav-link text-light btn colorBoton1" to="/login" title="Iniciar Secion">
-                                <i className="bi bi-person-fill fs-3 px-2"></i>
+                            <NavLink end className="nav-link ps-2 text-light btn colorBoton1 pe-2 d-flex flex-column align-items-center" to="/login" title="Iniciar Secion">
+                                <i className="bi bi-person-fill iconos-botones px-2"></i><b className="texto-boton">Iniciar Secion</b>
                             </NavLink>
                         </>
                     )}
