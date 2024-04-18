@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { isRol, logoutBack } from "../../helpers/queris";
 
-const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
+const Menu = ({ usuarioLogueado, actualizarUsuario }) => {
     const navegacion = useNavigate()
     const [isAdmin, setIsAdmin] = useState("user")
 
@@ -26,7 +26,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                     });
                 }
             } else {
-                navegacion("/login");
                 setIsAdmin("user")
             }
         } catch (error) {
@@ -41,24 +40,39 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
 
     const logout = async () => {
         try {
-            if (usuarioLogueado.email !== "") {
-                const respuesta = await logoutBack({ email: usuarioLogueado.email });
-                const datos = await respuesta.json()
-                if (respuesta.status === 200) {
+            const result = await Swal.fire({
+                title: "¿Seguro quieres cerrar secion?",
+                text: "Luego puedes volver a acceder a tu cuenta",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3e3f3d",
+                confirmButtonText: "Cerrar Secion",
+                cancelButtonText: "Cancelar",
+            });
+
+            if (result.isConfirmed) {
+                if (usuarioLogueado.email !== "") {
+                    const respuesta = await logoutBack({ email: usuarioLogueado.email });
+                    const datos = await respuesta.json()
+                    if (respuesta.status === 200) {
+                        localStorage.removeItem('usuarioSazonDelAlma');
+                        actualizarUsuario();
+                        navegacion("/login");
+                    } else {
+                        Swal.fire({
+                            title: "Ocurrio un error",
+                            text: datos.mensaje,
+                            icon: "error",
+                        });
+                    }
+                } else {
                     localStorage.removeItem('usuarioSazonDelAlma');
                     actualizarUsuario();
-                    navegacion("/login");
-                } else {
-                    Swal.fire({
-                        title: "Ocurrio un error",
-                        text: datos.mensaje,
-                        icon: "error",
-                    });
                 }
+                return { success: true };
             } else {
-                localStorage.removeItem('usuarioSazonDelAlma');
-                actualizarUsuario();
-                navegacion("/login");
+                return null;
             }
         } catch (error) {
             console.log(error)
@@ -85,9 +99,9 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         <>
                             {
                                 isAdmin === "admin" ? (
-                                    <NavDropdown className=" text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link dropstart " data-bs-theme="dark"   title="Admin" id="navbarScrollingDropdown" data-toggle="dropdown">
-                                        <NavDropdown.Item   as={Link} to="/administrador/menu">menu</NavDropdown.Item>
-                                        <NavDropdown.Item   as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
+                                    <NavDropdown className=" text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link dropstart " data-bs-theme="dark" title="Admin" id="navbarScrollingDropdown" data-toggle="dropdown">
+                                        <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
                                     </NavDropdown>
                                 ) : (<></>)
                             }
