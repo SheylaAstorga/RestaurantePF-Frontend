@@ -37,7 +37,7 @@ const Recomendaciones = ({ productos }) => {
           className="w-75 my-3 btn btn-outline-light btn-lg efecto-card-menu text-black"
           to={"/menu"}
         >
-          MENU
+          MENÚ
         </Link>
       </div>
     </article>

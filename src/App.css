@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;1,300&display=swap");
 
 #root {
   display: flex;
@@ -9,31 +8,33 @@
 }
 
 :root {
-  --colorPrincipal:  #642c29 ;
-  --colorSecundario:#5e83a1 ;
-  --colorTerciario:  #a6c6dc ;
-  --colorFondo:  #e9e0c8 ;
+  --colorPrincipal: #642c29;
+  --colorSecundario: #5e83a1;
+  --colorTerciario: #a6c6dc;
+  --colorFondo: #e9e0c8;
 }
 
-
-
-h1{
-    font-family: "Dancing Script", cursive;
+h1 {
+  font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 
-h2,h3,h4,h5,h6{
-    font-family: "Merriweather", serif;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Merriweather", serif;
   font-weight: 300;
   font-style: italic;
 }
 
-*{
-    font-family: "Merriweather", serif;
-    font-weight: 400;
-    font-style: normal;
+* {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
@@ -45,7 +46,8 @@ body {
   flex-direction: column;
 }
 
-h2,h1{
+h2,
+h1 {
   font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -120,8 +122,15 @@ footer,
   .links-nav {
     width: 0%;
   }
+
+.iconos-botones {
+  font-size: 18px;
 }
-.btWp-contenedor{
+  .texto-boton {
+    font-size: 60%;
+  }
+}
+.btWp-contenedor {
   position: fixed;
   width: 40px;
     height: 40px;
@@ -132,14 +141,13 @@ footer,
   align-items: center;
   justify-content: center;
  
- 
 }
-.btnWp{
+
+.btnWp {
   background-color: #31ff08;
   border-radius: 100%;
   text-decoration: none;
   font-size: 23px;
- 
 }
 
 .btWp-contenedor:hover {
@@ -166,6 +174,13 @@ footer,
   .links-nav {
     width: 0%;
   }
+
+.iconos-botones {
+  font-size: 20px;
+}
+  .texto-boton {
+    font-size: 75%;
+  }
 }
 @media all and (min-width: 992px) {
   .logoFooter {
@@ -174,47 +189,49 @@ footer,
   .logoNav {
     width: 35%;
   }
+.iconos-botones {
+  font-size: 25px;
+}
 }
 
-.botonSesion{
-  background-color:#642c29;
+.botonSesion {
+  background-color: #642c29;
   border-color: #642c29;
 }
 
 .botonSesion:hover {
   background-color: rgb(120, 62, 62);
-  border-color:rgb(120, 62, 62) ;
+  border-color: rgb(120, 62, 62);
 }
 
-
-.linkLoginUsuario{
+.linkLoginUsuario {
   color: #935653;
 }
 
 .linkLoginUsuario:hover {
-color: #461d1b;
+  color: #461d1b;
 }
-.linkLoginContraseña{
+.linkLoginContraseña {
   color: #935653;
 }
 
 .linkLoginContraseña:hover {
-color: #461d1b;
-}
-
-.linkRegistrate{
-  color: #935653;
-}
-.linkRegistrate:hover{
   color: #461d1b;
 }
 
-.botonRegistrarse{
-  background-color:#642c29;
+.linkRegistrate {
+  color: #935653;
+}
+.linkRegistrate:hover {
+  color: #461d1b;
+}
+
+.botonRegistrarse {
+  background-color: #642c29;
   border-color: #642c29;
 }
 
-.botonRegistrarse:hover{
+.botonRegistrarse:hover {
   background-color: rgb(120, 62, 62);
-  border-color:rgb(120, 62, 62) ;
+  border-color: rgb(120, 62, 62);
 }
