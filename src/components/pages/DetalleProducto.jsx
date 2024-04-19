@@ -27,11 +27,13 @@ import "swiper/css/navigation";
 
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import Platillo from "../../helpers/PlatilloClass.js";
 
 const DetalleProducto = () => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [cantidad, setCantidad] = useState(1);
+  const [orden, setOrden] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
 
   const cargarProducto = async (id) => {
@@ -73,6 +75,47 @@ const DetalleProducto = () => {
       Swal.fire({
         title: "Pedido creado",
         text: mensaje,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error) {
+      console.error("Error al crear el pedido:", error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo crear el pedido",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
+
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+  
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+  };
+
+
+
+
+  const pedidoCarrito = async () => {
+    try {
+      const platilloCarrito = new Platillo(
+        crypto.randomUUID(),
+        producto._id ,
+        producto.nombre,
+        producto.precio * cantidad,
+        producto.detalle,
+        producto.categoria,
+        producto.imagen,
+        cantidad
+      )
+      carrito.push(platilloCarrito);
+      guardarEnLocalstorage();
+      setOrden(orden + 1)
+      Swal.fire({
+        title: "Pedido creado",
+        text: "lo agregamos a tu carrito",
         icon: "success",
         confirmButtonText: "Aceptar",
       });
@@ -132,7 +175,7 @@ const DetalleProducto = () => {
                       </Form.Group>
                       <Button
                         className="rounded-0 col-6 tamanioLetraBoton"
-                        onClick={crearPedido}
+                        onClick={pedidoCarrito}
                       >
                         Agregar al pedido
                       </Button>

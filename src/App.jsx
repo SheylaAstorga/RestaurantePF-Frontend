@@ -15,11 +15,15 @@ import RutasProtegidas from "./components/routes/RutasProtegidas";
 import RutasAdmin from "./components/routes/RutasAdmin";
 import CartillaMenu from "./components/pages/CartillaMenu";
 
+
 function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuarioSazonDelAlma')) || { email: "", token: "" });
   const actualizarUsuario = () => {
     setUsuarioLogueado(JSON.parse(localStorage.getItem('usuarioSazonDelAlma')) || { email: "", token: "" })
   }
+
+  
+
   return (
     <BrowserRouter>
       <Menu

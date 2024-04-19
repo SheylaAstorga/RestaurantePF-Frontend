@@ -5,22 +5,51 @@ import DetallePedido from "./DetallePedido";
 import { borrarPedidoAPI } from "../helpers/queris.js";
 import Swal from "sweetalert2";
 
-const PedidosIndividuales = ({ producto, cantidad, id,consultarAPI }) => {
-  const nombreProd = () => producto?.nombre ?? "";
-  const precioProd = () => producto?.precio ?? 0;
-  const detalleProd = () =>
-    producto?.detalle ?? "No se encontró ningún comentario";
-  const imagenProd = () => producto?.imagen;
-  const [quantity, setQuantity] = useState(cantidad ?? 0);
+const PedidosIndividuales = ({ producto, orden }) => {
+  // const nombreProd = () => producto?.nombre ?? "";
+  // const precioProd = () => producto?.precio ?? 0;
+  // const detalleProd = () =>
+  //   producto?.detalle ?? "No se encontró ningún comentario";
+  // const imagenProd = () => producto?.imagen;
+  const precioUnitario = producto.precio/producto.cantidad;
+const [precio,setPrecio]= useState(producto.precio)
+const [cantidad,setCantidad]= useState(producto.cantidad)
+
+  const [quantity, setQuantity] = useState(producto.cantidad ?? 0);
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+  let carroMod = carrito.findIndex(producCarrito => producCarrito.orden === orden);
+    
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+  };
+
+
+console.log(carroMod);
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      if(carroMod !== -1){
+        setQuantity(quantity - 1);
+        carrito[carroMod].cantidad = carrito[carroMod].cantidad - 1;
+        carrito[carroMod].precio = carrito[carroMod].precio - precioUnitario;
+        guardarEnLocalstorage();
+        setPrecio(carrito[carroMod].precio);
+        setCantidad(carrito[carroMod].cantidad)
+      }
+
     }
   };
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    
+    if(carroMod !== -1){
+      setQuantity(quantity + 1);
+      carrito[carroMod].cantidad = carrito[carroMod].cantidad + 1;
+      carrito[carroMod].precio = carrito[carroMod].precio + precioUnitario;
+      guardarEnLocalstorage();
+      setPrecio(carrito[carroMod].precio);
+      setCantidad(carrito[carroMod].cantidad)
+    }
   };
 
   const eliminarPedido = (id) => {
@@ -74,16 +103,16 @@ const PedidosIndividuales = ({ producto, cantidad, id,consultarAPI }) => {
         >
           <img
             className="img-fluid"
-            src={imagenProd()}
-            alt={nombreProd()}
+            src={producto.imagen}
+            alt={producto.nombre}
             style={{ maxWidth: "150px", marginRight: "10px" }}
           />
           <div className="text-center text-lg-start ms-lg-3 mt-1">
-            <h5>{nombreProd()}</h5>
+            <h5>{producto.nombre}</h5>
             <Link to="/" className="btn btn-primary mt-2 mt-lg-3">
               Editar
             </Link>
-            <DetallePedido comentario={detalleProd()} />
+            <DetallePedido comentario={producto.detalle} />
           </div>
         </Col>
         <Col
@@ -91,7 +120,9 @@ const PedidosIndividuales = ({ producto, cantidad, id,consultarAPI }) => {
           md={6}
           className="d-flex justify-content-md-end align-items-center mt-3 mt-md-0 pedido-precio"
         >
-          <p className="mr-3 my-lg-4 mx-lg-3">${precioProd()}</p>
+          
+          <p className="mr-3 my-lg-4 mx-lg-3">cantidad: {cantidad}</p>
+          <p className="mr-3 my-lg-4 mx-lg-3">${precio}</p>
           <ButtonGroup>
             <Button variant="outline-danger" onClick={handleDecrement}>
               <i className="bi bi-dash"></i>

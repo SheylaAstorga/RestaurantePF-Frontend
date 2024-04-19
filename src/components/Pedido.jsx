@@ -12,6 +12,8 @@ const Pedido = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
   
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+  
 
   useEffect(() => {
     consultarAPI();
@@ -87,13 +89,12 @@ const Pedido = () => {
       </article>
       <ListGroup className="border-bottom-list">
         <ListGroup.Item>
-          {filas.map((fila) => (
+          {carrito.map((producto) => (
             <PedidosIndividuales
-              key={fila._id}
-              id={fila._id} 
-              producto={fila.producto}
-              cantidad={fila.cantidad}
-              consultarAPI={consultarAPI}
+              key={producto.orden}
+              orden={producto.orden} 
+              producto={producto}
+              
             />
           ))}
         </ListGroup.Item>
