@@ -6,6 +6,7 @@ const UsuariosItem = ({
   borrarUsuario,
   suspenderUsuario,
   habilitarUsuario,
+  usuarioLogueado
 }) => {
   const emailRespuesta = {
     email: usuario.email,
@@ -63,16 +64,20 @@ const UsuariosItem = ({
         </div>
         <p className="email">{usuario.email}</p>
         <hr />
-        <div className="d-flex botonesUsuario">
-          <Button
-            onClick={() => borrarUsuario(emailRespuesta)}
-            className="mt-2"
-            variant="danger"
-          >
-            <i className="bi bi-trash3"></i> Borrar
-          </Button>
-          {isSuspendido}
-        </div>
+        {
+          usuarioLogueado.email !== usuario.email ? (
+            <div className="d-flex botonesUsuario">
+              <Button
+                onClick={() => borrarUsuario(emailRespuesta)}
+                className="mt-2"
+                variant="danger"
+              >
+                <i className="bi bi-trash3"></i> Borrar
+              </Button>
+              {isSuspendido}
+            </div>
+          ) : (<></>)
+        }
       </div>
     </div>
   );

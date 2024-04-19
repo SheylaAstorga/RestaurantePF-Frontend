@@ -24,7 +24,6 @@ function App() {
     <BrowserRouter>
       <Menu
         usuarioLogueado={usuarioLogueado}
-        setUsuarioLogueado={setUsuarioLogueado}
         actualizarUsuario={actualizarUsuario}
       ></Menu>
       <Routes>
@@ -49,7 +48,7 @@ function App() {
           element={
             <RutasProtegidas
               usuarioLogueado={usuarioLogueado}>
-              <RutasAdmin></RutasAdmin>
+              <RutasAdmin usuarioLogueado={usuarioLogueado}></RutasAdmin>
             </RutasProtegidas>
           }
         ></Route>
