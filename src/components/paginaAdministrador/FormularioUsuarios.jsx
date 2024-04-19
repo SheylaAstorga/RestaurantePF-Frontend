@@ -26,7 +26,7 @@ const FormularioUsuarios = () => {
         email: usuarioValidado.email,
         password: usuarioValidado.password,
         nombreUsuario: usuarioValidado.nombreUsuario,
-        role: usuarioValidado.rol,
+        role: usuarioValidado.role,
         perfilRGB: generarColorRandom()
       }
       const respuesta = await crearUsuariosAdmin(usuario);
@@ -101,7 +101,7 @@ const FormularioUsuarios = () => {
         <Form.Group className="mb-3" controlId="formCategoria">
           <Form.Label>rol del usuario*</Form.Label>
           <Controller
-            name="rol"
+            name="role"
             control={control}
             rules={{ required: "Seleccione un rol" }}
             render={({ field }) => (
