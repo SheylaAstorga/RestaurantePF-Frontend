@@ -10,12 +10,20 @@ import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 
 const Pedido = () => {
   const [filas, setFilas] = useState([]);
-  const navigate = useNavigate();
+  const [userId, setUserId] = useState(null);
   
 
   useEffect(() => {
     consultarAPI();
+    obtenerIdUsuario();
   }, []);
+
+  const obtenerIdUsuario = () => {
+    const token = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"));
+    if (token) {
+      setUserId(token._id);
+    }
+  };
 
   const consultarAPI = async () => {
     try {
@@ -42,20 +50,25 @@ const Pedido = () => {
     }
   };
 
+  
+
   const handleComprar = async () => {
-    if (!isUserAuthenticated()) {
-      navigate("/login");
-      return;
-    }
-
     try {
-      const pedido = {
+      // Crear el objeto de pedido con el ID del usuario incluido
+      const pedidoCompleto = {
+        usuario: userId, 
+        detalles: filas.map((fila) => ({
+          producto: fila.producto._id,
+          cantidad: fila.cantidad,
+        })),
       };
-
-      const { mensaje } = await crearPedidoAPI(pedido, config);
+  
+      const respuesta = await crearPedidoAPI(pedidoCompleto);
+  
+      // Mostrar un mensaje de éxito al usuario
       Swal.fire({
         title: "Pedido creado",
-        text: mensaje,
+        text: "el pedido se creo correctamente",
         icon: "success",
         confirmButtonText: "Aceptar",
       });
@@ -68,11 +81,6 @@ const Pedido = () => {
         confirmButtonText: "Aceptar",
       });
     }
-  };
-
-  const isUserAuthenticated = () => {
-    const token = localStorage.getItem("authToken");
-    return token !== null && token !== undefined;
   };
 
   return (

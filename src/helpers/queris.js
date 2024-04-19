@@ -92,23 +92,26 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 
 
 
- export const crearPedidoAPI = async (pedido) => {
-   try {
-     const respuesta = await fetch(api_pedidos, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-         "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
-         
-       },
-       body: JSON.stringify(pedido),
-     });
-     const data = await respuesta.json();
-     return data;
-   } catch (error) {
-     console.error(error);
-   }
- };
+export const crearPedidoAPI = async (pedido) => {
+  try {
+    const token = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"))?.token;
+    if (!token) {
+      throw new Error("No hay token en el almacenamiento local");
+    }
+    const respuesta = await fetch(api_pedidos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+      body: JSON.stringify(pedido),
+    });
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
  export const leerPedidoAPI = async () => {
   try {
