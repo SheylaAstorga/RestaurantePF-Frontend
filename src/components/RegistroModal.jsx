@@ -28,7 +28,7 @@ const RegistroModal = ({actualizarUsuario}) => {
         email: usuarioValidado.email,
         password: usuarioValidado.password,
         nombreUsuario: usuarioValidado.nombreUsuario,
-        rol: usuarioValidado.rol,
+        role: usuarioValidado.rol,
         perfilRGB: generarColorRandom()
       }
       const respuesta = await crearUsuario(usuario);

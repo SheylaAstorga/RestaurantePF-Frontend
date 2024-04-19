@@ -4,7 +4,7 @@ import FormularioMenu from "../paginaAdministrador/FormularioMenu";
 import UsuariosAdmin from "../paginaAdministrador/UsuariosAdmin";
 import FormularioUsuarios from "../paginaAdministrador/FormularioUsuarios";
 
-const RutasAdmin = () => {
+const RutasAdmin = ({usuarioLogueado}) => {
   return (
     <>
       <Routes>
@@ -45,7 +45,7 @@ const RutasAdmin = () => {
           exact
           path="/usuario"
           element={
-            <UsuariosAdmin></UsuariosAdmin>
+            <UsuariosAdmin usuarioLogueado={usuarioLogueado}></UsuariosAdmin>
           }
         ></Route>
         <Route
