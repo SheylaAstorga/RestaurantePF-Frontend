@@ -64,7 +64,26 @@ const DetalleProducto = () => {
     setCantidad(cantidad + 1);
   };
 
+  const isUserAuthenticated = () => {
+    const token = localStorage.getItem("authToken");
+    return token !== null && token !== undefined;
+  };
+
   const crearPedido = async () => {
+    if (!isUserAuthenticated()) {
+      Swal.fire({
+        title: "Iniciar sesión",
+        text: "Debe iniciar sesión para poder realizar un pedido",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
+  
     try {
       const pedido = {
         producto: producto._id,
