@@ -94,7 +94,13 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 
 
  export const crearPedidoAPI = async (pedido) => {
+  const enviarPedido ={
+    producto: pedido,
+    estado:"Pendiente",
+  }
+  console.log(enviarPedido)
    try {
+    console.log(pedido);
      const respuesta = await fetch(api_pedidos, {
        method: "POST",
        headers: {
@@ -102,7 +108,8 @@ export const modificarProductoAPI = async (productoModificado, id) => {
          "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
          
        },
-       body: JSON.stringify(pedido),
+       body: JSON.stringify(enviarPedido),
+
      });
      const data = await respuesta.json();
      return data;

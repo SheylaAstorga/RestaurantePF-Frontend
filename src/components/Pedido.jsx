@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 
+
 const Pedido = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
@@ -15,7 +16,13 @@ const Pedido = () => {
   
   const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
   
-  // carrito.reduce((suma, carr)=>{setSubtotal(suma + carr.precio)},0)
+
+  const isUserAuthenticated = () => {
+    const token = localStorage.getItem("usuarioSazonDelAlma");
+    return token !== null && token !== undefined;
+    
+  };
+
 
   const cambioTotal = () =>{
     const total =carrito.reduce((suma, carr)=>{return (suma + carr.precio)},0)
@@ -67,10 +74,9 @@ const Pedido = () => {
     }
 
     try {
-      const pedido = {
-      };
+     
 
-      const { mensaje } = await crearPedidoAPI(pedido, config);
+      const { mensaje } = await crearPedidoAPI(carrito);
       Swal.fire({
         title: "Pedido creado",
         text: mensaje,
@@ -86,11 +92,6 @@ const Pedido = () => {
         confirmButtonText: "Aceptar",
       });
     }
-  };
-
-  const isUserAuthenticated = () => {
-    const token = localStorage.getItem("authToken");
-    return token !== null && token !== undefined;
   };
 
   return (
