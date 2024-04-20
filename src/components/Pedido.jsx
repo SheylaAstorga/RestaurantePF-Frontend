@@ -35,7 +35,7 @@ const Pedido = ({ usuarioLogueado }) => {
         Swal.fire({
           title: "Debes iniciar secion primero",
           text: "si no tienes cuenta registrate",
-          icon: "error",
+          icon: "info",
         });
       }
     } catch (error) {
