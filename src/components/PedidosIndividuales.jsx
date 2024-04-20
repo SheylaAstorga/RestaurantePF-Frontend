@@ -48,7 +48,7 @@ const [cantidad,setCantidad]= useState(producto.cantidad)
     }
   };
 
-  const eliminarPedido = (id) => {
+  const eliminarPedido = (posicion) => {
     Swal.fire({
       title: "¿Estás seguro de eliminar el pedido?",
       text: "No se puede revertir este proceso",
@@ -61,20 +61,18 @@ const [cantidad,setCantidad]= useState(producto.cantidad)
     }).then(async (result) => {
       if (result.isConfirmed) {
 
-        const respuesta = await borrarPedidoAPI(id);
-        console.log(respuesta);
-
-        if (respuesta.status === 200) {
+        if (posicion !== -1) {
+          carrito.splice(posicion, 1);
           Swal.fire({
             title: "Pedido eliminado",
             text: "El pedido fue eliminado correctamente.",
             icon: "success",
           });
-          consultarAPI()
+          guardarEnLocalstorage();
         } else {
           Swal.fire({
             title: "Ocurrió un error",
-            text: "El pedido no fue eliminado correctamente.",
+            text: "El pedido no pudo eliminarse, intentalo dentro de unos minutos.",
             icon: "error",
           });
         }
@@ -87,7 +85,7 @@ const [cantidad,setCantidad]= useState(producto.cantidad)
     <section className="p-3 fondo-pedidos mb-3">
       <Row>
         <div className="d-flex justify-content-lg-end justify-content-md-end">
-          <Button className="mb-lg-3" onClick={() => eliminarPedido(id)}>
+          <Button className="mb-lg-3" onClick={() => eliminarPedido(carroMod)}>
             <i className="bi bi-x"></i>
           </Button>
         </div>

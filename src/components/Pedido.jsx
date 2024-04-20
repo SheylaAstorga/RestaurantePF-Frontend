@@ -29,36 +29,36 @@ const Pedido = () => {
 
 
   useEffect(() => {
-    consultarAPI();
+    // consultarAPI();
     cambioTotal()
   }, []);
   
   
 
-  const consultarAPI = async () => {
-    try {
-      const respuesta = await leerPedidoAPI();
-      setFilas(respuesta);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const consultarAPI = async () => {
+  //   try {
+  //     const respuesta = await leerPedidoAPI();
+  //     setFilas(respuesta);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const precioProducto = (producto) => {
-    if (producto !== undefined && producto !== null) {
-      return producto.precio;
-    } else {
-      return 0;
-    }
-  };
+  // const precioProducto = (producto) => {
+  //   if (producto !== undefined && producto !== null) {
+  //     return producto.precio;
+  //   } else {
+  //     return 0;
+  //   }
+  // };
 
-  const cantidadProducto = (cantidad) => {
-    if (cantidad !== undefined && cantidad !== null) {
-      return cantidad;
-    } else {
-      return 0;
-    }
-  };
+  // const cantidadProducto = (cantidad) => {
+  //   if (cantidad !== undefined && cantidad !== null) {
+  //     return cantidad;
+  //   } else {
+  //     return 0;
+  //   }
+  // };
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -98,7 +98,7 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pedido-container">
         <h2>Mi pedido</h2>
         <div className="boton-pedido">
-          <Button variant="primary" className="m-3">
+          <Button variant="primary" className="m-3" onClick={()=>{carrito.splice(0, carrito.length); guardarEnLocalstorage()}}>
             Limpiar
           </Button>
         </div>
