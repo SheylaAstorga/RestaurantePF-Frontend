@@ -5,7 +5,7 @@ import DetallePedido from "./DetallePedido";
 import { borrarPedidoAPI } from "../helpers/queris.js";
 import Swal from "sweetalert2";
 
-const PedidosIndividuales = ({ producto, orden }) => {
+const PedidosIndividuales = ({ producto, orden,carrito,guardarEnLocalstorage}) => {
   // const nombreProd = () => producto?.nombre ?? "";
   // const precioProd = () => producto?.precio ?? 0;
   // const detalleProd = () =>
@@ -16,15 +16,11 @@ const [precio,setPrecio]= useState(producto.precio)
 const [cantidad,setCantidad]= useState(producto.cantidad)
 
   const [quantity, setQuantity] = useState(producto.cantidad ?? 0);
-  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+
   let carroMod = carrito.findIndex(producCarrito => producCarrito.orden === orden);
     
-  const guardarEnLocalstorage = () => {
-    localStorage.setItem("carritoKey", JSON.stringify(carrito));
-  };
+  
 
-
-console.log(carroMod);
 
   const handleDecrement = () => {
     if (quantity > 1) {

@@ -11,13 +11,29 @@ import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 const Pedido = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
+  const [subtotal, setSubtotal]= useState(0)
   
   const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
   
+  // carrito.reduce((suma, carr)=>{setSubtotal(suma + carr.precio)},0)
+
+  const cambioTotal = () =>{
+    const total =carrito.reduce((suma, carr)=>{return (suma + carr.precio)},0)
+    setSubtotal(total);
+  }
+
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+    cambioTotal()
+  };
+
 
   useEffect(() => {
     consultarAPI();
+    cambioTotal()
   }, []);
+  
+  
 
   const consultarAPI = async () => {
     try {
@@ -94,7 +110,8 @@ const Pedido = () => {
               key={producto.orden}
               orden={producto.orden} 
               producto={producto}
-              
+              carrito={carrito}
+              guardarEnLocalstorage={guardarEnLocalstorage}
             />
           ))}
         </ListGroup.Item>
@@ -102,12 +119,7 @@ const Pedido = () => {
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
         <h3>
-          $
-          {filas.reduce((acumulador, fila) => {
-            let subtotal =
-              cantidadProducto(fila.cantidad) * precioProducto(fila.producto);
-            return acumulador + subtotal;
-          }, 0)}
+          ${subtotal}
         </h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
