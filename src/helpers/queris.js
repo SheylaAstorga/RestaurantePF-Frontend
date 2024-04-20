@@ -110,11 +110,15 @@ export const modificarProductoAPI = async (productoModificado, id) => {
    }
  };
 
- export const leerPedidoAPI = async () => {
+ export const leerPedidoAPI = async (token) => {
   try {
-    const respuesta = await fetch(api_pedidos);
+    const respuesta = await fetch(api_pedidos , {
+      headers: {
+        "x-token": token
+      }
+    });
     const listaPedido = await respuesta.json();
-    return listaPedido;
+    return [listaPedido, respuesta.status];
   } catch (error) {
     console.log(error);
   }
