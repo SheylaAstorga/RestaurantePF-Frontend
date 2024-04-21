@@ -8,10 +8,9 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
 
-const Pedido = () => {
+const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     consultarAPI();
@@ -19,8 +18,26 @@ const Pedido = () => {
 
   const consultarAPI = async () => {
     try {
-      const respuesta = await leerPedidoAPI();
-      setFilas(respuesta);
+      if (usuarioLogueado.token !== "") {
+        const respuesta = await leerPedidoAPI(usuarioLogueado.token);
+        if(respuesta[1] === 200){
+          setFilas(respuesta[0]);
+        }else{
+          navigate("/login")
+          Swal.fire({
+            title: "Ocurrio un error",
+            text: respuesta[0].mensaje,
+            icon: "error",
+          });
+        }
+      } else {
+        navigate("/login");
+        Swal.fire({
+          title: "Debes iniciar secion primero",
+          text: "si no tienes cuenta registrate",
+          icon: "info",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +107,7 @@ const Pedido = () => {
           {filas.map((fila) => (
             <PedidosIndividuales
               key={fila._id}
-              id={fila._id} 
+              id={fila._id}
               producto={fila.producto}
               cantidad={fila.cantidad}
               consultarAPI={consultarAPI}

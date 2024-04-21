@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import {
@@ -28,11 +28,12 @@ import "swiper/css/navigation";
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-const DetalleProducto = () => {
+const DetalleProducto = ({ usuarioLogueado }) => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [cantidad, setCantidad] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
+  const navigate = useNavigate()
 
   const cargarProducto = async (id) => {
     const respuesta = await obtenerProductoAPI(id);
@@ -69,13 +70,31 @@ const DetalleProducto = () => {
         cantidad,
         estado: "Pendiente",
       };
-      const { mensaje } = await crearPedidoAPI(pedido);
-      Swal.fire({
-        title: "Pedido creado",
-        text: mensaje,
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
+      if (usuarioLogueado.token !== "") {
+        const resultado = await crearPedidoAPI(pedido,token);
+        if(resultado[1].status === 200){
+          Swal.fire({
+          title: "Pedido creado",
+          text: resultado[0].mensaje,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+      }else{
+        Swal.fire({
+          title: "no se pudo crear el pedido",
+          text: resultado[0].mensaje,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+      }
+      }else {
+        navigate("/login");
+        Swal.fire({
+          title: "Debes iniciar secion primero",
+          text: "si no tienes cuenta registrate",
+          icon: "info",
+        });
+      }
     } catch (error) {
       console.error("Error al crear el pedido:", error);
       Swal.fire({

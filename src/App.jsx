@@ -37,13 +37,13 @@ function App() {
           path="/registro"
           element={<RegistroModal actualizarUsuario={actualizarUsuario}></RegistroModal>}
         ></Route>
-        <Route exact path="/pedido" element={<Pedido></Pedido>}></Route>
+        <Route exact path="/pedido" element={<Pedido usuarioLogueado={usuarioLogueado}></Pedido>}></Route>
         <Route exact path="/login" element={<LoginModal actualizarUsuario={actualizarUsuario}></LoginModal>}></Route>
         <Route exact path="/nosotros" element={<AcercaDeNosotros />}></Route>
         <Route
           exact
           path="/detalleProducto/:id"
-          element={<DetalleProducto></DetalleProducto>}
+          element={<DetalleProducto usuarioLogueado={usuarioLogueado}></DetalleProducto>}
         ></Route>
         <Route
           exact

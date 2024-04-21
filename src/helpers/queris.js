@@ -92,29 +92,32 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 
 
 
- export const crearPedidoAPI = async (pedido) => {
+ export const crearPedidoAPI = async (pedido, token) => {
    try {
      const respuesta = await fetch(api_pedidos, {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
-         "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
-         
+         "x-token": token
        },
        body: JSON.stringify(pedido),
      });
      const data = await respuesta.json();
-     return data;
+     return [data, respuesta];
    } catch (error) {
      console.error(error);
    }
  };
 
- export const leerPedidoAPI = async () => {
+ export const leerPedidoAPI = async (token) => {
   try {
-    const respuesta = await fetch(api_pedidos);
+    const respuesta = await fetch(api_pedidos , {
+      headers: {
+        "x-token": token
+      }
+    });
     const listaPedido = await respuesta.json();
-    return listaPedido;
+    return [listaPedido, respuesta.status];
   } catch (error) {
     console.log(error);
   }
