@@ -239,8 +239,6 @@ export const crearUsuario = async (usuario) => {
       },
       body: JSON.stringify(usuario),
     });
-    const datos = await respuesta.json()
-    console.log(datos)
     return respuesta;
 
   } catch (error) {

@@ -71,8 +71,8 @@ const DetalleProducto = ({ usuarioLogueado }) => {
         estado: "Pendiente",
       };
       if (usuarioLogueado.token !== "") {
-        const resultado = await crearPedidoAPI(pedido,token);
-        if(resultado[1].status === 200){
+        const resultado = await crearPedidoAPI(pedido,usuarioLogueado.token);
+        if(resultado[1].status === 201){
           Swal.fire({
           title: "Pedido creado",
           text: resultado[0].mensaje,
@@ -83,7 +83,7 @@ const DetalleProducto = ({ usuarioLogueado }) => {
         Swal.fire({
           title: "no se pudo crear el pedido",
           text: resultado[0].mensaje,
-          icon: "success",
+          icon: "error",
           confirmButtonText: "Aceptar",
         });
       }
