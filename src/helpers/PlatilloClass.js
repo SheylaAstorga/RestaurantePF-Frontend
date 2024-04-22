@@ -7,8 +7,9 @@ export default class Platillo{
     #categoria;
     #imagen;
     #cantidad;
+    #requisitos
   
-    constructor(orden, id , nombre, precio, detalle, categoria, imagen, cantidad) {
+    constructor(orden, id , nombre, precio, detalle, categoria, imagen, cantidad, requisitos) {
       this.#orden= orden;
       this.#_id = id;
       this.#nombre = nombre;
@@ -16,7 +17,8 @@ export default class Platillo{
       this.#detalle = detalle;
       this.#categoria = categoria;
       this.#imagen = imagen;
-      this.#cantidad= cantidad
+      this.#cantidad= cantidad;
+      this.#requisitos= requisitos
     }
 
     toJSON(){
@@ -28,7 +30,8 @@ export default class Platillo{
           detalle: this.#detalle,
           categoria: this.#categoria,
           imagen: this.#imagen,
-          cantidad: this.#cantidad
+          cantidad: this.#cantidad,
+          requisitos: this.#requisitos
         }
       }
     

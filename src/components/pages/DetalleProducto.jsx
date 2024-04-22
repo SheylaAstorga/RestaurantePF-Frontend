@@ -35,6 +35,7 @@ const DetalleProducto = () => {
   const [cantidad, setCantidad] = useState(1);
   const [orden, setOrden] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
+  const [requisitos, setRequisitos] = useState([]);
 
   const cargarProducto = async (id) => {
     const respuesta = await obtenerProductoAPI(id);
@@ -99,6 +100,7 @@ const DetalleProducto = () => {
 
 
   const pedidoCarrito = async () => {
+   
     try {
       const platilloCarrito = new Platillo(
         crypto.randomUUID(),
@@ -108,7 +110,8 @@ const DetalleProducto = () => {
         producto.detalle,
         producto.categoria,
         producto.imagen,
-        cantidad
+        cantidad, 
+        requisitos
       )
       carrito.push(platilloCarrito);
       guardarEnLocalstorage();
@@ -196,9 +199,11 @@ const DetalleProducto = () => {
               </Form.Label>
               <Form.Control
                 as="textarea"
+                name="requisitos"
                 rows={3}
                 placeholder="Agregalos aquí. Haremos lo posible para incluirlos."
                 className="txtAreaDesactivado"
+                onChange={(e) => setRequisitos(e.target.value)}
               />
             </Form.Group>
           </Form>

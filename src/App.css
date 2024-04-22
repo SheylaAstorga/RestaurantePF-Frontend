@@ -151,6 +151,12 @@ footer,
     0 0 100px #008cff;
 }
 
+.contenedorPadreDetalle{
+  width: 140%;
+  height: 100%;
+}
+
+
 
 @media all and (min-width: 768px) and (max-width: 991px) {
   .logoFooter {

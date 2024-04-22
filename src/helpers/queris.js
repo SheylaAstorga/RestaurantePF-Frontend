@@ -3,6 +3,18 @@ const api_producto = import.meta.env.VITE_API_PRODUCTO;
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
 const api_usuarios = import.meta.env.VITE_API_USUARIOS;
 
+
+
+// deco del _id del usuario 
+
+const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma")) 
+const jwt =jwtCompleto.token;
+const payloadBase64 = jwt.split(".")[1];
+const payload = JSON.parse(atob(payloadBase64));
+console.log("Decoded Payload:");
+const uid=payload.uid
+
+
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
   try {
@@ -30,6 +42,18 @@ export const productosOfertaAPI = async () => {
       (producto) => producto.estado == "En oferta"
     );
 
+    return destacados;
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const pedidosUsuario = async () => {
+  try {
+    const datita = await fetch(api_pedidos);
+    const listaPedidoUsuario = await datita.json();
+    let destacados = listaPedidoUsuario.filter(
+      (pUsuario) => pUsuario.usuario._id == uid
+    );
     return destacados;
   } catch (error) {
     console.error(error);
@@ -95,12 +119,13 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 
  export const crearPedidoAPI = async (pedido) => {
   const enviarPedido ={
-    producto: pedido,
+    producto:[pedido],
     estado:"Pendiente",
+    usuario:uid
   }
-  console.log(enviarPedido)
+
    try {
-    console.log(pedido);
+   
      const respuesta = await fetch(api_pedidos, {
        method: "POST",
        headers: {
