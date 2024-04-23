@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { crearPedidoAPI, borrarPedidoAPI, pedidosUsuario } from "../helpers/queris.js";
 import RegistroPedido from "./RegistroPedido.jsx";
 
-const Pedido = () => {
+const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
   const [subtotal, setSubtotal] = useState(0);
@@ -22,14 +22,28 @@ const Pedido = () => {
     return token !== null && token !== undefined;
   };
 
-
-
-
-
   const consultarAPI = async () => {
     try {
-      const respuesta = await pedidosUsuario();
-      setFilas(respuesta);
+      if (usuarioLogueado.token !== "") {
+        const respuesta = await leerPedidoAPI(usuarioLogueado.token);
+        if(respuesta[1] === 200){
+          setFilas(respuesta[0]);
+        }else{
+          navigate("/login")
+          Swal.fire({
+            title: "Ocurrio un error",
+            text: respuesta[0].mensaje,
+            icon: "error",
+          });
+        }
+      } else {
+        navigate("/login");
+        Swal.fire({
+          title: "Debes iniciar secion primero",
+          text: "si no tienes cuenta registrate",
+          icon: "info",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
