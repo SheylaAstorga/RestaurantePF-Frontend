@@ -27,12 +27,15 @@ import "swiper/css/navigation";
 
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import Platillo from "../../helpers/PlatilloClass.js";
 
 const DetalleProducto = ({ usuarioLogueado }) => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [cantidad, setCantidad] = useState(1);
+  const [orden, setOrden] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
+  const [requisitos, setRequisitos] = useState([]);
   const navigate = useNavigate()
 
   const cargarProducto = async (id) => {
@@ -106,6 +109,46 @@ const DetalleProducto = ({ usuarioLogueado }) => {
     }
   };
 
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+  
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+  };
+
+  const pedidoCarrito = async () => {
+   
+    try {
+      const platilloCarrito = new Platillo(
+        crypto.randomUUID(),
+        producto._id ,
+        producto.nombre,
+        producto.precio * cantidad,
+        producto.detalle,
+        producto.categoria,
+        producto.imagen,
+        cantidad, 
+        requisitos
+      )
+      carrito.push(platilloCarrito);
+      guardarEnLocalstorage();
+      setOrden(orden + 1)
+      Swal.fire({
+        title: "Pedido creado",
+        text: "lo agregamos a tu carrito",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error) {
+      console.error("Error al crear el pedido:", error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo crear el pedido",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
+
   return (
     <>
       <section className="py-4 py-lg-3">
@@ -151,7 +194,7 @@ const DetalleProducto = ({ usuarioLogueado }) => {
                       </Form.Group>
                       <Button
                         className="rounded-0 col-6 tamanioLetraBoton"
-                        onClick={crearPedido}
+                        onClick={pedidoCarrito}
                       >
                         Agregar al pedido
                       </Button>
@@ -172,9 +215,11 @@ const DetalleProducto = ({ usuarioLogueado }) => {
               </Form.Label>
               <Form.Control
                 as="textarea"
+                name="requisitos"
                 rows={3}
                 placeholder="Agregalos aquí. Haremos lo posible para incluirlos."
                 className="txtAreaDesactivado"
+                onChange={(e) => setRequisitos(e.target.value)}
               />
             </Form.Group>
           </Form>

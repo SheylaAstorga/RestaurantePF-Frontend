@@ -34,6 +34,18 @@ export const productosOfertaAPI = async () => {
     console.error(error);
   }
 };
+export const pedidosUsuario = async () => {
+  try {
+    const datita = await fetch(api_pedidos);
+    const listaPedidoUsuario = await datita.json();
+    let destacados = listaPedidoUsuario.filter(
+      (pUsuario) => pUsuario.usuario._id == uid
+    );
+    return destacados;
+  } catch (error) {
+    console.error(error);
+  }
+};
 export const productosCategoriaAPI = async (categoria) => {
   try {
     const datita = await fetch(api_productos);
@@ -90,17 +102,17 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-
-
  export const crearPedidoAPI = async (pedido, token) => {
    try {
+   
      const respuesta = await fetch(api_pedidos, {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
          "x-token": token
        },
-       body: JSON.stringify(pedido),
+       body: JSON.stringify(enviarPedido),
+
      });
      const data = await respuesta.json();
      return [data, respuesta];
