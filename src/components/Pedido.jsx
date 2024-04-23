@@ -2,45 +2,72 @@ import "../style/pedido.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import PedidosIndividuales from "./PedidosIndividuales";
 import Button from "react-bootstrap/Button";
+import Accordion from "react-bootstrap/Accordion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { crearPedidoAPI, leerPedidoAPI } from "../helpers/queris.js";
+import { crearPedidoAPI, borrarPedidoAPI, pedidosUsuario } from "../helpers/queris.js";
+import RegistroPedido from "./RegistroPedido.jsx";
 
-const Pedido = () => {
+const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
-  
+  const [subtotal, setSubtotal] = useState(0);
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
 
-  useEffect(() => {
-    consultarAPI();
-  }, []);
+
+  const isUserAuthenticated = () => {
+    const token = localStorage.getItem("usuarioSazonDelAlma");
+    return token !== null && token !== undefined;
+  };
 
   const consultarAPI = async () => {
     try {
-      const respuesta = await leerPedidoAPI();
-      setFilas(respuesta);
+      if (usuarioLogueado.token !== "") {
+        const respuesta = await leerPedidoAPI(usuarioLogueado.token);
+        if(respuesta[1] === 200){
+          setFilas(respuesta[0]);
+        }else{
+          navigate("/login")
+          Swal.fire({
+            title: "Ocurrio un error",
+            text: respuesta[0].mensaje,
+            icon: "error",
+          });
+        }
+      } else {
+        navigate("/login");
+        Swal.fire({
+          title: "Debes iniciar secion primero",
+          text: "si no tienes cuenta registrate",
+          icon: "info",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const precioProducto = (producto) => {
-    if (producto !== undefined && producto !== null) {
-      return producto.precio;
-    } else {
-      return 0;
-    }
+ 
+
+  const cambioTotal = () => {
+    const total = carrito.reduce((suma, carr) => {
+      return suma + carr.precio;
+    }, 0);
+    setSubtotal(total);
   };
 
-  const cantidadProducto = (cantidad) => {
-    if (cantidad !== undefined && cantidad !== null) {
-      return cantidad;
-    } else {
-      return 0;
-    }
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+    cambioTotal();
   };
+
+  useEffect(() => {
+    consultarAPI();
+    cambioTotal();
+  }, []);
+
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -49,10 +76,7 @@ const Pedido = () => {
     }
 
     try {
-      const pedido = {
-      };
-
-      const { mensaje } = await crearPedidoAPI(pedido, config);
+      const { mensaje } = await crearPedidoAPI(carrito);
       Swal.fire({
         title: "Pedido creado",
         text: mensaje,
@@ -70,49 +94,65 @@ const Pedido = () => {
     }
   };
 
-  const isUserAuthenticated = () => {
-    const token = localStorage.getItem("authToken");
-    return token !== null && token !== undefined;
+  const CargarPedidos = () => {
+    if (carrito.length !== 0) {
+      return carrito.map((producto) => (
+        <PedidosIndividuales
+          key={producto.orden}
+          orden={producto.orden}
+          producto={producto}
+          carrito={carrito}
+          guardarEnLocalstorage={guardarEnLocalstorage}
+        
+        />
+      ));
+    } else {
+      return (
+        <div className="text-center my-5">
+          <h4>
+            aún no seleccionaste ningun pedido, preciona{" "}
+            <em>"volver a menu"</em> para elegir
+          </h4>
+          <p>
+            te veo de regreso... <i className="bi bi-emoji-wink"></i>{" "}
+          </p>
+        </div>
+      );
+    }
   };
+  useEffect(() => {
+    consultarAPI();
+    cambioTotal();
+  }, [handleComprar,borrarPedidoAPI ]);
 
   return (
     <section className="container c-principal mainPage">
       <article className="d-flex justify-content-between pedido-container">
         <h2>Mi pedido</h2>
         <div className="boton-pedido">
-          <Button variant="primary" className="m-3">
+          <Button
+            variant="primary"
+            className="m-3"
+            onClick={() => {
+              carrito.splice(0, carrito.length);
+              guardarEnLocalstorage();
+            }}
+          >
             Limpiar
           </Button>
         </div>
       </article>
       <ListGroup className="border-bottom-list">
-        <ListGroup.Item>
-          {filas.map((fila) => (
-            <PedidosIndividuales
-              key={fila._id}
-              id={fila._id} 
-              producto={fila.producto}
-              cantidad={fila.cantidad}
-              consultarAPI={consultarAPI}
-            />
-          ))}
-        </ListGroup.Item>
+        <ListGroup.Item>{CargarPedidos()}</ListGroup.Item>
       </ListGroup>
       <article className="d-flex justify-content-between pt-3">
         <h3>Total a pagar</h3>
-        <h3>
-          $
-          {filas.reduce((acumulador, fila) => {
-            let subtotal =
-              cantidadProducto(fila.cantidad) * precioProducto(fila.producto);
-            return acumulador + subtotal;
-          }, 0)}
-        </h3>
+        <h3>${subtotal}</h3>
       </article>
       <article className="group-pagar d-flex justify-content-end mt-2">
-        <Link to={"/"}>
+        <Link to={"/menu"}>
           <Button variant="outline-secondary" size="lg" className="btn-Seguir">
-            Seguir pidiendo
+            volver a menu
           </Button>
         </Link>
         <Button
@@ -123,6 +163,18 @@ const Pedido = () => {
         >
           Pagar
         </Button>
+      </article>
+      <article className="my-5">
+        <Accordion defaultActiveKey="0" flush>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Mis Pedidos</Accordion.Header>
+            <Accordion.Body>
+              {filas.map((fila) => (
+                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedidoAPI}></RegistroPedido>
+              ))}
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </article>
     </section>
   );

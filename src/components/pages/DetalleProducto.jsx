@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import "../../style/detalleProducto.css";
 import ItemDetalle from "./ItemDetalle";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import {
@@ -27,12 +27,16 @@ import "swiper/css/navigation";
 
 import "../../style/swiper.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import Platillo from "../../helpers/PlatilloClass.js";
 
-const DetalleProducto = () => {
+const DetalleProducto = ({ usuarioLogueado }) => {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [cantidad, setCantidad] = useState(1);
+  const [orden, setOrden] = useState(1);
   const [relacionados, setRelacionados] = useState([]);
+  const [requisitos, setRequisitos] = useState([]);
+  const navigate = useNavigate()
 
   const cargarProducto = async (id) => {
     const respuesta = await obtenerProductoAPI(id);
@@ -69,10 +73,68 @@ const DetalleProducto = () => {
         cantidad,
         estado: "Pendiente",
       };
-      const { mensaje } = await crearPedidoAPI(pedido);
+      if (usuarioLogueado.token !== "") {
+        const resultado = await crearPedidoAPI(pedido,usuarioLogueado.token);
+        if(resultado[1].status === 201){
+          Swal.fire({
+          title: "Pedido creado",
+          text: resultado[0].mensaje,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+      }else{
+        Swal.fire({
+          title: "no se pudo crear el pedido",
+          text: resultado[0].mensaje,
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+      }
+      }else {
+        navigate("/login");
+        Swal.fire({
+          title: "Debes iniciar secion primero",
+          text: "si no tienes cuenta registrate",
+          icon: "info",
+        });
+      }
+    } catch (error) {
+      console.error("Error al crear el pedido:", error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo crear el pedido",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
+
+  const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
+  
+  const guardarEnLocalstorage = () => {
+    localStorage.setItem("carritoKey", JSON.stringify(carrito));
+  };
+
+  const pedidoCarrito = async () => {
+   
+    try {
+      const platilloCarrito = new Platillo(
+        crypto.randomUUID(),
+        producto._id ,
+        producto.nombre,
+        producto.precio * cantidad,
+        producto.detalle,
+        producto.categoria,
+        producto.imagen,
+        cantidad, 
+        requisitos
+      )
+      carrito.push(platilloCarrito);
+      guardarEnLocalstorage();
+      setOrden(orden + 1)
       Swal.fire({
         title: "Pedido creado",
-        text: mensaje,
+        text: "lo agregamos a tu carrito",
         icon: "success",
         confirmButtonText: "Aceptar",
       });
@@ -132,7 +194,7 @@ const DetalleProducto = () => {
                       </Form.Group>
                       <Button
                         className="rounded-0 col-6 tamanioLetraBoton"
-                        onClick={crearPedido}
+                        onClick={pedidoCarrito}
                       >
                         Agregar al pedido
                       </Button>
@@ -153,9 +215,11 @@ const DetalleProducto = () => {
               </Form.Label>
               <Form.Control
                 as="textarea"
+                name="requisitos"
                 rows={3}
                 placeholder="Agregalos aquí. Haremos lo posible para incluirlos."
                 className="txtAreaDesactivado"
+                onChange={(e) => setRequisitos(e.target.value)}
               />
             </Form.Group>
           </Form>

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { isRol, logoutBack } from "../../helpers/queris";
 
-const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
+const Menu = ({ usuarioLogueado, actualizarUsuario }) => {
     const navegacion = useNavigate()
     const [isAdmin, setIsAdmin] = useState("user")
 
@@ -13,9 +13,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
         try {
             if (usuarioLogueado.email !== "") {
                 const respuesta = await isRol({ email: usuarioLogueado.email })
-                console.log(usuarioLogueado.email)
                 const datos = await respuesta.json(respuesta)
-                console.log(datos)
                 if (respuesta.status === 200) {
                     setIsAdmin(datos.role)
                 } else {
@@ -28,7 +26,6 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                     });
                 }
             } else {
-                navegacion("/login");
                 setIsAdmin("user")
             }
         } catch (error) {
@@ -43,24 +40,39 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
 
     const logout = async () => {
         try {
-            if (usuarioLogueado.email !== "") {
-                const respuesta = await logoutBack({ email: usuarioLogueado.email });
-                const datos = await respuesta.json()
-                if (respuesta.status === 200) {
+            const result = await Swal.fire({
+                title: "¿Seguro quieres cerrar secion?",
+                text: "Luego puedes volver a acceder a tu cuenta",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3e3f3d",
+                confirmButtonText: "Cerrar Secion",
+                cancelButtonText: "Cancelar",
+            });
+
+            if (result.isConfirmed) {
+                if (usuarioLogueado.email !== "") {
+                    const respuesta = await logoutBack({ email: usuarioLogueado.email });
+                    const datos = await respuesta.json()
+                    if (respuesta.status === 200) {
+                        localStorage.removeItem('usuarioSazonDelAlma');
+                        actualizarUsuario();
+                        navegacion("/login");
+                    } else {
+                        Swal.fire({
+                            title: "Ocurrio un error",
+                            text: datos.mensaje,
+                            icon: "error",
+                        });
+                    }
+                } else {
                     localStorage.removeItem('usuarioSazonDelAlma');
                     actualizarUsuario();
-                    navegacion("/login");
-                } else {
-                    Swal.fire({
-                        title: "Ocurrio un error",
-                        text: datos.mensaje,
-                        icon: "error",
-                    });
                 }
+                return { success: true };
             } else {
-                localStorage.removeItem('usuarioSazonDelAlma');
-                actualizarUsuario();
-                navegacion("/login");
+                return null;
             }
         } catch (error) {
             console.log(error)
@@ -87,23 +99,23 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         <>
                             {
                                 isAdmin === "admin" ? (
-                                    <NavDropdown className=" text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link dropstart " data-bs-theme="dark"   title="Admin" id="navbarScrollingDropdown" data-toggle="dropdown">
-                                        <NavDropdown.Item   as={Link} to="/administrador/menu">menu</NavDropdown.Item>
-                                        <NavDropdown.Item   as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
+                                    <NavDropdown className=" text-light mt-sm-2 mt-md-3 mt-lg-3 me-3 nav-link dropstart " data-bs-theme="dark" title="Admin" id="navbarScrollingDropdown" data-toggle="dropdown">
+                                        <NavDropdown.Item as={Link} to="/administrador/menu">menu</NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/administrador/usuario">usuarios</NavDropdown.Item>
                                     </NavDropdown>
                                 ) : (<></>)
                             }
-                            <Button className="nav-link text-light" variant="danger" onClick={logout}>
-                                <i className="bi bi-person-fill-x fs-3 px-2"></i>
+                            <Button className="nav-link text-light pe-2 ps-2 d-flex flex-column align-items-center" variant="danger" onClick={logout}>
+                                <i className="bi bi-person-fill-x iconos-botones px-2"></i><b className="texto-boton">Cerrar Secion</b>
                             </Button>
                         </>
                     ) : (
                         <>
-                            <NavLink end className="nav-link text-light btn colorBoton2 me-2" to="/registro" title="Registrar">
-                                <i className="bi bi-person-fill-add fs-3 px-2 "></i>
+                            <NavLink end className="nav-link ps-2 text-light btn colorBoton2 me-2 pe-2 d-flex flex-column align-items-center" to="/registro" title="Registrar">
+                                <i className="bi bi-person-fill-add iconos-botones px-2 "></i><b className="texto-boton">Registrarse</b>
                             </NavLink>
-                            <NavLink end className="nav-link text-light btn colorBoton1" to="/login" title="Iniciar Secion">
-                                <i className="bi bi-person-fill fs-3 px-2"></i>
+                            <NavLink end className="nav-link ps-2 text-light btn colorBoton1 pe-2 d-flex flex-column align-items-center" to="/login" title="Iniciar Secion">
+                                <i className="bi bi-person-fill iconos-botones px-2"></i><b className="texto-boton">Iniciar Secion</b>
                             </NavLink>
                         </>
                     )}
@@ -118,6 +130,9 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, actualizarUsuario }) => {
                         </NavLink>
                         <NavLink end className="nav-link footerTitulos" to="/pedido">
                             <i className="bi bi-cart"></i> Mis pedidos
+                        </NavLink>
+                        <NavLink end className="nav-link footerTitulos  " to="menu">
+                        <i className="bi bi-menu-up "></i> Menú
                         </NavLink>
                     </Nav>
                 </Navbar.Collapse>

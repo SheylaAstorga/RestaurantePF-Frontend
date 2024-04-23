@@ -9,11 +9,8 @@ const RutasProtegidas = ({ children, usuarioLogueado }) => {
    const verificarIsAdmin = async () => {
       try {
          if (usuarioLogueado.email !== "") {
-            console.log(isAdmin, usuarioLogueado.email)
             const respuesta = await isRol({ email: usuarioLogueado.email })
-            console.log(usuarioLogueado.email)
             const datos = await respuesta.json(respuesta)
-            console.log(datos)
             if (respuesta.status === 200) {
                setIsAdmin(datos.role)
             } else {
