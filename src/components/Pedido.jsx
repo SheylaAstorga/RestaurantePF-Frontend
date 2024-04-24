@@ -12,6 +12,8 @@ import RegistroPedido from "./RegistroPedido.jsx";
 
 const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
+  const [consulta, setConsulta] = useState(false)
+  
   const navigate = useNavigate();
   const [subtotal, setSubtotal] = useState(0);
   const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
@@ -24,26 +26,13 @@ const Pedido = ({ usuarioLogueado }) => {
 
   const consultarAPI = async () => {
     try {
-      if (usuarioLogueado.token !== "") {
-        const respuesta = await leerPedidoAPI(usuarioLogueado.token);
-        if(respuesta[1] === 200){
-          setFilas(respuesta[0]);
-        }else{
-          navigate("/login")
-          Swal.fire({
-            title: "Ocurrio un error",
-            text: respuesta[0].mensaje,
-            icon: "error",
-          });
-        }
-      } else {
-        navigate("/login");
-        Swal.fire({
-          title: "Debes iniciar secion primero",
-          text: "si no tienes cuenta registrate",
-          icon: "info",
-        });
+
+      const respuesta = await pedidosUsuario();
+      if(respuesta !== undefined){
+        setFilas(respuesta);
       }
+      
+
     } catch (error) {
       console.log(error);
     }
@@ -57,16 +46,23 @@ const Pedido = ({ usuarioLogueado }) => {
     }, 0);
     setSubtotal(total);
   };
+  
+  const precio =()=>{
+    if(carrito.length!== -1){
+      cambioTotal()
+    }
+  }
+
+  useEffect(()=>{
+    precio();
+    consultarAPI();
+  },[])
 
   const guardarEnLocalstorage = () => {
     localStorage.setItem("carritoKey", JSON.stringify(carrito));
     cambioTotal();
   };
-
-  useEffect(() => {
-    consultarAPI();
-    cambioTotal();
-  }, []);
+  
 
 
   const handleComprar = async () => {
@@ -77,12 +73,17 @@ const Pedido = ({ usuarioLogueado }) => {
 
     try {
       const { mensaje } = await crearPedidoAPI(carrito);
+      carrito.splice(0, carrito.length);
+              guardarEnLocalstorage();
       Swal.fire({
         title: "Pedido creado",
         text: mensaje,
         icon: "success",
-        confirmButtonText: "Aceptar",
+       
       });
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 500)
     } catch (error) {
       console.error("Error al crear el pedido:", error);
       Swal.fire({
@@ -96,6 +97,7 @@ const Pedido = ({ usuarioLogueado }) => {
 
   const CargarPedidos = () => {
     if (carrito.length !== 0) {
+    
       return carrito.map((producto) => (
         <PedidosIndividuales
           key={producto.orden}
@@ -120,10 +122,39 @@ const Pedido = ({ usuarioLogueado }) => {
       );
     }
   };
+
+  const borrarPedido = async(id)=>{
+    Swal.fire({
+      title: "estas seguro de eliminar el pedido?",
+      text: "el pedido se eliminará de forma permanente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "si, estoy seguro"
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+        borrarPedidoAPI(id);
+        
+        Swal.fire({
+          title: "pedido borrado!",
+          icon: "success"
+        });
+      
+      }
+    });
+  }
+ 
+
   useEffect(() => {
-    consultarAPI();
-    cambioTotal();
-  }, [handleComprar,borrarPedidoAPI ]);
+    
+      consultarAPI();
+      precio();
+    
+    
+  }, [borrarPedido, handleComprar]);
+
 
   return (
     <section className="container c-principal mainPage">
@@ -170,7 +201,7 @@ const Pedido = ({ usuarioLogueado }) => {
             <Accordion.Header>Mis Pedidos</Accordion.Header>
             <Accordion.Body>
               {filas.map((fila) => (
-                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedidoAPI}></RegistroPedido>
+                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
               ))}
             </Accordion.Body>
           </Accordion.Item>
