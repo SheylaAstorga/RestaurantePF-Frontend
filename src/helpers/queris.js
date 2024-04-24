@@ -3,17 +3,14 @@ const api_producto = import.meta.env.VITE_API_PRODUCTO;
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
 const api_usuarios = import.meta.env.VITE_API_USUARIOS;
 
+// deco del _id del usuario
 
-
-// deco del _id del usuario 
-
-const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma")) 
-const jwt =jwtCompleto.token;
+const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"));
+const jwt = jwtCompleto.token;
 const payloadBase64 = jwt.split(".")[1];
 const payload = JSON.parse(atob(payloadBase64));
 console.log("Decoded Payload:");
-const uid=payload.uid
-
+const uid = payload.uid;
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
@@ -50,7 +47,7 @@ export const productosOfertaAPI = async () => {
 export const pedidosUsuario = async () => {
   try {
     const datita = await fetch(api_pedidos);
-    const listaPedidoUsuario = await datita.json()
+    const listaPedidoUsuario = await datita.json();
     let destacados = listaPedidoUsuario.filter(
       (pUsuario) => pUsuario.usuario._id == uid
     );
@@ -66,7 +63,7 @@ export const productosCategoriaAPI = async (categoria) => {
     let destacados = listaProductos.filter(
       (producto) => producto.categoria === categoria
     );
-    
+
     return destacados;
   } catch (error) {
     console.error(error);
@@ -82,7 +79,7 @@ export const crearProductoAPI = async (productoNuevo) => {
       },
       body: JSON.stringify(productoNuevo),
     });
-   
+
     return respuesta;
   } catch (error) {
     console.error(error);
@@ -115,35 +112,30 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-
-
- export const crearPedidoAPI = async (pedido) => {
-  const enviarPedido ={
-    producto:[pedido],
-    estado:"Pendiente",
-    usuario:uid
+export const crearPedidoAPI = async (pedido) => {
+  const enviarPedido = {
+    producto: [pedido],
+    estado: "Pendiente",
+    usuario: uid,
+  };
+  try {
+    const respuesta = await fetch(api_pedidos, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma"))
+          .token,
+      },
+      body: JSON.stringify(enviarPedido),
+    });
+    const data = await respuesta.json();
+    return data;
+  } catch (error) {
+    console.error(error);
   }
+};
 
-   try {
-   
-     const respuesta = await fetch(api_pedidos, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-         "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
-         
-       },
-       body: JSON.stringify(enviarPedido),
-
-     });
-     const data = await respuesta.json();
-     return data;
-   } catch (error) {
-     console.error(error);
-   }
- };
-
- export const leerPedidoAPI = async () => {
+export const leerPedidoAPI = async () => {
   try {
     const respuesta = await fetch(api_pedidos);
     const listaPedido = await respuesta.json();
@@ -153,7 +145,7 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
- export const modificarPedidoAPI = async (pedidoModificado, id) => {
+export const modificarPedidoAPI = async (pedidoModificado, id) => {
   try {
     const respuesta = await fetch(`${api_pedidos}/${id}`, {
       method: "PUT",
@@ -168,17 +160,17 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-
- export const borrarPedidoAPI = async (id) => {
+export const borrarPedidoAPI = async (id) => {
   try {
     const respuesta = await fetch(`${api_pedidos}/${id}`, {
       method: "DELETE",
-      headers:{
-        "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
-      }
+      headers: {
+        "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma"))
+          .token,
+      },
     });
     return respuesta;
-    console.log(respuesta)
+    console.log(respuesta);
   } catch (error) {
     console.error(error);
   }
@@ -244,7 +236,6 @@ export const habilitarUsuarios = async (email) => {
   }
 };
 
-
 export const crearUsuariosAdmin = async (usuario) => {
   try {
     const respuesta = await fetch(`${api_usuarios}registroAdmin`, {
@@ -260,10 +251,8 @@ export const crearUsuariosAdmin = async (usuario) => {
   }
 };
 
-
 export const crearUsuario = async (usuario) => {
   try {
-
     const respuesta = await fetch(`${api_usuarios}registrar`, {
       method: "POST",
       headers: {
@@ -271,10 +260,9 @@ export const crearUsuario = async (usuario) => {
       },
       body: JSON.stringify(usuario),
     });
-    const datos = await respuesta.json()
-    console.log(datos)
+    const datos = await respuesta.json();
+    console.log(datos);
     return respuesta;
-
   } catch (error) {
     console.log(error);
   }
@@ -309,7 +297,6 @@ export const logoutBack = async (usuario) => {
     console.log(error);
   }
 };
-
 
 export const isRol = async (usuario) => {
   try {
