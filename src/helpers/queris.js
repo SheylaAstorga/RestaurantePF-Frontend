@@ -37,7 +37,7 @@ export const productosOfertaAPI = async () => {
 export const pedidosUsuario = async () => {
   try {
     const datita = await fetch(api_pedidos);
-    const listaPedidoUsuario = await datita.json();
+    const listaPedidoUsuario = await datita.json()
     let destacados = listaPedidoUsuario.filter(
       (pUsuario) => pUsuario.usuario._id == uid
     );
