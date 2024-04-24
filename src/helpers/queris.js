@@ -9,7 +9,6 @@ const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"));
 const jwt = jwtCompleto.token;
 const payloadBase64 = jwt.split(".")[1];
 const payload = JSON.parse(atob(payloadBase64));
-console.log("Decoded Payload:");
 const uid = payload.uid;
 
 //mostrar todos los productos
@@ -137,9 +136,13 @@ export const crearPedidoAPI = async (pedido) => {
 
 export const leerPedidoAPI = async () => {
   try {
-    const respuesta = await fetch(api_pedidos);
+    const respuesta = await fetch(api_pedidos , {
+      headers: {
+        "x-token": token
+      }
+    });
     const listaPedido = await respuesta.json();
-    return listaPedido;
+    return [listaPedido, respuesta.status];
   } catch (error) {
     console.log(error);
   }
@@ -175,8 +178,6 @@ export const borrarPedidoAPI = async (id) => {
     console.error(error);
   }
 };
-
-// usuarios
 
 export const leerUsuarios = async () => {
   try {
@@ -260,8 +261,6 @@ export const crearUsuario = async (usuario) => {
       },
       body: JSON.stringify(usuario),
     });
-    const datos = await respuesta.json();
-    console.log(datos);
     return respuesta;
   } catch (error) {
     console.log(error);

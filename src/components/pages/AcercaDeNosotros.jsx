@@ -30,7 +30,7 @@ const AcercaDeNostros = () => {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <Card.Link href="#">
+                <Card.Link href="https://www.linkedin.com/in/sheyla-luciana-astorga-40013a248/">
                   <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/SheylaAstorga">
@@ -56,7 +56,7 @@ const AcercaDeNostros = () => {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <Card.Link href="#">
+                <Card.Link href="https://www.linkedin.com/in/thiago-benjamin-fiol-440310287/">
                   <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/elFiol">
@@ -82,7 +82,7 @@ const AcercaDeNostros = () => {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <Card.Link href="#">
+                <Card.Link href="https://www.linkedin.com/in/javier-jimenez-sniguel359/">
                   <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/Javier359">
@@ -108,7 +108,7 @@ const AcercaDeNostros = () => {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <Card.Link href="#">
+                <Card.Link href="https://www.linkedin.com/in/natalia-morales-ing-sis/">
                   <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/NatiMorales">
@@ -134,7 +134,7 @@ const AcercaDeNostros = () => {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <Card.Link href="#">
+                <Card.Link href="https://www.linkedin.com/in/manusantiaraoz/">
                   <i className="bi bi-linkedin colorIconoCardAN fs-4 fs-md-3"></i>
                 </Card.Link>
                 <Card.Link href="https://github.com/manusantiaraoz">
