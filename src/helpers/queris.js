@@ -3,19 +3,6 @@ const api_producto = import.meta.env.VITE_API_PRODUCTO;
 const api_pedidos = import.meta.env.VITE_API_PEDIDOS;
 const api_usuarios = import.meta.env.VITE_API_USUARIOS;
 
-
-
-// deco del _id del usuario 
-
-const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma")) 
-const jwt =jwtCompleto.token;
-const payloadBase64 = jwt.split(".")[1];
-const payload = JSON.parse(atob(payloadBase64));
-console.log("Decoded Payload:");
-const uid=payload.uid
-
-
-//mostrar todos los productos
 export const leerProductosAPI = async () => {
   try {
     const datita = await fetch(api_productos);
@@ -115,39 +102,34 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-
-
- export const crearPedidoAPI = async (pedido) => {
-  const enviarPedido ={
-    producto:[pedido],
-    estado:"Pendiente",
-    usuario:uid
-  }
-
+ export const crearPedidoAPI = async (pedido, token) => {
    try {
    
      const respuesta = await fetch(api_pedidos, {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
-         "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma")).token
-         
+         "x-token": token
        },
        body: JSON.stringify(enviarPedido),
 
      });
      const data = await respuesta.json();
-     return data;
+     return [data, respuesta];
    } catch (error) {
      console.error(error);
    }
  };
 
- export const leerPedidoAPI = async () => {
+ export const leerPedidoAPI = async (token) => {
   try {
-    const respuesta = await fetch(api_pedidos);
+    const respuesta = await fetch(api_pedidos , {
+      headers: {
+        "x-token": token
+      }
+    });
     const listaPedido = await respuesta.json();
-    return listaPedido;
+    return [listaPedido, respuesta.status];
   } catch (error) {
     console.log(error);
   }
@@ -183,8 +165,6 @@ export const modificarProductoAPI = async (productoModificado, id) => {
     console.error(error);
   }
 };
-
-// usuarios
 
 export const leerUsuarios = async () => {
   try {
@@ -271,8 +251,6 @@ export const crearUsuario = async (usuario) => {
       },
       body: JSON.stringify(usuario),
     });
-    const datos = await respuesta.json()
-    console.log(datos)
     return respuesta;
 
   } catch (error) {
@@ -309,7 +287,6 @@ export const logoutBack = async (usuario) => {
     console.log(error);
   }
 };
-
 
 export const isRol = async (usuario) => {
   try {

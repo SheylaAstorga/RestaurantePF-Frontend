@@ -11,7 +11,7 @@ import UsuariosItem from "./UsuariosItem";
 import Swal from "sweetalert2";
 import "../../style/spin.css";
 
-const UsuariosAdmin = () => {
+const UsuariosAdmin = ({usuarioLogueado}) => {
   const [usuarios, setUsuarios] = useState([]);
   const [mostrarComponente, setMostrarComponente] = useState(false);
   useEffect(() => {
@@ -248,6 +248,7 @@ const UsuariosAdmin = () => {
                   habilitarUsuario={habilitarUsuario}
                   suspenderUsuario={suspenderUsuario}
                   usuario={usuario}
+                  usuarioLogueado={usuarioLogueado}
                   key={posicion}
                 ></UsuariosItem>
               ))}

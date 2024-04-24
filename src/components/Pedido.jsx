@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { crearPedidoAPI, borrarPedidoAPI, pedidosUsuario } from "../helpers/queris.js";
 import RegistroPedido from "./RegistroPedido.jsx";
 
-const Pedido = () => {
+const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
   const [consulta, setConsulta] = useState(false)
   
@@ -24,17 +24,15 @@ const Pedido = () => {
     return token !== null && token !== undefined;
   };
 
-
-
-
-
   const consultarAPI = async () => {
     try {
+
       const respuesta = await pedidosUsuario();
       if(respuesta !== undefined){
         setFilas(respuesta);
       }
       
+
     } catch (error) {
       console.log(error);
     }
