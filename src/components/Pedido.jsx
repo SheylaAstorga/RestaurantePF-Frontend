@@ -29,6 +29,7 @@ const Pedido = ({ usuarioLogueado }) => {
 
       const respuesta = await pedidosUsuario();
       if(respuesta !== undefined){
+        
         setFilas(respuesta);
       }
       
@@ -81,9 +82,7 @@ const Pedido = ({ usuarioLogueado }) => {
         icon: "success",
        
       });
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 500)
+      consultarAPI()
     } catch (error) {
       console.error("Error al crear el pedido:", error);
       Swal.fire({
@@ -122,7 +121,12 @@ const Pedido = ({ usuarioLogueado }) => {
       );
     }
   };
-
+const recargarDatoFila = (id)=>{
+  console.log(filas);
+  let borrar = filas.findIndex((filas)=>{return filas._id = id});
+filas.splice(borrar)
+setFilas(filas)
+}
   const borrarPedido = async(id)=>{
     Swal.fire({
       title: "estas seguro de eliminar el pedido?",
@@ -134,27 +138,32 @@ const Pedido = ({ usuarioLogueado }) => {
       confirmButtonText: "si, estoy seguro"
     }).then((result) => {
       if (result.isConfirmed) {
-       
+        console.log(filas)
         borrarPedidoAPI(id);
-        
         Swal.fire({
           title: "pedido borrado!",
           icon: "success"
         });
-      
+        setTimeout(()=>{
+          window.location.reload()
+        },1500)
       }
     });
   }
  
 
-  useEffect(() => {
-    
-      consultarAPI();
-      precio();
-    
-    
-  }, [borrarPedido, handleComprar]);
 
+
+  const cargarPedidosUsuario =()=>{
+  
+      if(filas.length !== 0){
+        return filas.map((fila) => (
+          <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
+        ))
+      }else {
+        return <h4>no hay productos guardados</h4>
+      }
+  }
 
   return (
     <section className="container c-principal mainPage">
@@ -200,9 +209,7 @@ const Pedido = ({ usuarioLogueado }) => {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Mis Pedidos</Accordion.Header>
             <Accordion.Body>
-              {filas.map((fila) => (
-                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
-              ))}
+              {cargarPedidosUsuario()}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
