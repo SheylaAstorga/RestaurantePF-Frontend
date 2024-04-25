@@ -5,12 +5,21 @@ const api_usuarios = import.meta.env.VITE_API_USUARIOS;
 
 // deco del _id del usuario
 
-const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"));
-const jwt = jwtCompleto.token;
-const payloadBase64 = jwt.split(".")[1];
-const payload = JSON.parse(atob(payloadBase64));
-console.log("Decoded Payload:");
-const uid = payload.uid;
+const jwtCompleto = JSON.parse(localStorage.getItem("usuarioSazonDelAlma"))||[];
+
+let uid
+const uidUsuario =()=>{
+  const jwt = jwtCompleto.token;
+  if (jwt !== undefined){
+    const payloadBase64 = jwt.split(".")[1];
+    const payload = JSON.parse(atob(payloadBase64));
+  
+     uid = payload.uid;
+     return uid;
+  }
+  
+}
+
 
 //mostrar todos los productos
 export const leerProductosAPI = async () => {
@@ -45,15 +54,21 @@ export const productosOfertaAPI = async () => {
   }
 };
 export const pedidosUsuario = async () => {
-  try {
-    const datita = await fetch(api_pedidos);
-    const listaPedidoUsuario = await datita.json();
-    let destacados = listaPedidoUsuario.filter(
-      (pUsuario) => pUsuario.usuario._id == uid
-    );
-    return destacados;
-  } catch (error) {
-    console.error(error);
+  uid =  uidUsuario()
+
+  if(uid !== undefined){
+    try {
+      const datita = await fetch(api_pedidos);
+      const listaPedidoUsuario = await datita.json();
+      let destacados = listaPedidoUsuario.filter(
+        (pUsuario) => pUsuario.usuario._id == uid
+      );
+      return destacados;
+    } catch (error) {
+      console.error(error);
+    }
+  }else{
+    return []
   }
 };
 export const productosCategoriaAPI = async (categoria) => {
@@ -113,6 +128,8 @@ export const modificarProductoAPI = async (productoModificado, id) => {
 };
 
 export const crearPedidoAPI = async (pedido) => {
+  let id =  uidUsuario()
+const uid = id
   const enviarPedido = {
     producto: [pedido],
     estado: "Pendiente",

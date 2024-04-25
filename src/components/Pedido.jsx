@@ -32,6 +32,7 @@ const Pedido = () => {
     try {
       const respuesta = await pedidosUsuario();
       if(respuesta !== undefined){
+        console.log("a");
         setFilas(respuesta);
       }
       
@@ -149,14 +150,23 @@ const Pedido = () => {
   }
  
 
-  useEffect(() => {
+  // useEffect(() => {
     
-      consultarAPI();
-      precio();
+  //     consultarAPI();
+  //     precio;
     
     
-  }, [borrarPedido, handleComprar]);
+  // }, []);
 
+  const cargarPedidosUsuario =()=>{
+      if(filas.length !== 0){
+        return filas.map((fila) => (
+          <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
+        ))
+      }else {
+        return <h4>no hay productos guardados</h4>
+      }
+  }
 
   return (
     <section className="container c-principal mainPage">
@@ -202,9 +212,7 @@ const Pedido = () => {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Mis Pedidos</Accordion.Header>
             <Accordion.Body>
-              {filas.map((fila) => (
-                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
-              ))}
+              {cargarPedidosUsuario()}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
