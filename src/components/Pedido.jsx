@@ -32,7 +32,7 @@ const Pedido = () => {
     try {
       const respuesta = await pedidosUsuario();
       if(respuesta !== undefined){
-        console.log("a");
+        
         setFilas(respuesta);
       }
       
@@ -84,9 +84,7 @@ const Pedido = () => {
         icon: "success",
        
       });
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 500)
+      consultarAPI()
     } catch (error) {
       console.error("Error al crear el pedido:", error);
       Swal.fire({
@@ -125,7 +123,12 @@ const Pedido = () => {
       );
     }
   };
-
+const recargarDatoFila = (id)=>{
+  console.log(filas);
+  let borrar = filas.findIndex((filas)=>{return filas._id = id});
+filas.splice(borrar)
+setFilas(filas)
+}
   const borrarPedido = async(id)=>{
     Swal.fire({
       title: "estas seguro de eliminar el pedido?",
@@ -137,28 +140,24 @@ const Pedido = () => {
       confirmButtonText: "si, estoy seguro"
     }).then((result) => {
       if (result.isConfirmed) {
-       
+        console.log(filas)
         borrarPedidoAPI(id);
-        
         Swal.fire({
           title: "pedido borrado!",
           icon: "success"
         });
-      
+        setTimeout(()=>{
+          window.location.reload()
+        },1500)
       }
     });
   }
  
 
-  // useEffect(() => {
-    
-  //     consultarAPI();
-  //     precio;
-    
-    
-  // }, []);
+
 
   const cargarPedidosUsuario =()=>{
+  
       if(filas.length !== 0){
         return filas.map((fila) => (
           <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
