@@ -69,7 +69,7 @@ const Pedido = ({ usuarioLogueado }) => {
     }
 
     try {
-      const { mensaje } = await crearPedidoAPI(carrito);
+      const { mensaje } = await crearPedidoAPI(carrito, usuarioLogueado.token);
       carrito.splice(0, carrito.length);
       guardarEnLocalstorage();
       Swal.fire({

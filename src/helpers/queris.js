@@ -126,21 +126,17 @@ export const modificarProductoAPI = async (productoModificado, id) => {
   }
 };
 
-export const crearPedidoAPI = async (pedido) => {
-  let id =  uidUsuario()
-const uid = id
+export const crearPedidoAPI = async (pedido, token) => {
   const enviarPedido = {
     producto: [pedido],
-    estado: "Pendiente",
-    usuario: uid,
+    estado: "Pendiente"
   };
   try {
     const respuesta = await fetch(api_pedidos, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-token": JSON.parse(localStorage.getItem("usuarioSazonDelAlma"))
-          .token,
+        "x-token": token
       },
       body: JSON.stringify(enviarPedido),
     });
