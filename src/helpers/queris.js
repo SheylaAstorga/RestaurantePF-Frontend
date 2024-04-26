@@ -53,17 +53,16 @@ export const productosOfertaAPI = async () => {
     console.error(error);
   }
 };
-export const pedidosUsuario = async () => {
-  uid =  uidUsuario()
-
-  if(uid !== undefined){
+export const pedidosUsuario = async (token) => {
+  if(token !== ""){
     try {
-      const datita = await fetch(api_pedidos);
+      const datita = await fetch(api_pedidos , {
+        headers: {
+          "x-token" : token
+        }
+      });
       const listaPedidoUsuario = await datita.json();
-      let destacados = listaPedidoUsuario.filter(
-        (pUsuario) => pUsuario.usuario._id == uid
-      );
-      return destacados;
+      return listaPedidoUsuario;
     } catch (error) {
       console.error(error);
     }

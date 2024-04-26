@@ -13,7 +13,7 @@ import RegistroPedido from "./RegistroPedido.jsx";
 const Pedido = ({ usuarioLogueado }) => {
   const [filas, setFilas] = useState([]);
   const [consulta, setConsulta] = useState(false)
-  
+
   const navigate = useNavigate();
   const [subtotal, setSubtotal] = useState(0);
   const carrito = JSON.parse(localStorage.getItem("carritoKey")) || [];
@@ -27,19 +27,17 @@ const Pedido = ({ usuarioLogueado }) => {
   const consultarAPI = async () => {
     try {
 
-      const respuesta = await pedidosUsuario();
-      if(respuesta !== undefined){
-        
+      const respuesta = await pedidosUsuario(usuarioLogueado.token);
+      if (respuesta !== undefined) {
         setFilas(respuesta);
       }
-      
 
     } catch (error) {
       console.log(error);
     }
   };
 
- 
+
 
   const cambioTotal = () => {
     const total = carrito.reduce((suma, carr) => {
@@ -47,24 +45,22 @@ const Pedido = ({ usuarioLogueado }) => {
     }, 0);
     setSubtotal(total);
   };
-  
-  const precio =()=>{
-    if(carrito.length!== -1){
+
+  const precio = () => {
+    if (carrito.length !== -1) {
       cambioTotal()
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     precio();
     consultarAPI();
-  },[])
+  }, [])
 
   const guardarEnLocalstorage = () => {
     localStorage.setItem("carritoKey", JSON.stringify(carrito));
     cambioTotal();
   };
-  
-
 
   const handleComprar = async () => {
     if (!isUserAuthenticated()) {
@@ -75,12 +71,12 @@ const Pedido = ({ usuarioLogueado }) => {
     try {
       const { mensaje } = await crearPedidoAPI(carrito);
       carrito.splice(0, carrito.length);
-              guardarEnLocalstorage();
+      guardarEnLocalstorage();
       Swal.fire({
         title: "Pedido creado",
         text: mensaje,
         icon: "success",
-       
+
       });
       consultarAPI()
     } catch (error) {
@@ -96,7 +92,7 @@ const Pedido = ({ usuarioLogueado }) => {
 
   const CargarPedidos = () => {
     if (carrito.length !== 0) {
-    
+
       return carrito.map((producto) => (
         <PedidosIndividuales
           key={producto.orden}
@@ -104,7 +100,7 @@ const Pedido = ({ usuarioLogueado }) => {
           producto={producto}
           carrito={carrito}
           guardarEnLocalstorage={guardarEnLocalstorage}
-        
+
         />
       ));
     } else {
@@ -121,14 +117,14 @@ const Pedido = ({ usuarioLogueado }) => {
       );
     }
   };
-const recargarDatoFila = (id)=>{
-  console.log(filas);
-  let borrar = filas.findIndex((filas)=>{return filas._id = id});
-filas.splice(borrar)
-setFilas(filas)
-}
-  const borrarPedido = async(id)=>{
-    Swal.fire({
+  const recargarDatoFila = (id) => {
+    console.log(filas);
+    let borrar = filas.findIndex((filas) => { return filas._id = id });
+    filas.splice(borrar)
+    setFilas(filas)
+  }
+  const borrarPedido = async (id) => {
+    const result = await Swal.fire({
       title: "estas seguro de eliminar el pedido?",
       text: "el pedido se eliminará de forma permanente",
       icon: "warning",
@@ -136,33 +132,15 @@ setFilas(filas)
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "si, estoy seguro"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(filas)
-        borrarPedidoAPI(id);
-        Swal.fire({
-          title: "pedido borrado!",
-          icon: "success"
-        });
-        setTimeout(()=>{
-          window.location.reload()
-        },1500)
-      }
-    });
-  }
- 
-
-
-
-  const cargarPedidosUsuario =()=>{
-  
-      if(filas.length !== 0){
-        return filas.map((fila) => (
-          <RegistroPedido key={fila._id} fila={fila} producto={fila.producto}   borrarPedidoAPI={borrarPedido}></RegistroPedido>
-        ))
-      }else {
-        return <h4>no hay productos guardados</h4>
-      }
+    })
+    if (result.isConfirmed) {
+      await borrarPedidoAPI(id);
+      await consultarAPI()
+      Swal.fire({
+        title: "pedido borrado!",
+        icon: "success"
+      });
+    }
   }
 
   return (
@@ -209,7 +187,9 @@ setFilas(filas)
           <Accordion.Item eventKey="0">
             <Accordion.Header>Mis Pedidos</Accordion.Header>
             <Accordion.Body>
-              {cargarPedidosUsuario()}
+              {filas.length !== 0 ? (filas.map((fila) => (
+                <RegistroPedido key={fila._id} fila={fila} producto={fila.producto} borrarPedidoAPI={borrarPedido}></RegistroPedido>
+              ))) : (<h4>no hay productos guardados</h4>)}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
