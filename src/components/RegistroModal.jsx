@@ -53,7 +53,6 @@ const RegistroModal = ({ actualizarUsuario }) => {
         email: usuarioValidado.email,
         password: usuarioValidado.password,
         nombreUsuario: usuarioValidado.nombreUsuario,
-        role: usuarioValidado.rol,
         perfilRGB: generarColorRandom()
       }
       const respuesta = await crearUsuario(usuario);
@@ -129,6 +128,10 @@ const RegistroModal = ({ actualizarUsuario }) => {
                     message:
                       "El nombre del usuario debe tener como maximo 25 caracteres",
                   },
+                  pattern: {
+                    value: /^[a-zA-Z\s]+$/,
+                    message: "el usuario solo debe contener letras y espacios",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
@@ -291,15 +294,15 @@ const RegistroModal = ({ actualizarUsuario }) => {
             </div>
           </Form>
           <div className=" text-center">
-            <Button
-              variant="outline-primary"
-              className="social-button me-3 my-2 w-25"
+            <Link
+              to="/error404"
+              className="btn btn-outline-primary social-button me-3 my-2 w-25"
             >
               <FontAwesomeIcon icon={faFacebook} className="social-icon" />
-            </Button>
-            <Button variant="outline-danger" className="social-button w-25">
+            </Link>
+            <Link to="/error404" className="btn btn-outline-danger social-button w-25">
               <FontAwesomeIcon icon={faGoogle} className="social-icon" />
-            </Button>
+            </Link>
           </div>
         </Modal.Body>
         <Modal.Footer>
