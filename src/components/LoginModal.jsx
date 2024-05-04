@@ -89,7 +89,8 @@ const LoginModal = ({ actualizarUsuario }) => {
             className="traditional-login"
             onSubmit={handleSubmit(usuarioValidado)}
           >
-            <Form.Group controlId="formBasicEmail" className="my-4">
+            <Form.Label className="m-0">Email:</Form.Label>
+            <Form.Group controlId="formBasicEmail" className="mb-4 mt-1">
               <Form.Control
                 type="email"
                 placeholder="Correo electrónico"
@@ -152,15 +153,15 @@ const LoginModal = ({ actualizarUsuario }) => {
               </a>
             </div>
             <div className=" text-center">
-              <Button
-                variant="outline-primary"
-                className="social-button me-3 my-2 w-25"
+              <Link
+                to="/error404"
+                className="btn btn-outline-primary social-button me-3 my-2 w-25"
               >
                 <FontAwesomeIcon icon={faFacebook} className="social-icon" />
-              </Button>
-              <Button variant="outline-danger" className="social-button w-25">
+              </Link>
+              <Link to="/error404" className="btn btn-outline-danger social-button w-25">
                 <FontAwesomeIcon icon={faGoogle} className="social-icon" />
-              </Button>
+              </Link>
             </div>
           </Form>
         </Modal.Body>
