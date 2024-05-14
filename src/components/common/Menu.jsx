@@ -115,7 +115,7 @@ const Menu = ({ usuarioLogueado, actualizarUsuario }) => {
                                 <i className="bi bi-person-fill-add iconos-botones px-2 "></i><b className="texto-boton">Registrarse</b>
                             </NavLink>
                             <NavLink end className="nav-link ps-2 text-light btn colorBoton1 pe-2 d-flex flex-column align-items-center" to="/login" title="Iniciar Secion">
-                                <i className="bi bi-person-fill iconos-botones px-2"></i><b className="texto-boton">Iniciar Secion</b>
+                                <i className="bi bi-person-fill iconos-botones px-2"></i><b className="texto-boton">Iniciar Sesión</b>
                             </NavLink>
                         </>
                     )}
